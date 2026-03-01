@@ -133,17 +133,6 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
 
       const data = await response.json();
       const text = data.content.map((item: any) => item.type === "text" ? item.text : "").join("\n");
-```
-
-(Just add `: any` after `item`)
-
-**Save the file**, then push to GitHub again:
-
-In Terminal:
-```
-git add .
-git commit -m "Fix TypeScript error"
-git push
 
       const cleanText = text.replace(/```json|```/g, "").trim();
       const parsedAnalysis = JSON.parse(cleanText);
