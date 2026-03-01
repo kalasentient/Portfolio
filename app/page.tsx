@@ -28,8 +28,8 @@ export default function AIPortfolio() {
     projects: [
       {
         id: 1,
-        title: "AI-Powered Customer Support Dashboard",
-        description: "Redesigned enterprise support platform integrating Claude for intelligent ticket routing and response suggestions. Led user research with 50+ support agents to understand pain points.",
+        title: "Transport for London's Driver's Dashboard",
+        description: "Led the development of UX research strategy, facilitating early identification of fleet business and personal user needs which led to a more streamlined design sprint. Prototyping new and improved accessible account dashboard and payment experiences through to delivering final visual designs for sets of multiple user groups.",
         impact: "Reduced average ticket resolution time by 40% and improved agent satisfaction scores by 65%",
         skills: ["Gen AI", "UX Research", "Dashboard Design", "Figma", "User Testing", "AI Product Design"],
         category: "GenAI Product",
@@ -132,7 +132,19 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
       });
 
       const data = await response.json();
-      const text = data.content.map(item => item.type === "text" ? item.text : "").join("\n");
+      const text = data.content.map((item: any) => item.type === "text" ? item.text : "").join("\n");
+```
+
+(Just add `: any` after `item`)
+
+**Save the file**, then push to GitHub again:
+
+In Terminal:
+```
+git add .
+git commit -m "Fix TypeScript error"
+git push
+
       const cleanText = text.replace(/```json|```/g, "").trim();
       const parsedAnalysis = JSON.parse(cleanText);
       
