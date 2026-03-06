@@ -85,6 +85,28 @@ export default function AIPortfolio() {
     setShowAllProjects(false);
 
     try {
+      const prompt = "You are analyzing a job description to match it with a UX designer's portfolio projects.\n\n" +
+        "Job Description:\n" + jobDescription + "\n\n" +
+        "Portfolio Projects:\n" + JSON.stringify(portfolioData.projects, null, 2) + "\n\n" +
+        "Portfolio Skills:\n" + JSON.stringify(portfolioData.skills, null, 2) + "\n\n" +
+        "Analyze this job description and:\n" +
+        "1. Identify the top 3-5 key requirements (skills, experience, domain knowledge)\n" +
+        "2. Rank the portfolio projects by relevance (most to least relevant)\n" +
+        "3. For each project, explain why it's relevant (or not) to this role\n" +
+        "4. Create a brief \"match summary\" explaining why this candidate would be a good fit\n\n" +
+        "Respond ONLY with a JSON object in this exact format (no markdown, no preamble):\n" +
+        "{\n" +
+        "  \"keyRequirements\": [\"requirement1\", \"requirement2\", \"requirement3\"],\n" +
+        "  \"matchSummary\": \"2-3 sentence summary of why candidate is a good fit\",\n" +
+        "  \"rankedProjects\": [\n" +
+        "    {\n" +
+        "      \"projectId\": 1,\n" +
+        "      \"relevanceScore\": 95,\n" +
+        "      \"relevanceReason\": \"Why this project is relevant\"\n" +
+        "    }\n" +
+        "  ]\n" +
+        "}";
+
       const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: {
@@ -96,35 +118,7 @@ export default function AIPortfolio() {
           messages: [
             {
               role: "user",
-              content: \`You are analyzing a job description to match it with a UX designer's portfolio projects.
-
-Job Description:
-\${jobDescription}
-
-Portfolio Projects:
-\${JSON.stringify(portfolioData.projects, null, 2)}
-
-Portfolio Skills:
-\${JSON.stringify(portfolioData.skills, null, 2)}
-
-Analyze this job description and:
-1. Identify the top 3-5 key requirements (skills, experience, domain knowledge)
-2. Rank the portfolio projects by relevance (most to least relevant)
-3. For each project, explain why it's relevant (or not) to this role
-4. Create a brief "match summary" explaining why this candidate would be a good fit
-
-Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
-{
-  "keyRequirements": ["requirement1", "requirement2", "requirement3"],
-  "matchSummary": "2-3 sentence summary of why candidate is a good fit",
-  "rankedProjects": [
-    {
-      "projectId": 1,
-      "relevanceScore": 95,
-      "relevanceReason": "Why this project is relevant"
-    }
-  ]
-}\`
+              content: prompt
             }
           ]
         })
@@ -132,7 +126,7 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
 
       const data = await response.json();
       const text = data.content.map((item: any) => item.type === "text" ? item.text : "").join("\n");
-      const cleanText = text.replace(/\`\`\`json|\`\`\`/g, "").trim();
+      const cleanText = text.replace(/```json|```/g, "").trim();
       const parsedAnalysis = JSON.parse(cleanText);
       
       setAnalysis(parsedAnalysis);
@@ -183,15 +177,15 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
           </p>
           
           <div className="flex items-center justify-center gap-6">
-            <a href={\`mailto:\${portfolioData.contact.email}\`} className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
+            <a href={'mailto:' + portfolioData.contact.email} className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
               <Mail size={18} />
               <span className="text-sm">Email</span>
             </a>
-            <a href={\`https://\${portfolioData.contact.linkedin}\`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
+            <a href={'https://' + portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
               <Linkedin size={18} />
               <span className="text-sm">LinkedIn</span>
             </a>
-            <a href={\`https://\${portfolioData.contact.github}\`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
+            <a href={'https://' + portfolioData.contact.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
               <Github size={18} />
               <span className="text-sm">GitHub</span>
             </a>
@@ -210,7 +204,10 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
           <textarea
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
-            placeholder="Paste the full job description here...&#10;&#10;Example:&#10;We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
+            placeholder="Paste the full job description here...
+
+Example:
+We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
             className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
           />
           
@@ -269,7 +266,7 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
                 key={project.id}
                 className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:border-indigo-500/50 transition-all shadow-xl hover:shadow-2xl group"
                 style={{
-                  animation: analysis ? \`slideInUp 0.5s ease-out \${idx * 0.1}s both\` : 'none'
+                  animation: analysis ? 'slideInUp 0.5s ease-out ' + (idx * 0.1) + 's both' : 'none'
                 }}
               >
                 <div className="flex items-start gap-6">
@@ -340,7 +337,7 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
         </footer>
       </div>
 
-      <style jsx>{\`
+      <style jsx>{`
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -364,7 +361,7 @@ Respond ONLY with a JSON object in this exact format (no markdown, no preamble):
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;
         }
-      \`}</style>
+      `}</style>
     </div>
   );
 }
