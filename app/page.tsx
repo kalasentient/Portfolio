@@ -10,70 +10,98 @@ export default function AIPortfolio() {
   const [showAllProjects, setShowAllProjects] = useState(false);
 
   const portfolioData = {
-    name: "Alex Morgan",
+    name: "Asakala Geraghty",
     title: "UX Product Designer",
-    bio: "Product designer specializing in Gen AI experiences, design systems, and user research. Passionate about creating intuitive interfaces that leverage AI to solve real user problems.",
+    bio: "Product designer specialising in solving systemic challenges for global brands. Passionate about creating intuitive experiences that leverage design and insights to solve real user problems.",
     contact: {
-      email: "alex@example.com",
-      linkedin: "linkedin.com/in/alexmorgan",
-      github: "github.com/alexmorgan"
+      email: "asakalageraghty@gmail.com",
+      linkedin: "linkedin.com/in/asakala",
+      github: "github.com/kalasentient"
     },
     skills: {
-      design: ["Figma", "Adobe XD", "Sketch", "Prototyping", "Design Systems", "Wireframing"],
+      design: ["UX Product design", "Strategic thinking", "Figma", "Sketch", "Prototyping", "synthesis and analysis of qualitative and quantative research", "Wireframing", "UI design"],
       research: ["User Interviews", "Usability Testing", "A/B Testing", "Analytics", "Journey Mapping"],
-      genAI: ["Prompt Engineering", "AI UX Patterns", "LLM Integration", "Claude API", "OpenAI API", "AI Product Design"],
-      technical: ["HTML/CSS", "React", "Design Tokens", "API Integration", "Accessibility (WCAG)"]
+      genAI: ["Chatbots and conversational interfaces", "Personalisation and recommendation systems, "AI UX Patterns", "AI Product Design", "AI Ethics", "Prompt Engineering", "LLM Integration"],
+      technical: ["Design in regulated industries", "Design for internal systems and B2B", "Accessibility (WCAG)", "basic HTML/CSS", "API Integration"]
+      industries: ["Retail", "Fintech", "Not for profit", "public organisations"]
+      human: ["Effective collaboration with AI engineering teams and data scientists", "Working effectively with large groups of stakeholders", "Eager for feedback and learning",]
     },
-    projects: [
+    featured projects: [
       {
         id: 1,
-        title: "AI-Powered Customer Support Dashboard",
-        description: "Redesigned enterprise support platform integrating Claude for intelligent ticket routing and response suggestions. Led user research with 50+ support agents to understand pain points.",
-        impact: "Reduced average ticket resolution time by 40% and improved agent satisfaction scores by 65%",
-        skills: ["Gen AI", "UX Research", "Dashboard Design", "Figma", "User Testing", "AI Product Design"],
-        category: "GenAI Product",
-        image: "🤖",
+        title: "Dashboard re design for London drivers paying charges",
+        client: "Transport for London",
+        description: "Complete design overhaul of payments dashboard for all paying drivers in London and how it is discovered. Led the development of UX research strategy, facilitating early identification of fleet business and personal user needs which led to more streamlined design sprints and clearer focus on priorities. Prototyping new and improved accessible account dashboard and payment experiences through to delivering final visual designs for sets of multiple user groups.",
+        impact: "Uncovered unmet user needs through interviews, usability testing, or surveys that shifted the team's direction. Identified pain points and improved design practices in an existing flow that saved the organisation from shipping something broken. Created prototypes or journey maps that got previously deadlocked teams to agree on a direction. Usability test scores improving across prototype iterations. Heuristic analysis that influenced a product pivot and stakeholder satisfaction. Created new UI components to match future design language direction ",
+        skills: ["UX Research", "Dashboard Design", "Figma", "User Testing", "Wireframes", "UI design", "Accessibility (WCAG)", "Stakeholder management"],
+        category: "Dashboard design",
+        image: "🚗",
         year: "2024"
       },
       {
         id: 2,
-        title: "Healthcare Mobile App Redesign",
-        description: "Complete UX overhaul of patient portal app serving 2M+ users. Conducted extensive accessibility audits and user testing with diverse age groups.",
-        impact: "Increased patient engagement by 85% and achieved WCAG 2.1 AA compliance",
-        skills: ["Mobile Design", "Accessibility", "User Research", "Prototyping", "Design Systems", "iOS/Android"],
-        category: "Mobile UX",
-        image: "🏥",
+        title: "WhatsApp customer service Gen AI chatbot ",
+        client: "John Lewis",
+        description: "Lead product designer in the Salesforce Chatbot team, designing and testing new AI functionality, which led to shorter customer wait times and improved experience for human agents. Worked with privacy and data teams and built a safe data processing and framework for future AI projects.",
+        impact: "Increase in speed for human agents to accept a conversation, decrease in times a customer is moved to another queue, customer feedback rating up",
+        skills: ["Chatbot design", "AI Product Design", "LLM integration", "User Research", "Prototyping", "Sentiment analysis tools for customer feedback", "Salesforce", "AI Ethics"],
+        category: "Conversational and chatbot design",
+        image: "🤖",
         year: "2023"
       },
       {
         id: 3,
-        title: "Design System for FinTech Platform",
-        description: "Built comprehensive design system from scratch for B2B financial platform. Created component library, documentation, and design tokens used across 5 product teams.",
-        impact: "Reduced design-to-dev handoff time by 60% and improved design consistency across products",
-        skills: ["Design Systems", "Figma", "Component Design", "Documentation", "Design Tokens", "React"],
-        category: "Design Systems",
+        title: "Payment system re design",
+        description: "Payment system re design, improving experiences for both internal colleagues across a spectrum of teams and B2B business customers of the bank by reducing manual error through automation whilst allowing for human intervention when it mattered most.",
+        impact: "Successfully introduced automation into something that depends on human trust and relationships.Surfaced the varied needs of internal teams and business banking customers across different company sizes, preventing a one-size-fits-all solution.  ",
+        skills: ["Systems thinking", "High-level data and process mapping", "Stakeholder management", "Contextual enquiry", "Qualitative research", "UI and interaction design for data dashboards"],
+        category: "Software as a service",
         image: "💎",
-        year: "2023"
+        year: "2022"
       },
       {
         id: 4,
-        title: "AI Writing Assistant for Marketing Teams",
-        description: "Designed prompt-based writing tool leveraging GPT-4 for content creation. Led competitive analysis and developed novel UX patterns for AI feedback and iteration.",
-        impact: "Adopted by 200+ marketing teams, generating 10k+ pieces of content monthly",
-        skills: ["Gen AI", "Prompt Design", "UX Research", "Prototyping", "User Testing", "OpenAI API"],
-        category: "GenAI Product",
+        title: "Optimising a mortgage lenders internal back end system",
+        client: "Koodoo",
+        description: "Re desgined the back end tool that Mortgage underwriters use to assess and approve mortgage applications. Led research and prototype testing to aid fast design iteration.",
+        impact: "Uncovered how internal teams were actually using the system versus how it was assumed to be used, directly informing the new design strategy and execution",
+        skills: ["UX Research", "Prototyping", "User Testing", "Gen AI", "Process mapping"],
+        category: "Fintech internal systems",
         image: "✍️",
         year: "2024"
       },
       {
         id: 5,
         title: "E-commerce Checkout Optimization",
-        description: "Streamlined multi-step checkout flow for fashion retailer. Conducted A/B testing and heat mapping analysis to identify friction points.",
-        impact: "Increased conversion rate by 23% and reduced cart abandonment by 31%",
+        client: "Tesco",
+        description: "Optimised multi-step checkout flow for supermarket retailer.  Worked with data science team to create the groceries App’s first Personalised product recommendations ",
+        impact: "Designed prompts at Checkout resulting in over 8million customers changing their mind and deciding not to use plastic bags. Created card management functionality facilitating a faster Checkout. 1% uplift in checkout conversion",
         skills: ["UX Research", "A/B Testing", "Conversion Optimization", "Figma", "Analytics", "Prototyping"],
         category: "E-commerce",
         image: "🛍️",
-        year: "2022"
+        year: "2021"
+      },
+      {
+        id: 6,
+        title: "Re design of B2B music licensing ",
+        client: "PRS for Music",
+        description: "Re design of purchase journeys to help shape how new B2B music licensing fee structures are understood and bought.",
+        impact: "Designed prompts at Checkout resulting in over 8million customers changing their mind and deciding not to use plastic bags. Created card management functionality facilitating a faster Checkout. 1% uplift in checkout conversion",
+        skills: ["UX Research", "A/B Testing", "Conversion Optimization", "Figma", "Analytics", "Prototyping", "Saleforce"],
+        category: "B2B purchase flows",
+        image: "🎹",
+        year: "2025"
+      },
+      {
+        id: 7,
+        title: "Founding designer for Chatbot fintech platform ",
+        client: "Mespo",
+        description: "Designed conversational design for facebook chatbot flow. Researched and tested strategy of changing from B2C to B2B model. Led new branding visual concepts. Collaborated with Lloyds and Clydesdale bank UX labs and successfully made a case for the integration of the app.",
+        impact: "Increased signups by 16% on in house platform. Desing helped secure agreement with banks",
+        skills: ["UX Research", "Usability testing", "Chatbot design", "Early AI adoption", "Analytics"],
+        category: "Early stage Chatbot design",
+        image: "🤖",
+        year: "2018"
       }
     ]
   };
