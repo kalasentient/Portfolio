@@ -19,12 +19,10 @@ export default function AIPortfolio() {
       github: "github.com/kalasentient"
     },
     skills: {
-      design: ["UX Product design", "Strategic thinking", "Figma", "Sketch", "Prototyping", "synthesis and analysis of qualitative and quantative research", "Wireframing", "UI design"],
+      design: ["UX Product design", "Strategic thinking", "Figma", "Sketch", "Prototyping", "synthesis and analysis of qualitative and quantative research", "Wireframing", "UI design", "Collaboration with AI engineering teams and data scientists", "Working effectively with large groups of stakeholders", "Eager for feedback and learning"],
       research: ["User Interviews", "Usability Testing", "A/B Testing", "Analytics", "Journey Mapping"],
       genAI: ["Chatbots and conversational interfaces", "Personalisation and recommendation systems", "AI UX Patterns", "AI Product Design", "AI Ethics", "Prompt Engineering", "LLM Integration"],
-      technical: ["Design in regulated industries", "Design for internal systems and B2B", "Accessibility (WCAG)", "basic HTML/CSS", "API Integration",]
-      industries: ["Retail", "Fintech", "Not for profit", "public organisations"],
-      human: ["Effective collaboration with AI engineering teams and data scientists", "Working effectively with large groups of stakeholders", "Eager for feedback and learning",]
+      technical: ["Design in regulated industries", "Design for internal systems and B2B", "Accessibility (WCAG)", "basic HTML/CSS", "API Integration", "Retail", "Fintech", "Not for profit", "public organisations"],
     },
     projects: [
       {
