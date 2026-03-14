@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Sparkles, Briefcase, ArrowRight, Loader2, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Sparkles, Briefcase, ArrowRight, Loader2, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function AIPortfolio() {
   const [jobDescription, setJobDescription] = useState('');
@@ -72,7 +72,7 @@ export default function AIPortfolio() {
         id: 5,
         title: "E-commerce Checkout Optimization",
         client: "Tesco",
-        description: "Optimised multi-step checkout flow for supermarket retailer.  Worked with data science team to create the groceries App’s first Personalised product recommendations ",
+        description: "Optimised multi-step checkout flow for supermarket retailer.  Worked with data science team to create the groceries App's first Personalised product recommendations ",
         impact: "Designed prompts at Checkout resulting in over 8million customers changing their mind and deciding not to use plastic bags. Created card management functionality facilitating a faster Checkout. 1% uplift in checkout conversion",
         skills: ["UX Research", "A/B Testing", "Conversion Optimization", "Figma", "Analytics", "Prototyping"],
         category: "E-commerce",
@@ -84,8 +84,8 @@ export default function AIPortfolio() {
         title: "Re design of B2B music licensing ",
         client: "PRS for Music",
         description: "Re design of purchase journeys to help shape how new B2B music licensing fee structures are understood and bought.",
-        impact: "Designed prompts at Checkout resulting in over 8million customers changing their mind and deciding not to use plastic bags. Created card management functionality facilitating a faster Checkout. 1% uplift in checkout conversion",
-        skills: ["UX Research", "A/B Testing", "Conversion Optimization", "Figma", "Analytics", "Prototyping", "Saleforce"],
+        impact: "Improved understanding of complex pricing models, streamlined purchase flow for business customers",
+        skills: ["UX Research", "B2B Design", "Journey Mapping", "Figma", "Prototyping", "Salesforce"],
         category: "B2B purchase flows",
         image: "🎹",
         year: "2025"
@@ -95,7 +95,7 @@ export default function AIPortfolio() {
         title: "Founding designer for Chatbot fintech platform ",
         client: "Mespo",
         description: "Designed conversational design for facebook chatbot flow. Researched and tested strategy of changing from B2C to B2B model. Led new branding visual concepts. Collaborated with Lloyds and Clydesdale bank UX labs and successfully made a case for the integration of the app.",
-        impact: "Increased signups by 16% on in house platform. Desing helped secure agreement with banks",
+        impact: "Increased signups by 16% on in house platform. Design helped secure agreement with banks",
         skills: ["UX Research", "Usability testing", "Chatbot design", "Early AI adoption", "Analytics"],
         category: "Early stage Chatbot design",
         image: "🤖",
@@ -111,49 +111,23 @@ export default function AIPortfolio() {
     setShowAllProjects(false);
 
     try {
-      const prompt = "You are analyzing a job description to match it with a UX designer's portfolio projects.\n\n" +
-        "Job Description:\n" + jobDescription + "\n\n" +
-        "Portfolio Projects:\n" + JSON.stringify(portfolioData.projects, null, 2) + "\n\n" +
-        "Portfolio Skills:\n" + JSON.stringify(portfolioData.skills, null, 2) + "\n\n" +
-        "Analyze this job description and:\n" +
-        "1. Identify the top 3-5 key requirements (skills, experience, domain knowledge)\n" +
-        "2. Rank the portfolio projects by relevance (most to least relevant)\n" +
-        "3. For each project, explain why it's relevant (or not) to this role\n" +
-        "4. Create a brief \"match summary\" explaining why this candidate would be a good fit\n\n" +
-        "Respond ONLY with a JSON object in this exact format (no markdown, no preamble):\n" +
-        "{\n" +
-        "  \"keyRequirements\": [\"requirement1\", \"requirement2\", \"requirement3\"],\n" +
-        "  \"matchSummary\": \"2-3 sentence summary of why candidate is a good fit\",\n" +
-        "  \"rankedProjects\": [\n" +
-        "    {\n" +
-        "      \"projectId\": 1,\n" +
-        "      \"relevanceScore\": 95,\n" +
-        "      \"relevanceReason\": \"Why this project is relevant\"\n" +
-        "    }\n" +
-        "  ]\n" +
-        "}";
-
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      const response = await fetch("/api/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          messages: [
-            {
-              role: "user",
-              content: prompt
-            }
-          ]
+          jobDescription,
+          projects: portfolioData.projects,
+          skills: portfolioData.skills
         })
       });
 
-      const data = await response.json();
-      const text = data.content.map((item: any) => item.type === "text" ? item.text : "").join("\n");
-      const cleanText = text.replace(/```json|```/g, "").trim();
-      const parsedAnalysis = JSON.parse(cleanText);
+      const parsedAnalysis = await response.json();
+      
+      if (parsedAnalysis.error) {
+        throw new Error(parsedAnalysis.error);
+      }
       
       setAnalysis(parsedAnalysis);
     } catch (error) {
@@ -188,42 +162,42 @@ export default function AIPortfolio() {
 
       <div className="relative max-w-6xl mx-auto px-6 py-12">
         <header className="mb-16 text-center">
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-sm font-medium">
-            <Sparkles size={16} />
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-base font-medium">
+            <Sparkles size={18} />
             AI-Powered Portfolio
           </div>
-          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 bg-clip-text text-transparent" style={{fontFamily: 'Georgia, serif'}}>
+          <h1 className="text-7xl font-bold mb-4 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 bg-clip-text text-transparent" style={{fontFamily: 'Georgia, serif'}}>
             {portfolioData.name}
           </h1>
-          <p className="text-2xl text-slate-300 mb-6" style={{fontFamily: 'Georgia, serif'}}>
+          <p className="text-3xl text-slate-300 mb-6" style={{fontFamily: 'Georgia, serif'}}>
             {portfolioData.title}
           </p>
-          <p className="text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
             {portfolioData.bio}
           </p>
           
           <div className="flex items-center justify-center gap-6">
-            <a href={'mailto:' + portfolioData.contact.email} className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
-              <Mail size={18} />
-              <span className="text-sm">Email</span>
+            <a href={'mailto:' + portfolioData.contact.email} className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors text-base">
+              <Mail size={20} />
+              <span>Email</span>
             </a>
-            <a href={'https://' + portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
-              <Linkedin size={18} />
-              <span className="text-sm">LinkedIn</span>
+            <a href={'https://' + portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors text-base">
+              <Linkedin size={20} />
+              <span>LinkedIn</span>
             </a>
-            <a href={'https://' + portfolioData.contact.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors">
-              <Github size={18} />
-              <span className="text-sm">GitHub</span>
+            <a href={'https://' + portfolioData.contact.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors text-base">
+              <Github size={20} />
+              <span>GitHub</span>
             </a>
           </div>
         </header>
 
         <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 mb-12 shadow-2xl">
           <div className="flex items-center gap-3 mb-4">
-            <Briefcase className="text-indigo-400" size={24} />
-            <h2 className="text-2xl font-semibold text-slate-100">Paste Job Description</h2>
+            <Briefcase className="text-indigo-400" size={28} />
+            <h2 className="text-3xl font-semibold text-slate-100">Paste Job Description</h2>
           </div>
-          <p className="text-slate-400 mb-6">
+          <p className="text-slate-400 mb-6 text-lg leading-relaxed">
             Enter a job description and I'll automatically highlight my most relevant experience for that role.
           </p>
           
@@ -234,22 +208,23 @@ export default function AIPortfolio() {
 
 Example:
 We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
-            className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+            className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-base"
+            style={{lineHeight: '1.6'}}
           />
           
           <button
             onClick={analyzeJobDescription}
             disabled={analyzing || !jobDescription.trim()}
-            className="mt-4 px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-slate-700 disabled:to-slate-700 disabled:cursor-not-allowed rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50"
+            className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-slate-700 disabled:to-slate-700 disabled:cursor-not-allowed rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
           >
             {analyzing ? (
               <>
-                <Loader2 className="animate-spin" size={20} />
+                <Loader2 className="animate-spin" size={22} />
                 Analyzing...
               </>
             ) : (
               <>
-                <Sparkles size={20} />
+                <Sparkles size={22} />
                 Analyze Match
               </>
             )}
@@ -259,19 +234,19 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
         {analysis && (
           <div className="mb-12 space-y-6 animate-fadeIn">
             <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 backdrop-blur-sm border border-indigo-500/30 rounded-2xl p-8 shadow-2xl">
-              <h3 className="text-xl font-semibold mb-4 text-indigo-200">Why I'm a Great Fit</h3>
-              <p className="text-slate-200 leading-relaxed text-lg">
+              <h3 className="text-2xl font-semibold mb-4 text-indigo-200">Why I'm a Great Fit</h3>
+              <p className="text-slate-200 leading-relaxed text-xl" style={{lineHeight: '1.7'}}>
                 {analysis.matchSummary}
               </p>
             </div>
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-2xl">
-              <h3 className="text-xl font-semibold mb-4 text-slate-100">Key Requirements Identified</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-slate-100">Key Requirements Identified</h3>
               <div className="flex flex-wrap gap-3">
                 {analysis.keyRequirements.map((req: string, idx: number) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-slate-200 text-sm"
+                    className="px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-slate-200 text-base"
                   >
                     {req}
                   </span>
@@ -282,7 +257,7 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
         )}
 
         <section>
-          <h2 className="text-3xl font-bold mb-8 text-slate-100">
+          <h2 className="text-4xl font-bold mb-8 text-slate-100">
             {analysis ? 'Most Relevant Projects' : 'Featured Projects'}
           </h2>
           
@@ -301,32 +276,35 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
                   <div className="flex-grow">
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-2xl font-semibold text-slate-100 mb-1 group-hover:text-indigo-300 transition-colors">
+                        <h3 className="text-3xl font-semibold text-slate-100 mb-1 group-hover:text-indigo-300 transition-colors">
                           {project.title}
                         </h3>
-                        <p className="text-sm text-slate-400">{project.category} • {project.year}</p>
+                        {project.client && (
+                          <p className="text-base text-slate-400 mb-1">{project.client}</p>
+                        )}
+                        <p className="text-sm text-slate-500">{project.category} • {project.year}</p>
                       </div>
                       {analysis && project.relevanceScore && (
                         <div className="flex items-center gap-2 bg-indigo-500/20 border border-indigo-400/30 px-4 py-2 rounded-full">
-                          <span className="text-indigo-300 font-semibold">{project.relevanceScore}% Match</span>
+                          <span className="text-indigo-300 font-semibold text-base">{project.relevanceScore}% Match</span>
                         </div>
                       )}
                     </div>
                     
-                    <p className="text-slate-300 mb-4 leading-relaxed">
+                    <p className="text-slate-300 mb-4 leading-relaxed text-lg" style={{lineHeight: '1.7'}}>
                       {project.description}
                     </p>
                     
                     {analysis && project.relevanceReason && (
                       <div className="mb-4 p-4 bg-indigo-950/30 border-l-4 border-indigo-500 rounded">
-                        <p className="text-sm text-indigo-200">
+                        <p className="text-base text-indigo-200" style={{lineHeight: '1.7'}}>
                           <strong>Why it's relevant:</strong> {project.relevanceReason}
                         </p>
                       </div>
                     )}
                     
                     <div className="mb-4 p-4 bg-slate-800/50 rounded-lg">
-                      <p className="text-sm text-emerald-300">
+                      <p className="text-base text-green-400" style={{lineHeight: '1.7'}}>
                         <strong>Impact:</strong> {project.impact}
                       </p>
                     </div>
@@ -335,7 +313,7 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
                       {project.skills.map((skill: string, skillIdx: number) => (
                         <span
                           key={skillIdx}
-                          className="px-3 py-1 bg-slate-800 border border-slate-600 rounded-full text-xs text-slate-300"
+                          className="px-3 py-1 bg-slate-800 border border-slate-600 rounded-full text-sm text-slate-300"
                         >
                           {skill}
                         </span>
@@ -350,15 +328,15 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
           {analysis && !showAllProjects && getSortedProjects().length > 3 && (
             <button
               onClick={() => setShowAllProjects(true)}
-              className="mt-8 mx-auto flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-indigo-500 rounded-xl transition-all text-slate-200"
+              className="mt-8 mx-auto flex items-center gap-2 px-6 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-indigo-500 rounded-xl transition-all text-slate-200 text-base"
             >
               View All Projects ({getSortedProjects().length})
-              <ArrowRight size={18} />
+              <ArrowRight size={20} />
             </button>
           )}
         </section>
 
-        <footer className="mt-20 pt-8 border-t border-slate-700/50 text-center text-slate-500 text-sm">
+        <footer className="mt-20 pt-8 border-t border-slate-700/50 text-center text-slate-500 text-base">
           <p>Built with React + Claude API • This portfolio adapts to show you what's most relevant</p>
         </footer>
       </div>
