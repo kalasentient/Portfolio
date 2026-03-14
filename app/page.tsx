@@ -205,12 +205,7 @@ export default function AIPortfolio() {
 
         <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 mb-12 shadow-2xl">
           <div className="flex items-center gap-3 mb-4">
-  <svg className="w-8 h-8 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <rect x="4" y="8" width="16" height="12" rx="2" />
-    <path d="M4 10h16" />
-    <path d="M8 6v2" />
-    <path d="M16 6v2" />
-  </svg>
+  <img src="/briefcase.png" alt="briefcase" className="w-8 h-8" />
   <h2 className="text-4xl font-bold text-slate-100">Check if it's a match</h2>
 </div>
 <p className="text-slate-400 mb-6 text-lg leading-relaxed">
