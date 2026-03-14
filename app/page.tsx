@@ -186,12 +186,12 @@ export default function AIPortfolio() {
           
           <div className="flex items-center justify-center gap-6">
             <button 
-              onClick={copyEmail}
-              className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors text-base cursor-pointer"
-            >
-              {emailCopied ? <Check size={20} /> : <Mail size={20} />}
-              <span>{emailCopied ? 'Email copied!' : 'Email'}</span>
-            </button>
+  onClick={copyEmail}
+  className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors text-base cursor-pointer"
+>
+  {emailCopied ? <Check size={20} /> : <Mail size={20} />}
+  <span>{emailCopied ? 'Email copied!' : 'asakala [at] gmail [dot] com'}</span>
+</button>
             <a href={'https://' + portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-400 hover:text-indigo-300 transition-colors text-base">
               <Linkedin size={20} />
               <span>LinkedIn</span>
