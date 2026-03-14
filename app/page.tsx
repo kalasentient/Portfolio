@@ -204,18 +204,18 @@ export default function AIPortfolio() {
         </header>
 
         <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 mb-12 shadow-2xl">
-          <div className="flex items-center gap-3 mb-6">
-            <svg className="w-7 h-7 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="4" y="8" width="16" height="12" rx="2" />
-              <path d="M4 10h16" />
-              <path d="M8 6v2" />
-              <path d="M16 6v2" />
-            </svg>
-            <h2 className="text-2xl font-semibold text-slate-100">Check if it's a match</h2>
-          </div>
-          <p className="text-slate-400 mb-6 text-base leading-relaxed">
-            Enter a job description <span className="underline decoration-slate-600 underline-offset-2">or list of skills</span> and I'll automatically highlight my most relevant experience for that role.
-          </p>
+          <div className="flex items-center gap-3 mb-4">
+  <svg className="w-8 h-8 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <rect x="4" y="8" width="16" height="12" rx="2" />
+    <path d="M4 10h16" />
+    <path d="M8 6v2" />
+    <path d="M16 6v2" />
+  </svg>
+  <h2 className="text-4xl font-bold text-slate-100">Check if it's a match</h2>
+</div>
+<p className="text-slate-400 mb-6 text-lg leading-relaxed">
+  Enter a job description or list of skills and I'll automatically highlight my most relevant experience for that role.
+</p>
           
           <textarea
             value={jobDescription}
@@ -231,7 +231,7 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
           <button
             onClick={analyzeJobDescription}
             disabled={analyzing || !jobDescription.trim()}
-            className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-slate-700 disabled:to-slate-700 disabled:cursor-not-allowed rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
+            className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
           >
             {analyzing ? (
               <>
