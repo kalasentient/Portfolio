@@ -203,44 +203,45 @@ export default function AIPortfolio() {
           </div>
         </header>
 
-        <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 mb-12 shadow-2xl">
-          <div className="flex items-center gap-3 mb-4">
-  <img src="/briefcase.png" alt="briefcase" className="w-8 h-8" />
-  <h2 className="text-4xl font-bold text-slate-100">Check if it's a match</h2>
-</div>
-<p className="text-slate-400 mb-6 text-lg leading-relaxed">
-  Enter a job description or list of skills and I'll automatically highlight my most relevant experience for that role.
-</p>
-          
-          <textarea
-            value={jobDescription}
-            onChange={(e) => setJobDescription(e.target.value)}
-            placeholder="Paste the full job description here...
+       <div className="mb-12">
+  <div className="flex items-center gap-3 mb-6">
+    <img src="/briefcase.png" alt="briefcase" className="w-12 h-12" />
+    <h2 className="text-4xl font-bold text-slate-100">Check if it's a match</h2>
+  </div>
+  
+  <p className="text-slate-400 mb-4 text-lg leading-relaxed">
+    Enter a job description or list of skills and I'll automatically highlight my most relevant experience for that role.
+  </p>
+  
+  <textarea
+    value={jobDescription}
+    onChange={(e) => setJobDescription(e.target.value)}
+    placeholder="Paste the full job description here...
 
 Example:
 We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
-            className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-base"
-            style={{lineHeight: '1.6'}}
-          />
-          
-          <button
-            onClick={analyzeJobDescription}
-            disabled={analyzing || !jobDescription.trim()}
-            className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
-          >
-            {analyzing ? (
-              <>
-                <Loader2 className="animate-spin" size={22} />
-                Analyzing...
-              </>
-            ) : (
-              <>
-                <Sparkles size={22} />
-                Analyze Match
-              </>
-            )}
-          </button>
-        </div>
+    className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-base mb-4"
+    style={{lineHeight: '1.6'}}
+  />
+  
+  <button
+    onClick={analyzeJobDescription}
+    disabled={analyzing || !jobDescription.trim()}
+    className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
+  >
+    {analyzing ? (
+      <>
+        <Loader2 className="animate-spin" size={22} />
+        Analyzing...
+      </>
+    ) : (
+      <>
+        <Sparkles size={22} />
+        Analyze Match
+      </>
+    )}
+  </button>
+</div>
 
         {analysis && (
           <div className="mb-16">
