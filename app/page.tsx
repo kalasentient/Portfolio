@@ -203,15 +203,14 @@ export default function AIPortfolio() {
           </div>
         </header>
 
-       <div className="mb-12">
-  <div className="flex items-center gap-3 mb-6">
-    <img src="/briefcase.png" alt="briefcase" className="w-12 h-12" />
-    <h2 className="text-4xl font-bold text-slate-100">Check if it's a match</h2>
-  </div>
+<div className="mb-12">
+  <h2 className="text-4xl font-bold text-slate-100 mb-8">Check if it's a match</h2>
   
-  <p className="text-slate-400 mb-4 text-lg leading-relaxed">
-    Enter a job description or list of skills and I'll automatically highlight my most relevant experience for that role.
-  </p>
+  <label className="block mb-2">
+    <span className="text-slate-400 text-lg leading-relaxed block">
+      Enter a job description or list of skills and I'll automatically highlight my most relevant experience for that role.
+    </span>
+  </label>
   
   <textarea
     value={jobDescription}
@@ -220,7 +219,7 @@ export default function AIPortfolio() {
 
 Example:
 We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
-    className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-base mb-4"
+    className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-lg mb-4"
     style={{lineHeight: '1.6'}}
   />
   
