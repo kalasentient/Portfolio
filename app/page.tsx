@@ -171,9 +171,9 @@ export default function AIPortfolio() {
       <div className="relative max-w-6xl mx-auto px-6 py-12">
         <header className="mb-16 text-center">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-indigo-500/20 border border-indigo-400/30 rounded-full text-indigo-300 text-base font-medium">
-            <Sparkles size={18} />
-            AI-Powered Portfolio
-          </div>
+  <Sparkles size={18} />
+  AI-Powered Portfolio • In Beta
+</div>
           <h1 className="text-7xl font-bold mb-4 bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 bg-clip-text text-transparent" style={{fontFamily: 'Georgia, serif'}}>
             {portfolioData.name}
           </h1>
