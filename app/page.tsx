@@ -206,27 +206,38 @@ export default function AIPortfolio() {
 <div className="mb-12">
   <h2 className="text-4xl font-bold text-slate-100 mb-8">Check if it's a match</h2>
   
-  <label className="block mb-2">
-    <span className="text-slate-400 text-lg leading-relaxed block">
-      Enter a job description or list of skills and I'll automatically highlight my most relevant experience for that role.
-    </span>
-  </label>
-  
-  <textarea
-    value={jobDescription}
-    onChange={(e) => setJobDescription(e.target.value)}
-    placeholder="Paste the full job description here...
+  <div className="govuk-form-group">
+    <label htmlFor="job-description" className="block mb-3">
+      <span className="text-slate-300 text-lg font-medium leading-relaxed block">
+        Enter a job description or list of skills
+      </span>
+    </label>
+    
+    <div id="job-description-hint" className="text-slate-400 text-base leading-relaxed mb-3">
+      I'll automatically highlight my most relevant experience for that role.
+    </div>
+    
+    <textarea
+      id="job-description"
+      name="jobDescription"
+      value={jobDescription}
+      onChange={(e) => setJobDescription(e.target.value)}
+      rows={8}
+      aria-describedby="job-description-hint"
+      placeholder="Paste the full job description here...
 
 Example:
 We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
-    className="w-full h-48 bg-slate-800/50 border border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-lg mb-4"
-    style={{lineHeight: '1.6'}}
-  />
+      className="w-full bg-slate-800/50 border-2 border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 focus:border-indigo-500 resize-none text-lg"
+      style={{lineHeight: '1.6'}}
+    />
+  </div>
   
   <button
     onClick={analyzeJobDescription}
     disabled={analyzing || !jobDescription.trim()}
-    className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
+    aria-busy={analyzing}
+    className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
   >
     {analyzing ? (
       <>
@@ -265,7 +276,7 @@ We're looking for a Senior UX Designer with experience in AI products, design sy
           </div>
         )}
 
-        <section>
+        <section className="mt-20">
           <h2 className="text-4xl font-bold mb-12 text-slate-100">
             {analysis ? 'Most Relevant Projects' : 'Featured Projects'}
           </h2>
