@@ -206,75 +206,54 @@ export default function AIPortfolio() {
 <div className="mb-12">
   <h2 className="text-4xl font-bold text-slate-100 mb-8">Check if it's a match</h2>
   
-  <div className="govuk-form-group">
-    <label htmlFor="job-description" className="block mb-3">
-      <span className="text-slate-300 text-lg font-medium leading-relaxed block">
-        Enter a job description or list of skills
-      </span>
-    </label>
-    
-    <div id="job-description-hint" className="text-slate-400 text-base leading-relaxed mb-3">
-      I'll automatically highlight my most relevant experience for that role.
-    </div>
-    
-    <textarea
-      id="job-description"
-      name="jobDescription"
-      value={jobDescription}
-      onChange={(e) => setJobDescription(e.target.value)}
-      rows={8}
-      aria-describedby="job-description-hint"
-      placeholder="Paste the full job description here...
+  <div className="max-w-2xl">
+    <div className="govuk-form-group">
+      <label htmlFor="job-description" className="block mb-3">
+        <span className="text-slate-300 text-lg font-medium leading-relaxed block">
+          Enter a job description or list of skills
+        </span>
+      </label>
+      
+      <div id="job-description-hint" className="text-slate-400 text-base leading-relaxed mb-3">
+        I'll automatically highlight my most relevant experience for that role.
+      </div>
+      
+      <textarea
+        id="job-description"
+        name="jobDescription"
+        value={jobDescription}
+        onChange={(e) => setJobDescription(e.target.value)}
+        rows={8}
+        aria-describedby="job-description-hint"
+        placeholder="Paste the full job description here...
 
 Example:
 We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
-      className="w-full bg-slate-800/50 border-2 border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 focus:border-indigo-500 resize-none text-lg"
-      style={{lineHeight: '1.6'}}
-    />
+        className="w-full bg-slate-800/50 border-2 border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 focus:border-indigo-500 resize-none text-lg"
+        style={{lineHeight: '1.6'}}
+      />
+    </div>
+    
+    <button
+      onClick={analyzeJobDescription}
+      disabled={analyzing || !jobDescription.trim()}
+      aria-busy={analyzing}
+      className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
+    >
+      {analyzing ? (
+        <>
+          <Loader2 className="animate-spin" size={22} />
+          Analyzing...
+        </>
+      ) : (
+        <>
+          <Sparkles size={22} />
+          Analyze Match
+        </>
+      )}
+    </button>
   </div>
-  
-  <button
-    onClick={analyzeJobDescription}
-    disabled={analyzing || !jobDescription.trim()}
-    aria-busy={analyzing}
-    className="mt-4 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-indigo-700 disabled:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50 rounded-xl font-semibold flex items-center gap-2 transition-all shadow-lg hover:shadow-indigo-500/50 text-base"
-  >
-    {analyzing ? (
-      <>
-        <Loader2 className="animate-spin" size={22} />
-        Analyzing...
-      </>
-    ) : (
-      <>
-        <Sparkles size={22} />
-        Analyze Match
-      </>
-    )}
-  </button>
 </div>
-
-        {analysis && (
-          <div className="mb-16">
-            <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 backdrop-blur-sm border border-indigo-500/30 rounded-2xl p-8 shadow-2xl">
-              <h3 className="text-2xl font-semibold mb-6 text-indigo-200">Why I'm a Great Fit</h3>
-              <p className="text-slate-200 leading-relaxed text-lg mb-8" style={{lineHeight: '1.7'}}>
-                {analysis.matchSummary}
-              </p>
-
-              <h4 className="text-xl font-semibold mb-4 text-indigo-200">Key Requirements Identified</h4>
-              <div className="flex flex-wrap gap-3">
-                {analysis.keyRequirements.map((req: string, idx: number) => (
-                  <span
-                    key={idx}
-                    className="px-4 py-2 bg-indigo-950/50 border border-indigo-400/30 rounded-lg text-slate-200 text-base"
-                  >
-                    {req}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
 
         <section className="mt-20">
           <h2 className="text-4xl font-bold mb-12 text-slate-100">
