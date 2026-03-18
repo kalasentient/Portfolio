@@ -204,7 +204,7 @@ export default function AIPortfolio() {
         </header>
 
 <div className="mb-12">
-  <h2 className="text-4xl font-bold text-slate-100 mb-8">Check if it's a match</h2>
+  <h2 className="text-4xl font-bold text-slate-100 mb-6">Check if it's a match</h2>
   
   <div className="max-w-2xl">
     <div className="govuk-form-group">
