@@ -203,7 +203,7 @@ export default function AIPortfolio() {
           </div>
         </header>
 
-<div className="mb-12">
+<div className="mb-20">
   <h2 className="text-4xl font-bold text-slate-100 mb-4">Check if it's a match</h2>
   
   <div className="max-w-2xl">
