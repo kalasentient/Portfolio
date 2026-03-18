@@ -204,13 +204,13 @@ export default function AIPortfolio() {
         </header>
 
 <div className="mb-28">
-  <h2 className="text-4xl font-bold text-slate-100 mb-4">Check if it's a match</h2>
+  <h2 className="text-4xl font-bold text-slate-100 mb-4">See how my experience matches your role</h2>
   
   <div className="max-w-2xl">
     <div className="govuk-form-group">
       <label htmlFor="job-description" className="block mb-2">
         <span className="text-slate-300 text-lg font-medium leading-relaxed block">
-          Enter a job description or list of skills, I'll automatically highlight my most relevant experience for that role
+          Paste a job description and I'll show you my most relevant projects
         </span>
       </label>
       
@@ -223,10 +223,7 @@ export default function AIPortfolio() {
         onChange={(e) => setJobDescription(e.target.value)}
         rows={8}
         aria-describedby="job-description-hint"
-        placeholder="Paste the full job description here...
-
-Example:
-We're looking for a Senior UX Designer with experience in AI products, design systems, and user research..."
+        placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
         className="w-full bg-slate-800/50 border-2 border-slate-600 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-0 focus:border-indigo-500 resize-none text-lg"
         style={{lineHeight: '1.6'}}
       />
