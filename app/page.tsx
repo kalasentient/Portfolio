@@ -210,13 +210,11 @@ export default function AIPortfolio() {
     <div className="govuk-form-group">
       <label htmlFor="job-description" className="block mb-3">
         <span className="text-slate-300 text-lg font-medium leading-relaxed block">
-          Enter a job description or list of skills
+          Enter a job description or list of skills, I'll automatically highlight my most relevant experience for that role
         </span>
       </label>
       
-      <div id="job-description-hint" className="text-slate-400 text-base leading-relaxed mb-3">
-        I'll automatically highlight my most relevant experience for that role.
-      </div>
+    
       
       <textarea
         id="job-description"
