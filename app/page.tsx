@@ -204,9 +204,10 @@ export default function AIPortfolio() {
         </header>
 
 <div className="mb-28">
-  <h2 className="text-4xl font-bold text-slate-100 mb-4">See how my experience matches</h2>
+  <div className="grid grid-cols-12 gap-8">
+  <div className="col-start-5 col-span-8">
+    <h2 className="text-4xl font-bold text-slate-100 mb-4">See how my experience matches</h2>
   
-  <div className="max-w-2xl">
     <div className="govuk-form-group">
       <label htmlFor="job-description" className="block mb-2">
         <span className="text-slate-300 text-lg font-medium leading-relaxed block">
