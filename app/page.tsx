@@ -11,6 +11,7 @@ interface Project {
   skills: string[];
   impact: string;
   matchScore?: number;
+  framerUrl: string;
 }
 
 const projects: Project[] = [
@@ -20,7 +21,8 @@ const projects: Project[] = [
     company: 'Transport for London',
     description: 'Redesigned account dashboard for drivers and businesses to manage payments and discounts',
     skills: ['UX Research', 'Service Design', 'Dashboard Design', 'Public Sector'],
-    impact: 'Improved account management for thousands of London drivers'
+    impact: 'Improved account management for thousands of London drivers',
+    framerUrl: 'https://asakala.framer.website/tfl-dashboard'
   },
   {
     id: '2',
@@ -28,7 +30,8 @@ const projects: Project[] = [
     company: 'John Lewis',
     description: 'Enhanced customer service using Gen AI through WhatsApp messaging',
     skills: ['AI/ML', 'Conversational Design', 'Gen AI', 'Customer Service'],
-    impact: 'Streamlined customer interactions using AI technology'
+    impact: 'Streamlined customer interactions using AI technology',
+    framerUrl: 'https://asakala.framer.website/john-lewis-chatbot'
   },
   {
     id: '3',
@@ -36,7 +39,8 @@ const projects: Project[] = [
     company: 'Major UK Bank',
     description: 'Automation in business banking payment systems',
     skills: ['FinTech', 'B2B', 'Payment Systems', 'Enterprise'],
-    impact: 'Reduced processing time and improved accuracy'
+    impact: 'Reduced processing time and improved accuracy',
+    framerUrl: 'https://asakala.framer.website/payment-system'
   },
   {
     id: '4',
@@ -44,7 +48,8 @@ const projects: Project[] = [
     company: 'Koodoo',
     description: 'Internal tools using AI in regulated financial industries',
     skills: ['AI Tools', 'Regulatory Compliance', 'B2B SaaS', 'FinTech'],
-    impact: 'Streamlined internal processes with AI assistance'
+    impact: 'Streamlined internal processes with AI assistance',
+    framerUrl: 'https://asakala.framer.website/koodoo-mortgage'
   },
   {
     id: '5',
@@ -52,7 +57,8 @@ const projects: Project[] = [
     company: 'Tesco',
     description: 'Optimized checkout experience for one of UK\'s largest retailers',
     skills: ['E-commerce', 'Conversion', 'Checkout Flow', 'Retail'],
-    impact: 'Increased conversion rates and reduced cart abandonment'
+    impact: 'Increased conversion rates and reduced cart abandonment',
+    framerUrl: 'https://asakala.framer.website/tesco-checkout'
   },
   {
     id: '6',
@@ -60,7 +66,8 @@ const projects: Project[] = [
     company: 'PRS for Music',
     description: 'Complex B2B licensing platform for music rights',
     skills: ['B2B SaaS', 'Complex Systems', 'Licensing', 'Music Industry'],
-    impact: 'Simplified complex licensing workflows'
+    impact: 'Simplified complex licensing workflows',
+    framerUrl: 'https://asakala.framer.website/prs-licensing'
   },
   {
     id: '7',
@@ -68,7 +75,8 @@ const projects: Project[] = [
     company: 'Mespo',
     description: 'Financial chatbot for customer support and transactions',
     skills: ['Chatbot', 'FinTech', 'Conversational UI', 'Customer Support'],
-    impact: 'Automated customer support for financial services'
+    impact: 'Automated customer support for financial services',
+    framerUrl: 'https://asakala.framer.website/mespo-chatbot'
   }
 ];
 
@@ -103,13 +111,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#f2fce2]">
-      {/* Beta Badge */}
-      <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-        <div className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
-          AI-Powered Portfolio • In Beta
-        </div>
-      </div>
-
       {/* Header */}
       <header className="w-full border-b border-black/8 sticky top-0 bg-[#f2fce2]/80 backdrop-blur-sm z-40">
         <div className="max-w-[1440px] mx-auto px-20 py-6 flex items-center justify-between">
@@ -135,21 +136,14 @@ export default function Home() {
       <section className="w-full py-24">
         <div className="max-w-[1440px] mx-auto px-20">
           <div className="grid grid-cols-12 gap-20">
-            <div className="col-span-8">
-              <h1 className="text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black mb-12">
+            <div className="col-span-5">
+              <h1 className="text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black">
                 Asakala<br />
-                Digital Product designer
+                Product Designer
               </h1>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro Section */}
-      <section className="w-full border-t border-black/8 py-16">
-        <div className="max-w-[1440px] mx-auto px-20">
-          <div className="grid grid-cols-12 gap-20">
-            <div className="col-span-8 col-start-5">
+            
+            <div className="col-span-7">
               <p className="text-[32px] leading-[142%] tracking-[-0.035em] text-black/66 mb-8">
                 A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
               </p>
@@ -167,50 +161,55 @@ export default function Home() {
       {/* AI Match Section */}
       <section className="w-full border-t border-black/8 py-24">
         <div className="max-w-[1440px] mx-auto px-20">
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-start-5 col-span-8">
-              <h2 className="text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
-                See how my experience matches your role
+          <div className="max-w-3xl mx-auto">
+            <div className="flex items-start justify-between mb-4">
+              <h2 className="text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
+                Match your role with my experience
               </h2>
               
-              <div className="govuk-form-group">
-                <label htmlFor="job-description" className="block mb-2">
-                  <span className="text-black/66 text-[24px] font-normal leading-relaxed block tracking-[-0.03em]">
-                    Paste a job description and I&apos;ll show you my most relevant projects
-                  </span>
-                </label>
-                
-                <textarea
-                  id="job-description"
-                  name="jobDescription"
-                  value={jobDescription}
-                  onChange={(e) => setJobDescription(e.target.value)}
-                  rows={8}
-                  aria-describedby="job-description-hint"
-                  placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
-                  className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-0 focus:border-black resize-none text-[18px] leading-[1.6] transition-colors"
-                />
+              {/* Beta Badge */}
+              <div className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ml-4 mt-4">
+                Enhanced Portfolio • In Beta
               </div>
-              
-              <button
-                onClick={analyzeJobDescription}
-                disabled={analyzing || !jobDescription.trim()}
-                aria-busy={analyzing}
-                className="mt-4 px-8 py-4 bg-black hover:bg-black/80 disabled:bg-black/40 disabled:cursor-not-allowed rounded-xl font-medium flex items-center gap-2 transition-all text-white text-[17px]"
-              >
-                {analyzing ? (
-                  <>
-                    <Loader2 className="animate-spin" size={22} />
-                    Analyzing...
-                  </>
-                ) : (
-                  <>
-                    <Sparkles size={22} />
-                    Analyze Match
-                  </>
-                )}
-              </button>
             </div>
+            
+            <div className="govuk-form-group">
+              <label htmlFor="job-description" className="block mb-2">
+                <span className="text-black/66 text-[24px] font-normal leading-relaxed block tracking-[-0.03em]">
+                  Paste a job description and I&apos;ll show you my most relevant projects
+                </span>
+              </label>
+              
+              <textarea
+                id="job-description"
+                name="jobDescription"
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
+                rows={5}
+                aria-describedby="job-description-hint"
+                placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
+                className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-0 focus:border-black resize-none text-[18px] leading-[1.6] transition-colors"
+              />
+            </div>
+            
+            <button
+              onClick={analyzeJobDescription}
+              disabled={analyzing || !jobDescription.trim()}
+              aria-busy={analyzing}
+              className="mt-4 px-8 py-4 bg-black hover:bg-black/80 disabled:bg-black/40 disabled:cursor-not-allowed rounded-xl font-medium flex items-center gap-2 transition-all text-white text-[17px]"
+            >
+              {analyzing ? (
+                <>
+                  <Loader2 className="animate-spin" size={22} />
+                  Analyzing...
+                </>
+              ) : (
+                <>
+                  <Sparkles size={22} />
+                  Analyze Match
+                </>
+              )}
+            </button>
           </div>
         </div>
       </section>
@@ -218,24 +217,24 @@ export default function Home() {
       {/* Featured Projects */}
       <section className="w-full border-t border-black/8 py-24" id="work">
         <div className="max-w-[1440px] mx-auto px-20">
-          <div className="grid grid-cols-12 gap-8 mb-20">
-            <div className="col-start-5 col-span-8">
-              <div className="h-px w-full bg-black mb-6" />
-              <h2 className="text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
-                Featured Projects
-              </h2>
-            </div>
-          </div>
+          <h2 className="text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-16">
+            Featured Projects
+          </h2>
 
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-start-5 col-span-8 space-y-12">
-              {analyzedProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="bg-white rounded-2xl p-10 border border-black/8 hover:border-black/20 transition-all"
-                >
+          <div className="space-y-16">
+            {analyzedProjects.map((project) => (
+              
+                key={project.id}
+                href={project.framerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                {/* Project Card */}
+                <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
+                  {/* Match Score Badge (if analyzed) */}
                   {project.matchScore && (
-                    <div className="mb-6">
+                    <div className="px-10 pt-8 pb-0">
                       <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
                         <Sparkles size={16} />
                         {project.matchScore}% Match
@@ -243,35 +242,50 @@ export default function Home() {
                     </div>
                   )}
                   
-                  <h3 className="text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-[24px] leading-[145%] tracking-[-0.03em] text-black/66 mb-2">
-                    {project.company}
-                  </p>
-                  
-                  <p className="text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-3 mb-6">
-                    {project.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                  {/* Image Container - 16:9 aspect ratio */}
+                  <div className="w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-10">
+                    <div className="text-center">
+                      <div className="text-[32px] font-medium text-black/40 mb-2">
+                        {project.title}
+                      </div>
+                      <div className="text-[20px] text-black/30">
+                        Project Image Here
+                      </div>
+                    </div>
                   </div>
                   
-                  <p className="text-[17px] leading-[145%] tracking-[-0.03em] text-black">
-                    <span className="font-medium">Impact:</span> {project.impact}
-                  </p>
+                  {/* Project Details */}
+                  <div className="p-10">
+                    <h3 className="text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-[24px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
+                      {project.company}
+                    </p>
+                    
+                    <p className="text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-3 mb-6">
+                      {project.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <p className="text-[17px] leading-[145%] tracking-[-0.03em] text-black">
+                      <span className="font-medium">Impact:</span> {project.impact}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </a>
+            ))}
           </div>
         </div>
       </section>
