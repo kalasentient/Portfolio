@@ -223,13 +223,7 @@ export default function Home() {
 
           <div className="space-y-16">
             {analyzedProjects.map((project) => (
-              
-                key={project.id}
-                href={project.framerUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block group"
-              >
+              <a key={project.id} href={project.framerUrl} target="_blank" rel="noopener noreferrer" className="block group">
                 {/* Project Card */}
                 <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
                   {/* Match Score Badge (if analyzed) */}
@@ -270,10 +264,7 @@ export default function Home() {
                     
                     <div className="flex flex-wrap gap-3 mb-6">
                       {project.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
-                        >
+                        <span key={skill} className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium">
                           {skill}
                         </span>
                       ))}
