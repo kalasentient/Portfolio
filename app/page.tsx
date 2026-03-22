@@ -327,20 +327,10 @@ export default function Home() {
               </p>
               
               <div className="flex gap-6 mt-12">
-                
-                  href="https://linkedin.com/in/asakala"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[24px] leading-[145%] tracking-[-0.03em] text-black underline hover:text-black/60 transition-colors"
-                >
+                <a href="https://linkedin.com/in/asakala" target="_blank" rel="noopener noreferrer" className="text-[24px] leading-[145%] tracking-[-0.03em] text-black underline hover:text-black/60 transition-colors">
                   LinkedIn
                 </a>
-                
-                  href="https://github.com/kalasentient"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[24px] leading-[145%] tracking-[-0.03em] text-black underline hover:text-black/60 transition-colors"
-                >
+                <a href="https://github.com/kalasentient" target="_blank" rel="noopener noreferrer" className="text-[24px] leading-[145%] tracking-[-0.03em] text-black underline hover:text-black/60 transition-colors">
                   GitHub
                 </a>
               </div>
