@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Sparkles, Loader2, Volume2 } from 'lucide-react';
+import { Sparkles, Loader2, Volume2, Star } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -99,6 +99,11 @@ export default function Home() {
   const [announcement, setAnnouncement] = useState('');
   const [dots, setDots] = useState('');
   const [emailCopied, setEmailCopied] = useState(false);
+  const [feedbackRating, setFeedbackRating] = useState(0);
+  const [feedbackHover, setFeedbackHover] = useState(0);
+  const [feedbackText, setFeedbackText] = useState('');
+  const [feedbackEmail, setFeedbackEmail] = useState('');
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -155,6 +160,11 @@ export default function Home() {
     setAnalyzing(true);
     setHasAnalyzed(false);
     setShowAllResults(false);
+    setFeedbackRating(0);
+    setFeedbackHover(0);
+    setFeedbackText('');
+    setFeedbackEmail('');
+    setFeedbackSubmitted(false);
     setAnnouncement('Analysing job description, please wait');
 
     try {
@@ -503,6 +513,65 @@ export default function Home() {
                   </a>
                 </p>
               </div>
+
+              {/* Feedback module */}
+              <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-black/10">
+                {feedbackSubmitted ? (
+                  <p className="text-lg sm:text-[20px] text-black/60 text-center">Thanks for the feedback 🙏</p>
+                ) : (
+                  <div>
+                    <p className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">Rate this match</p>
+                    <div className="flex gap-2 mb-5" role="group" aria-label="Star rating">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setFeedbackRating(star)}
+                          onMouseEnter={() => setFeedbackHover(star)}
+                          onMouseLeave={() => setFeedbackHover(0)}
+                          aria-label={`Rate ${star} out of 5`}
+                          aria-pressed={feedbackRating === star}
+                          className="focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 rounded"
+                        >
+                          <Star
+                            size={28}
+                            className="transition-colors"
+                            fill={(feedbackHover || feedbackRating) >= star ? '#8071E1' : 'transparent'}
+                            stroke={(feedbackHover || feedbackRating) >= star ? '#8071E1' : '#00000033'}
+                          />
+                        </button>
+                      ))}
+                    </div>
+
+                    {feedbackRating > 0 && (
+                      <div className="space-y-3 max-w-xl">
+                        <textarea
+                          value={feedbackText}
+                          onChange={(e) => setFeedbackText(e.target.value)}
+                          rows={3}
+                          placeholder="Any thoughts on the results? (optional)"
+                          className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base leading-[1.6] transition-colors"
+                        />
+                        <input
+                          type="email"
+                          value={feedbackEmail}
+                          onChange={(e) => setFeedbackEmail(e.target.value)}
+                          placeholder="Your email (optional)"
+                          className="w-full bg-white border-2 border-black/20 rounded-xl px-4 py-3 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-base transition-colors"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setFeedbackSubmitted(true)}
+                          className="px-6 py-3 bg-black hover:bg-black/80 rounded-xl font-medium text-white text-base transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                        >
+                          Send feedback
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
             </div>
           </section>
         )}
