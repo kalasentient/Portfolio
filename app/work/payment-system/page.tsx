@@ -56,6 +56,14 @@ const processImages = [
     src: '/projects/payment-system/ps-image3.avif',
     caption: 'Final screens and specifications for build',
   },
+  {
+    src: '/projects/payment-system/ps-image4.avif',
+    caption: '',
+  },
+  {
+    src: '/projects/payment-system/ps-image5.avif',
+    caption: '',
+  },
 ];
 
 export default function PaymentSystemProject() {
