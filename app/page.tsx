@@ -303,13 +303,13 @@ export default function Home() {
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="w-full lg:w-fit lg:mx-auto">
-              <div className="relative mb-2">
+              <div className="relative mb-0">
                 <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
                   Match your role with my experience
                 </h2>
 
                 <div
-                  className="mt-4 lg:mt-0 lg:absolute lg:-top-8 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                  className="mt-4 lg:mt-0 lg:absolute lg:-top-14 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
                   role="status"
                   aria-label="This feature is AI enhanced and currently in beta"
                 >
@@ -322,7 +322,7 @@ export default function Home() {
                   e.preventDefault();
                   analyzeJobDescription();
                 }}
-                className="mt-6"
+                className="mt-2"
               >
               <div className="govuk-form-group">
                 <label 
