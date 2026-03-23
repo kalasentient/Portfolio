@@ -97,15 +97,11 @@ export default function TflProject() {
 
         {/* Hero image */}
         <section className="w-full">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="w-full rounded-2xl overflow-hidden bg-[#e8eaf6]">
-              <img
-                src="/tfl-dashboard.avif"
-                alt="TfL payments dashboard interface"
-                className="w-full h-auto object-cover"
-              />
-            </div>
-          </div>
+          <img
+            src="/tfl-dashboard.avif"
+            alt="TfL payments dashboard interface"
+            className="w-full h-auto"
+          />
         </section>
 
         {/* Overview */}
@@ -180,22 +176,21 @@ export default function TflProject() {
             </div>
 
             {/* Process image grid */}
-            <div className="space-y-8 sm:space-y-12">
-              {processImages.map((item, i) => (
-                <div key={i}>
-                  <div className="w-full rounded-2xl overflow-hidden bg-black/5 mb-3">
-                    <img
-                      src={item.src}
-                      alt={item.caption}
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                  <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{item.caption}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
+
+        {processImages.map((item, i) => (
+          <section key={i} className="w-full py-8 sm:py-10">
+            <img
+              src={item.src}
+              alt={item.caption}
+              className="w-full h-auto"
+            />
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
+              <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{item.caption}</p>
+            </div>
+          </section>
+        ))}
 
         {/* Footer */}
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
