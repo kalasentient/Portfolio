@@ -302,7 +302,7 @@ export default function Home() {
 
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="lg:max-w-[calc(100%-12rem)]">
+            <div className="w-full lg:w-fit">
               <div className="relative mb-2">
                 <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
                   Match your role with my experience
