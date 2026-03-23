@@ -35,7 +35,7 @@ const projects: Project[] = [
     company: 'John Lewis',
     description: 'Enhanced customer service using Gen AI through WhatsApp messaging',
     skills: ['AI/ML', 'Conversational Design', 'Gen AI', 'Customer Service'],
-    impact: 'Streamlined customer interactions using AI technology',
+    impact: 'Streamlined customer interactions using Gen AI technology',
     framerUrl: 'https://asakala.framer.website/john-lewis-chatbot',
     internalUrl: '/work/john-lewis',
     image: '/johnlewis-chatbot.avif'
@@ -100,6 +100,7 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [announcement, setAnnouncement] = useState('');
   const [dots, setDots] = useState('');
+  const [emailCopied, setEmailCopied] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -208,6 +209,12 @@ export default function Home() {
     });
   };
 
+  const copyEmail = () => {
+    navigator.clipboard.writeText('asakalageraghty@gmail.com');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
+
   const featuredProjects = projects.filter(p => p.image);
 
   return (
@@ -275,9 +282,9 @@ export default function Home() {
 
         <section className="w-full py-12 sm:py-16 lg:py-24" aria-labelledby="hero-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
-              <div className="lg:col-span-5">
-                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+              <div className="lg:col-span-6">
+                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[72px] font-medium leading-[106%] tracking-normal text-black">
                   <span className="inline-flex items-center gap-3">
                     <span>Asakala</span>
                     <button
@@ -298,7 +305,7 @@ export default function Home() {
                 </h1>
               </div>
               
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-6">
                 <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66 mb-6 lg:mb-8">
                   A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
                 </p>
@@ -429,7 +436,7 @@ export default function Home() {
 
               <div className="lg:max-w-[66.666%] lg:mx-auto">
               <p className="text-lg sm:text-xl text-black/50 mb-6 sm:mb-8" role="note">
-                ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
+                🔮 These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
               </p>
 
               <div className="space-y-4 sm:space-y-6">
@@ -461,7 +468,7 @@ export default function Home() {
 
                     {project.reasoning && (
                       <div
-                        className="bg-[#f2fce2] rounded-lg p-4 mb-4"
+                        className="bg-[#ede9fa] rounded-lg p-4 mb-4"
                         role="region"
                         aria-label="AI analysis reasoning"
                       >
@@ -600,7 +607,7 @@ export default function Home() {
                         </div>
                       )}
                       
-                      <div className="p-6 sm:p-8 lg:p-10">
+                      <div className="p-6 sm:p-8 lg:p-10 pb-10 sm:pb-12 lg:pb-14">
                         <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-2">
                           {project.title}
                         </h3>
@@ -610,7 +617,7 @@ export default function Home() {
                         </p>
                         
                         <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6">
-                          <span className="font-medium">Impact:</span> {project.impact}. {project.description}
+                          {project.impact}
                         </p>
 
                         <div className="flex flex-wrap gap-2 sm:gap-3" role="list" aria-label="Project skills">
@@ -640,7 +647,7 @@ export default function Home() {
               About
             </h2>
             
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
                 I&apos;m Asakala — a digital product designer. I care about helping people create better products and services. Currently based in London, UK.
               </p>
@@ -665,12 +672,19 @@ export default function Home() {
             
             <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
               If you want to chat about a project — send me an email on{' '}
-              <a 
+              <a
                 href="mailto:asakalageraghty@gmail.com"
                 className="underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
               >
                 asakala [at] gmail [dot] com
               </a>
+              <button
+                onClick={copyEmail}
+                className="ml-3 inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium bg-black/5 hover:bg-black/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 align-middle"
+                aria-label="Copy email address"
+              >
+                {emailCopied ? 'Copied!' : 'Copy'}
+              </button>
             </p>
             
             <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-8 sm:mb-12">
