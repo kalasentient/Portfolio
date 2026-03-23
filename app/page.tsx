@@ -352,7 +352,7 @@ export default function Home() {
                   rows={5}
                   aria-describedby="job-description-hint"
                   placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
-                  className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base sm:text-lg lg:text-[20px] leading-[1.6] transition-colors"
+                  className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-lg sm:text-[24px] leading-[1.6] transition-colors"
                   aria-required="true"
                 />
                 <span id="job-description-hint" className="sr-only">
@@ -471,7 +471,7 @@ export default function Home() {
                       </div>
                     )}
 
-                    <p className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black mb-4">
+                    <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-4">
                       <span className="font-medium">Impact:</span> {project.impact}. {project.description}
                     </p>
 
@@ -609,7 +609,7 @@ export default function Home() {
                           {project.company}
                         </p>
                         
-                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black mb-6">
+                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6">
                           <span className="font-medium">Impact:</span> {project.impact}. {project.description}
                         </p>
 
@@ -640,17 +640,19 @@ export default function Home() {
               About
             </h2>
             
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
-              I&apos;m Asakala — a digital product designer. I care about helping people create better products and services. Currently based in London, UK.
-            </p>
-            
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
-              Recently working with a start up looking at how AI can help streamline internal tools and customer communication within regulated financial industries.
-            </p>
-            
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black">
-              At Transport for London, I redesigned the way an account dashboard works to help drivers and businesses better understand and manage their account, payments and discounts. I learnt about how to deliver value in public sector projects.
-            </p>
+            <div className="max-w-2xl">
+              <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
+                I&apos;m Asakala — a digital product designer. I care about helping people create better products and services. Currently based in London, UK.
+              </p>
+
+              <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
+                Recently working with a start up looking at how AI can help streamline internal tools and customer communication within regulated financial industries.
+              </p>
+
+              <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black">
+                At Transport for London, I redesigned the way an account dashboard works to help drivers and businesses better understand and manage their account, payments and discounts. I learnt about how to deliver value in public sector projects.
+              </p>
+            </div>
           </div>
         </section>
 
