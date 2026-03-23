@@ -11,26 +11,20 @@ export async function POST(request: Request) {
       );
     }
 
+    const trimmedProjects = projects.map((p: { id: string; title: string; company: string; description: string; skills: string[]; impact: string }) => ({
+      id: p.id, title: p.title, company: p.company, description: p.description, skills: p.skills, impact: p.impact
+    }));
+
     const prompt = "You are analyzing a job description to match it with a UX designer's portfolio projects.\n\n" +
       "Job Description:\n" + jobDescription + "\n\n" +
-      "Portfolio Projects:\n" + JSON.stringify(projects, null, 2) + "\n\n" +
+      "Portfolio Projects:\n" + JSON.stringify(trimmedProjects) + "\n\n" +
       "Analyze this job description and:\n" +
       "1. Identify the top 3-5 key requirements (skills, experience, domain knowledge)\n" +
       "2. Rank the portfolio projects by relevance (most to least relevant)\n" +
       "3. For each project, explain why it's relevant (or not) to this role\n" +
       "4. Create a brief \"match summary\" explaining why this candidate would be a good fit\n\n" +
       "Respond ONLY with a JSON object in this exact format (no markdown, no preamble):\n" +
-      "{\n" +
-      "  \"keyRequirements\": [\"requirement1\", \"requirement2\", \"requirement3\"],\n" +
-      "  \"matchSummary\": \"2-3 sentence summary of why candidate is a good fit\",\n" +
-      "  \"rankedProjects\": [\n" +
-      "    {\n" +
-      "      \"projectId\": 1,\n" +
-      "      \"relevanceScore\": 95,\n" +
-      "      \"relevanceReason\": \"Why this project is relevant\"\n" +
-      "    }\n" +
-      "  ]\n" +
-      "}";
+      "{\"keyRequirements\":[\"requirement1\"],\"matchSummary\":\"summary\",\"rankedProjects\":[{\"projectId\":1,\"relevanceScore\":95,\"relevanceReason\":\"reason\"}]}";
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -40,8 +34,8 @@ export async function POST(request: Request) {
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-5",
-        max_tokens: 1000,
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 600,
         messages: [
           {
             role: "user",
