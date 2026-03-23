@@ -60,7 +60,23 @@ export async function POST(request: Request) {
     const cleanText = text.replace(/```json|```/g, "").trim();
     const parsedAnalysis = JSON.parse(cleanText);
 
-    return NextResponse.json(parsedAnalysis);
+    // Merge Claude's ranked results with full project data from the request
+    const enrichedRankedProjects = parsedAnalysis.rankedProjects
+      .map((ranked: { projectId: number; relevanceScore: number; relevanceReason: string }) => {
+        const fullProject = projects.find((p: { id: string }) => p.id === String(ranked.projectId));
+        if (!fullProject) return null;
+        return {
+          ...fullProject,
+          matchScore: ranked.relevanceScore,
+          reasoning: ranked.relevanceReason,
+        };
+      })
+      .filter(Boolean);
+
+    return NextResponse.json({
+      ...parsedAnalysis,
+      rankedProjects: enrichedRankedProjects,
+    });
   } catch (error) {
     console.error('Analysis error:', error);
     return NextResponse.json(
