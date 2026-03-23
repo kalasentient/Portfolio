@@ -378,12 +378,13 @@ export default function Home() {
           <section 
             ref={resultsRef}
             tabIndex={-1}
-            className="w-full border-t border-black/8 py-12 sm:py-16 bg-white/50 focus:outline-none" 
+            className="w-full border-t border-black/8 pt-6 sm:pt-8 pb-12 sm:pb-16 bg-white/50 focus:outline-none"
             aria-labelledby="results-heading"
           >
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
               <h2 id="results-heading" className="sr-only">Analysis Results</h2>
-              
+
+              <div className="lg:max-w-[66.666%] lg:mx-auto">
               <p className="text-lg sm:text-xl text-black/50 mb-6 sm:mb-8" role="note">
                 ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
               </p>
@@ -392,7 +393,7 @@ export default function Home() {
                 {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black lg:max-w-[66.666%]"
+                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
                     aria-labelledby={`project-title-${project.id}`}
                   >
                     {project.matchScore && (
@@ -462,6 +463,7 @@ export default function Home() {
                   Show less
                 </button>
               )}
+              </div>
 
               <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
                 <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
