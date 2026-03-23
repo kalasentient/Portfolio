@@ -12,6 +12,7 @@ interface Project {
   impact: string;
   matchScore?: number;
   framerUrl: string;
+  internalUrl?: string;
   reasoning?: string;
   image?: string;
 }
@@ -25,6 +26,7 @@ const projects: Project[] = [
     skills: ['UX Research', 'Service Design', 'Dashboard Design', 'Public Sector'],
     impact: 'Improved account management for thousands of London drivers',
     framerUrl: 'https://asakala.framer.website/tfl-dashboard',
+    internalUrl: '/work/tfl',
     image: '/tfl-dashboard.avif'
   },
   {
@@ -570,10 +572,10 @@ export default function Home() {
             <div className="space-y-8 sm:space-y-12 lg:space-y-16">
               {featuredProjects.map((project) => (
                 <article key={project.id}>
-                  <a 
-                    href={project.framerUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href={project.internalUrl ?? project.framerUrl}
+                    target={project.internalUrl ? undefined : '_blank'}
+                    rel={project.internalUrl ? undefined : 'noopener noreferrer'}
                     className="block group focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-4 rounded-2xl"
                     aria-label={`View ${project.title} project details`}
                   >
