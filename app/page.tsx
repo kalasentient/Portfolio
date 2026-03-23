@@ -378,7 +378,7 @@ export default function Home() {
           <section 
             ref={resultsRef}
             tabIndex={-1}
-            className="w-full border-t border-black/8 pt-6 sm:pt-8 pb-12 sm:pb-16 bg-white/50 focus:outline-none"
+            className="w-full border-t border-black/8 pt-6 sm:pt-8 pb-12 sm:pb-16 bg-[#f2fce2] focus:outline-none"
             aria-labelledby="results-heading"
           >
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
