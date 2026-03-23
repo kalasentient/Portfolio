@@ -48,6 +48,7 @@ const projects: Project[] = [
     skills: ['FinTech', 'B2B', 'Payment Systems', 'Enterprise'],
     impact: 'Reduced processing time and improved accuracy',
     framerUrl: 'https://asakala.framer.website/payment-system',
+    internalUrl: '/work/payment-system',
     image: '/payment-system.avif'
   },
   {
