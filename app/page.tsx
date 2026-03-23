@@ -104,6 +104,7 @@ export default function Home() {
   const [feedbackText, setFeedbackText] = useState('');
   const [feedbackEmail, setFeedbackEmail] = useState('');
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
   const resultsRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -165,6 +166,7 @@ export default function Home() {
     setFeedbackText('');
     setFeedbackEmail('');
     setFeedbackSubmitted(false);
+    setFeedbackLoading(false);
     setAnnouncement('Analysing job description, please wait');
 
     try {
@@ -561,10 +563,23 @@ export default function Home() {
                         />
                         <button
                           type="button"
-                          onClick={() => setFeedbackSubmitted(true)}
-                          className="px-6 py-3 bg-black hover:bg-black/80 rounded-xl font-medium text-white text-base transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                          disabled={feedbackLoading}
+                          onClick={async () => {
+                            setFeedbackLoading(true);
+                            try {
+                              await fetch('/api/feedback', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ rating: feedbackRating, text: feedbackText, email: feedbackEmail }),
+                              });
+                            } finally {
+                              setFeedbackLoading(false);
+                              setFeedbackSubmitted(true);
+                            }
+                          }}
+                          className="px-6 py-3 bg-black hover:bg-black/80 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium text-white text-base transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                         >
-                          Send feedback
+                          {feedbackLoading ? 'Sending…' : 'Send feedback'}
                         </button>
                       </div>
                     )}
