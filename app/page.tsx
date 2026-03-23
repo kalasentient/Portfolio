@@ -43,7 +43,7 @@ const projects: Project[] = [
   {
     id: '3',
     title: 'Payment System',
-    company: 'Major UK Bank',
+    company: 'UK Bank',
     description: 'Automation in business banking payment systems',
     skills: ['FinTech', 'B2B', 'Payment Systems', 'Enterprise'],
     impact: 'Reduced processing time and improved accuracy',
@@ -214,7 +214,7 @@ export default function Home() {
     <>
       <a 
         href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded-lg"
+        className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-50 focus-visible:px-4 focus-visible:py-2 focus-visible:bg-black focus-visible:text-white focus-visible:rounded-lg"
       >
         Skip to main content
       </a>
@@ -578,7 +578,7 @@ export default function Home() {
                     href={project.internalUrl ?? project.framerUrl}
                     target={project.internalUrl ? undefined : '_blank'}
                     rel={project.internalUrl ? undefined : 'noopener noreferrer'}
-                    className="block group focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-4 rounded-2xl"
+                    className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 rounded-2xl active:opacity-90 transition-opacity"
                     aria-label={`View ${project.title} project details`}
                   >
                     <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
@@ -609,7 +609,11 @@ export default function Home() {
                           {project.company}
                         </p>
                         
-                        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6" role="list" aria-label="Project skills">
+                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black mb-6">
+                          <span className="font-medium">Impact:</span> {project.impact}. {project.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 sm:gap-3" role="list" aria-label="Project skills">
                           {project.skills.map((skill) => (
                             <span
                               key={skill}
@@ -620,10 +624,6 @@ export default function Home() {
                             </span>
                           ))}
                         </div>
-
-                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black">
-                          <span className="font-medium">Impact:</span> {project.impact}. {project.description}
-                        </p>
                       </div>
                     </div>
                   </a>

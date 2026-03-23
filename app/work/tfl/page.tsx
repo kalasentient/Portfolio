@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import BackButton from '@/app/components/BackButton';
 
 export const metadata: Metadata = {
   title: 'TfL — Payments for individual and fleet drivers · Asakala',
@@ -69,12 +70,7 @@ export default function TflProject() {
       {/* Header */}
       <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center gap-3 text-black hover:text-black/60 transition-colors text-base font-medium focus:outline-none focus:underline focus:underline-offset-4"
-          >
-            ← Back
-          </Link>
+          <BackButton />
           <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
             <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
             <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>

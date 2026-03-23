@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import BackButton from '@/app/components/BackButton';
 
 export const metadata: Metadata = {
-  title: 'Major UK Bank — Designing systems with automation · Asakala',
+  title: 'UK Bank — Designing systems with automation · Asakala',
   description: 'How do you introduce automation into a process that traditionally relies upon human relationships in business banking?',
 };
 
@@ -73,12 +74,7 @@ export default function PaymentSystemProject() {
       {/* Header */}
       <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center gap-3 text-black hover:text-black/60 transition-colors text-base font-medium focus:outline-none focus:underline focus:underline-offset-4"
-          >
-            ← Back
-          </Link>
+          <BackButton />
           <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
             <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
             <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>
@@ -92,7 +88,7 @@ export default function PaymentSystemProject() {
         {/* Hero */}
         <section className="w-full py-16 sm:py-20 lg:py-28">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">Major UK Bank · 2021/2022</p>
+            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">UK Bank · 2021/2022</p>
             <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black max-w-3xl">
               Designing systems with automation
             </h1>
