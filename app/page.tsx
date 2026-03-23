@@ -392,7 +392,7 @@ export default function Home() {
                 {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black lg:max-w-[50%]"
+                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black lg:max-w-[66.666%]"
                     aria-labelledby={`project-title-${project.id}`}
                   >
                     {project.matchScore && (
