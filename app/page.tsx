@@ -309,7 +309,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
+        <section className="w-full border-t border-black/8 pt-12 sm:pt-16 lg:pt-24 pb-8 sm:pb-10" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="w-full lg:w-fit lg:mx-auto">
               <div className="relative mb-0">
@@ -379,21 +379,19 @@ export default function Home() {
                 )}
               </button>
 
-              {analyzing && (
-                <div className="mt-6 flex items-center gap-2">
-                  <Sparkles className="text-[#8071E1] animate-pulse" size={20} aria-hidden="true" />
-                  <p className="text-lg sm:text-xl text-black/50">Considering your role{dots}</p>
-                </div>
-              )}
               </form>
             </div>
           </div>
         </section>
 
         {analyzing && (
-          <section className="w-full border-t border-black/8 pt-6 sm:pt-8 pb-12 sm:pb-16 bg-[#f2fce2]">
+          <section className="w-full pb-12 sm:pb-16 bg-[#f2fce2]">
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
               <div className="lg:max-w-[66.666%] lg:mx-auto">
+                <div className="flex items-center gap-2 mb-6 sm:mb-8">
+                  <Sparkles className="text-[#8071E1] animate-pulse" size={20} aria-hidden="true" />
+                  <p className="text-lg sm:text-xl text-black/50">Considering your role{dots}</p>
+                </div>
                 <div className="space-y-4 sm:space-y-6">
                   {[0, 1, 2].map((i) => (
                     <div
