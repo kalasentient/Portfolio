@@ -21,19 +21,19 @@ const team = [
 
 const processImages = [
   {
-    src: '/projects/john-lewis/jl-image1.avif',
+    src: '/projects/john-lewis/jl-image1.webp',
     caption: 'A conversational flow diagram',
   },
   {
-    src: '/projects/john-lewis/jl-image2.avif',
+    src: '/projects/john-lewis/jl-image2.webp',
     caption: 'Illustration of high level process map',
   },
   {
-    src: '/projects/john-lewis/jl-image3.avif',
+    src: '/projects/john-lewis/jl-image3.webp',
     caption: 'Image detailing processes for training and prototyping the AI Bot',
   },
   {
-    src: '/projects/john-lewis/jl-image4.avif',
+    src: '/projects/john-lewis/jl-image4.webp',
     caption: 'Accuracy classification framework — working out more accurate intent matching classifications',
   },
 ];
