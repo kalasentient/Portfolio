@@ -29,27 +29,35 @@ const impact = [
 
 const processImages = [
   {
+    src: '/projects/tfl/Tfl-image1.avif',
     caption: 'Existing live experience and what the project team were considering to implement before I joined (using existing library components)',
   },
   {
+    src: '/projects/tfl/Tfl-image2.avif',
     caption: 'Workshops I led to understand and organise the account statuses and actions',
   },
   {
+    src: '/projects/tfl/Tfl-image3.avif',
     caption: 'Illustration of high level process map',
   },
   {
+    src: '/projects/tfl/Tfl-image4.avif',
     caption: 'Initial wireframes and permutations of status',
   },
   {
+    src: '/projects/tfl/Tfl-image5.avif',
     caption: 'Exploring visual language for notification states',
   },
   {
+    src: '/projects/tfl/Tfl-image6.avif',
     caption: 'Considering future states of the wider changes to the TfL architecture as a whole',
   },
   {
+    src: '/projects/tfl/Tfl-image7.avif',
     caption: 'Refining notification states and language',
   },
   {
+    src: '/projects/tfl/Tfl-image8.avif',
     caption: 'Final state and specifications',
   },
 ];
@@ -175,8 +183,12 @@ export default function TflProject() {
             <div className="space-y-8 sm:space-y-12">
               {processImages.map((item, i) => (
                 <div key={i}>
-                  <div className="w-full aspect-[16/9] rounded-2xl bg-black/5 flex items-center justify-center mb-3">
-                    <p className="text-black/20 text-sm">Image coming soon</p>
+                  <div className="w-full rounded-2xl overflow-hidden bg-black/5 mb-3">
+                    <img
+                      src={item.src}
+                      alt={item.caption}
+                      className="w-full h-auto object-cover"
+                    />
                   </div>
                   <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{item.caption}</p>
                 </div>
