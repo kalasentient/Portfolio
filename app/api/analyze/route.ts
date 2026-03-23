@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { jobDescription, projects, skills } = await request.json();
+    const { jobDescription, projects } = await request.json();
 
-    if (!jobDescription || !projects || !skills) {
+    if (!jobDescription || !projects) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -14,7 +14,6 @@ export async function POST(request: Request) {
     const prompt = "You are analyzing a job description to match it with a UX designer's portfolio projects.\n\n" +
       "Job Description:\n" + jobDescription + "\n\n" +
       "Portfolio Projects:\n" + JSON.stringify(projects, null, 2) + "\n\n" +
-      "Portfolio Skills:\n" + JSON.stringify(skills, null, 2) + "\n\n" +
       "Analyze this job description and:\n" +
       "1. Identify the top 3-5 key requirements (skills, experience, domain knowledge)\n" +
       "2. Rank the portfolio projects by relevance (most to least relevant)\n" +
@@ -41,7 +40,7 @@ export async function POST(request: Request) {
         "anthropic-version": "2023-06-01"
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "claude-sonnet-4-5",
         max_tokens: 1000,
         messages: [
           {
