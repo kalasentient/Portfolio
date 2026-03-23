@@ -37,6 +37,7 @@ const projects: Project[] = [
     skills: ['AI/ML', 'Conversational Design', 'Gen AI', 'Customer Service'],
     impact: 'Streamlined customer interactions using AI technology',
     framerUrl: 'https://asakala.framer.website/john-lewis-chatbot',
+    internalUrl: '/work/john-lewis',
     image: '/johnlewis-chatbot.avif'
   },
   {
