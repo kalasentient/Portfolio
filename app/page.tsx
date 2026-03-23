@@ -276,12 +276,6 @@ export default function Home() {
               >
                 Contact
               </a>
-              <a
-                href="/recommendations"
-                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
-              >
-                Recommendations
-              </a>
             </nav>
           </div>
         </header>
