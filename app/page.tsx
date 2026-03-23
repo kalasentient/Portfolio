@@ -322,7 +322,7 @@ export default function Home() {
                   e.preventDefault();
                   analyzeJobDescription();
                 }}
-                className="mt-2"
+                className="mt-5"
               >
               <div className="govuk-form-group">
                 <label 
