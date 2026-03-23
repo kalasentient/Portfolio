@@ -195,7 +195,7 @@ export default function Home() {
     });
   };
 
-  const displayProjects = hasAnalyzed ? analyzedProjects : projects.slice(0, 3);
+  const featuredProjects = projects.filter(p => p.image);
 
   return (
     <>
@@ -302,27 +302,28 @@ export default function Home() {
 
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="relative mb-2">
-              <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black pr-0 lg:pr-48">
-                Match your role with my experience
-              </h2>
-              
-              <div 
-                className="mt-4 lg:mt-0 lg:absolute lg:-top-8 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
-                role="status"
-                aria-label="This feature is AI enhanced and currently in beta"
-              >
-                AI enhanced • In Beta
+            <div className="lg:max-w-[calc(100%-12rem)]">
+              <div className="relative mb-2">
+                <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
+                  Match your role with my experience
+                </h2>
+
+                <div
+                  className="mt-4 lg:mt-0 lg:absolute lg:-top-8 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                  role="status"
+                  aria-label="This feature is AI enhanced and currently in beta"
+                >
+                  AI enhanced • In Beta
+                </div>
               </div>
-            </div>
-            
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                analyzeJobDescription();
-              }}
-              className="mt-6 lg:pr-48"
-            >
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  analyzeJobDescription();
+                }}
+                className="mt-6"
+              >
               <div className="govuk-form-group">
                 <label 
                   htmlFor="job-description" 
@@ -368,7 +369,8 @@ export default function Home() {
                   </>
                 )}
               </button>
-            </form>
+              </form>
+            </div>
           </div>
         </section>
 
@@ -390,7 +392,7 @@ export default function Home() {
                 {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
+                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black lg:max-w-[50%]"
                     aria-labelledby={`project-title-${project.id}`}
                   >
                     {project.matchScore && (
@@ -450,6 +452,14 @@ export default function Home() {
                   className="mt-4 px-6 py-3 border-2 border-black/20 hover:border-black/40 rounded-xl font-medium text-black text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                 >
                   Show {analyzedProjects.length - 3} more project{analyzedProjects.length - 3 !== 1 ? 's' : ''}
+                </button>
+              )}
+              {analyzedProjects.length > 3 && showAllResults && (
+                <button
+                  onClick={() => setShowAllResults(false)}
+                  className="mt-4 px-6 py-3 border-2 border-black/20 hover:border-black/40 rounded-xl font-medium text-black text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                >
+                  Show less
                 </button>
               )}
 
@@ -521,7 +531,7 @@ export default function Home() {
             </h2>
 
             <div className="space-y-8 sm:space-y-12 lg:space-y-16">
-              {displayProjects.map((project) => (
+              {featuredProjects.map((project) => (
                 <article key={project.id}>
                   <a 
                     href={project.framerUrl} 
