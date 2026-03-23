@@ -513,10 +513,6 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
                   Let&apos;s chat about your project in more detail
                 </h3>
-                <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-6">
-                  I have limited availability at the moment. Please select some time slots this week when I could give you a call.
-                </p>
-                
                 {!showCalendar ? (
                   <button
                     onClick={() => {
