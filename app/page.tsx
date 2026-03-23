@@ -270,11 +270,17 @@ export default function Home() {
               >
                 About
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
               >
                 Contact
+              </a>
+              <a
+                href="/recommendations"
+                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
+              >
+                Recommendations
               </a>
             </nav>
           </div>
@@ -282,9 +288,9 @@ export default function Home() {
 
         <section className="w-full py-12 sm:py-16 lg:py-24" aria-labelledby="hero-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
-              <div className="lg:col-span-6">
-                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[72px] font-medium leading-[106%] tracking-normal text-black">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+              <div className="lg:col-span-5">
+                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black">
                   <span className="inline-flex items-center gap-3">
                     <span>Asakala</span>
                     <button
@@ -305,7 +311,7 @@ export default function Home() {
                 </h1>
               </div>
               
-              <div className="lg:col-span-6">
+              <div className="lg:col-span-7">
                 <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66 mb-6 lg:mb-8">
                   A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
                 </p>
@@ -319,7 +325,7 @@ export default function Home() {
 
         <section className="w-full border-t border-black/8 pt-12 sm:pt-16 lg:pt-24 pb-8 sm:pb-10" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="w-full lg:w-fit lg:mx-auto">
+            <div className="w-full">
               <div className="relative mb-0">
                 <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black">
                   Match your role with my experience
@@ -395,7 +401,7 @@ export default function Home() {
         {analyzing && (
           <section className="w-full pb-12 sm:pb-16 bg-[#f2fce2]">
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-              <div className="lg:max-w-[66.666%] lg:mx-auto">
+              <div className="w-full">
                 <div className="flex items-center gap-2 mb-6 sm:mb-8">
                   <Sparkles className="text-[#8071E1] animate-pulse" size={20} aria-hidden="true" />
                   <p className="text-lg sm:text-xl text-black/50">Considering your role{dots}</p>
@@ -434,7 +440,7 @@ export default function Home() {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
               <h2 id="results-heading" className="sr-only">Analysis Results</h2>
 
-              <div className="lg:max-w-[66.666%] lg:mx-auto">
+              <div className="w-full">
               <p className="text-lg sm:text-xl text-black/50 mb-6 sm:mb-8" role="note">
                 🔮 These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
               </p>
@@ -443,7 +449,7 @@ export default function Home() {
                 {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
+                    className="relative bg-white rounded-xl p-6 sm:p-8 pb-8 sm:pb-10 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
                     aria-labelledby={`project-title-${project.id}`}
                   >
                     {project.matchScore && (
@@ -515,7 +521,7 @@ export default function Home() {
               )}
               </div>
 
-              <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
+              <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10 flex flex-col items-center text-center">
                 <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4">
                   Let&apos;s chat about your project in more detail
                 </h3>
