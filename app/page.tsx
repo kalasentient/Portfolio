@@ -345,18 +345,18 @@ export default function Home() {
                   e.preventDefault();
                   analyzeJobDescription();
                 }}
-                className="mt-5"
+                className="mt-3"
               >
               <div className="govuk-form-group">
-                <label 
-                  htmlFor="job-description" 
-                  className="block mb-3"
+                <label
+                  htmlFor="job-description"
+                  className="block mb-1"
                 >
                   <span className="text-black/66 text-lg sm:text-xl lg:text-[24px] font-normal leading-relaxed block tracking-normal">
                     Paste a job description and I&apos;ll show you my most relevant projects
                   </span>
                 </label>
-                
+
                 <textarea
                   id="job-description"
                   name="jobDescription"
