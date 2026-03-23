@@ -95,8 +95,6 @@ export default function Home() {
   const [analyzedProjects, setAnalyzedProjects] = useState<Project[]>([]);
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [showAllResults, setShowAllResults] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [announcement, setAnnouncement] = useState('');
   const [dots, setDots] = useState('');
@@ -185,29 +183,6 @@ export default function Home() {
     }
   };
 
-  const generateTimeSlots = () => {
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-    const times = ['9:00-10:00', '10:00-11:00', '11:00-12:00', '14:00-15:00', '15:00-16:00', '16:00-17:00'];
-    return days.flatMap(day => times.map(time => `${day} ${time}`));
-  };
-
-  const timeSlots = generateTimeSlots();
-
-  const toggleTimeSlot = (slot: string) => {
-    setSelectedSlots(prev => {
-      const newSlots = prev.includes(slot) 
-        ? prev.filter(s => s !== slot)
-        : [...prev, slot];
-      
-      setAnnouncement(
-        prev.includes(slot) 
-          ? `Removed ${slot}` 
-          : `Added ${slot}. ${newSlots.length} slots selected`
-      );
-      
-      return newSlots;
-    });
-  };
 
   const copyEmail = () => {
     navigator.clipboard.writeText('asakalageraghty@gmail.com');
@@ -468,7 +443,7 @@ export default function Home() {
 
                     {project.reasoning && (
                       <div
-                        className="bg-[#ede9fa] rounded-lg p-4 mb-4"
+                        className="bg-[#ede9fa] rounded-lg p-4 mb-4 max-w-[75%]"
                         role="region"
                         aria-label="AI analysis reasoning"
                       >
@@ -519,54 +494,14 @@ export default function Home() {
                 <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4">
                   Let&apos;s chat about your project in more detail
                 </h3>
-                {!showCalendar ? (
-                  <button
-                    onClick={() => {
-                      setShowCalendar(true);
-                      setAnnouncement('Calendar opened. Please select your available time slots');
-                    }}
-                    className="px-6 sm:px-8 py-3 sm:py-4 bg-black hover:bg-black/80 rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 min-h-[44px]"
+                <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black">
+                  <a
+                    href="mailto:asakalageraghty@gmail.com"
+                    className="underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
                   >
-                    Book a Call
-                  </button>
-                ) : (
-                  <div className="bg-white rounded-xl p-6 sm:p-8 border border-black/10">
-                    <h4 className="text-lg sm:text-[20px] font-medium mb-4">
-                      Select your available time slots:
-                    </h4>
-                    <fieldset>
-                      <legend className="sr-only">Available time slots for callback</legend>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                        {timeSlots.map((slot) => (
-                          <button
-                            key={slot}
-                            onClick={() => toggleTimeSlot(slot)}
-                            type="button"
-                            role="checkbox"
-                            aria-checked={selectedSlots.includes(slot)}
-                            className={`px-4 py-3 rounded-lg text-left text-sm sm:text-[15px] transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                              selectedSlots.includes(slot)
-                                ? 'bg-[#8071E1] text-white focus:ring-[#8071E1]'
-                                : 'bg-black/5 text-black hover:bg-black/10 focus:ring-black'
-                            }`}
-                          >
-                            {slot}
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
-                    <button
-                      disabled={selectedSlots.length === 0}
-                      onClick={() => {
-                        setAnnouncement(`Submitting ${selectedSlots.length} selected time slots`);
-                      }}
-                      className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#9F92E8] disabled:to-[#B5A9ED] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
-                      aria-label={`Submit ${selectedSlots.length} selected time slot${selectedSlots.length !== 1 ? 's' : ''}`}
-                    >
-                      Submit ({selectedSlots.length} slot{selectedSlots.length !== 1 ? 's' : ''} selected)
-                    </button>
-                  </div>
-                )}
+                    asakala [at] gmail [dot] com
+                  </a>
+                </p>
               </div>
             </div>
           </section>
