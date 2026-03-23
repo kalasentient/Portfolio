@@ -85,7 +85,7 @@ export default function TflProject() {
         <section className="w-full py-16 sm:py-20 lg:py-28">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">Transport for London · 2024</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black max-w-3xl">
+            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
               Payments for individual and fleet drivers
             </h1>
           </div>
@@ -103,7 +103,7 @@ export default function TflProject() {
         {/* Overview */}
         <section className="w-full py-16 sm:py-20 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
               Overview
             </h2>
 
@@ -112,10 +112,10 @@ export default function TflProject() {
               {/* Goal */}
               <div className="lg:col-span-6">
                 <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">The goal</h3>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-[-0.03em] text-black mb-4">
+                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black mb-4">
                   Re design the payments and account landing page so that drivers in London can understand their account with ease and confidently make payments and take needed actions on their account.
                 </p>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-[-0.03em] text-black/60">
+                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black/60">
                   The overarching challenge: an impending platform change and an already overwhelmed project team.
                 </p>
               </div>
@@ -154,7 +154,7 @@ export default function TflProject() {
         {/* Process */}
         <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
               Process
             </h2>
 
@@ -163,7 +163,7 @@ export default function TflProject() {
               <h3 className="text-xl sm:text-2xl font-medium text-black mb-6">Impact</h3>
               <ul className="space-y-4 max-w-2xl">
                 {impact.map((item) => (
-                  <li key={item} className="flex gap-3 text-lg sm:text-[20px] leading-[150%] tracking-[-0.02em] text-black/80">
+                  <li key={item} className="flex gap-3 text-lg sm:text-[20px] leading-[150%] tracking-normal text-black/80">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black/30 shrink-0" />
                     {item}
                   </li>
@@ -191,7 +191,7 @@ export default function TflProject() {
         {/* Footer */}
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm tracking-[-0.03em]">© 2026 Asakala Geraghty</p>
+            <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
             <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
           </div>
         </footer>

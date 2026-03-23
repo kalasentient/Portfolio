@@ -75,7 +75,7 @@ export default function JohnLewisProject() {
         <section className="w-full py-16 sm:py-20 lg:py-28">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">John Lewis · 2023</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black max-w-3xl">
+            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
               Using Gen AI to improve a WhatsApp Chatbot
             </h1>
           </div>
@@ -93,7 +93,7 @@ export default function JohnLewisProject() {
         {/* Overview */}
         <section className="w-full py-16 sm:py-20 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
               Overview
             </h2>
 
@@ -102,10 +102,10 @@ export default function JohnLewisProject() {
               {/* Goal */}
               <div className="lg:col-span-6">
                 <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">The goal</h3>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-[-0.03em] text-black mb-6">
+                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black mb-6">
                   Understand and test how AI and Gen AI can help make the WhatsApp contact experience faster and more streamlined, for both customers and chat agents.
                 </p>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-[-0.03em] text-black/60">
+                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black/60">
                   Throughout the process I focused on addressing the unique problems within the human agent teams and for customers of John Lewis. With the advancements of this technology it can be easy to want to make fancy features for the sake of features and so I was keen for the project&apos;s goals and outcomes to be steered by the human experience (both the customer and human agents) and the intended business outcomes.
                 </p>
               </div>
@@ -144,20 +144,20 @@ export default function JohnLewisProject() {
         {/* Process */}
         <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
               Process
             </h2>
 
             {/* Laying down the groundwork */}
             <div className="mb-12 sm:mb-16 max-w-2xl">
               <h3 className="text-xl sm:text-2xl font-medium text-black mb-4">Laying down the groundwork</h3>
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80 mb-4">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80 mb-4">
                 The design process for the AI WhatsApp chatbot involved several key stages. Firstly, negotiating to conduct a time boxed discovery (through a variety of workshops / observational studies / interviews facilitated and lead by myself) to understand the needs and pain points of the agents within the customer service centres who were responding to customer messages.
               </p>
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80 mb-4">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80 mb-4">
                 <span className="font-medium">First challenge: metrics to measure.</span> I felt it important to analyse the existing messaging transcripts. As this was the first time this analysis was being done, I worked with various teams to make sure this was done safely and created a framework so the team could complete this faster in the future.
               </p>
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
                 As the metrics that existed were very limited: whilst creating an initial design for a customer feedback functionality I also created a plan for implementing and baselining other metrics before launching our tests.
               </p>
             </div>
@@ -165,7 +165,7 @@ export default function JohnLewisProject() {
             {/* Shaping the hypotheses */}
             <div className="mb-12 sm:mb-16 max-w-2xl">
               <h3 className="text-xl sm:text-2xl font-medium text-black mb-4">Shaping the hypotheses</h3>
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
                 Based on the insights from this research, I facilitated design workshops within the team to refine some of the initial ideas. These workshops helped shape the hypotheses for the design tests. I also created a working prototype of the conversation which linked up with large language models so that a more realistic experience could be shared with stakeholders. The design included features such as an order look up that didn&apos;t need an order number, instead displaying a carousel of most recent orders.
               </p>
             </div>
@@ -173,7 +173,7 @@ export default function JohnLewisProject() {
             {/* A continuing relationship */}
             <div className="max-w-2xl">
               <h3 className="text-xl sm:text-2xl font-medium text-black mb-4">A continuing relationship with the human agents</h3>
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
                 From the beginning of the project I ensured we always remained grounded and connected with the human experience of the agents in the customer service centres. This was through workshops, listening for their input into the designs and overall an open line of communication.
               </p>
             </div>
@@ -197,31 +197,31 @@ export default function JohnLewisProject() {
         {/* Improvement plans */}
         <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
               Improvement plans
             </h2>
 
             <div className="max-w-2xl space-y-6">
               {improvementPoints.map((point, i) => (
-                <p key={i} className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80">
+                <p key={i} className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
                   {point}
                 </p>
               ))}
 
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
                 I started to think about how I would in future work with the data science/machine learning engineering team to build a bot which could use a variety of different ways of functioning — a combination of:
               </p>
 
               <ul className="space-y-3 pl-4">
                 {hybridApproach.map((item) => (
-                  <li key={item} className="flex gap-3 text-lg sm:text-[20px] leading-[155%] tracking-[-0.02em] text-black/80">
+                  <li key={item} className="flex gap-3 text-lg sm:text-[20px] leading-[155%] tracking-normal text-black/80">
                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-black/30 shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
 
-              <p className="text-lg sm:text-[20px] leading-[160%] tracking-[-0.02em] text-black/80">
+              <p className="text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
                 For example, in the future we could work out more accurate classifications — how accurately is this matching with a certain intent? It would be great to work with the data science team to explore ways to classify levels of accuracy that we want to accept as a match and what falls beneath that.
               </p>
             </div>
@@ -231,7 +231,7 @@ export default function JohnLewisProject() {
         {/* Footer */}
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm tracking-[-0.03em]">© 2026 Asakala Geraghty</p>
+            <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
             <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
           </div>
         </footer>

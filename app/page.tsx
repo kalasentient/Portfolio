@@ -277,7 +277,7 @@ export default function Home() {
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
               <div className="lg:col-span-5">
-                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black">
+                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black">
                   <span className="inline-flex items-center gap-3">
                     <span>Asakala</span>
                     <button
@@ -299,10 +299,10 @@ export default function Home() {
               </div>
               
               <div className="lg:col-span-7">
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-[-0.035em] text-black/66 mb-6 lg:mb-8">
+                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66 mb-6 lg:mb-8">
                   A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
                 </p>
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-[-0.035em] text-black/66">
+                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66">
                   Working with startups and FTSE 100 corporations I enjoy solving systemic challenges and making products in the moving spaces between ideas, product experiences and just other people 🤓 Based in London, UK and working globally.
                 </p>
               </div>
@@ -314,7 +314,7 @@ export default function Home() {
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="w-full lg:w-fit lg:mx-auto">
               <div className="relative mb-0">
-                <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
+                <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black">
                   Match your role with my experience
                 </h2>
 
@@ -339,7 +339,7 @@ export default function Home() {
                   htmlFor="job-description" 
                   className="block mb-3"
                 >
-                  <span className="text-black/66 text-lg sm:text-xl lg:text-[24px] font-normal leading-relaxed block tracking-[-0.03em]">
+                  <span className="text-black/66 text-lg sm:text-xl lg:text-[24px] font-normal leading-relaxed block tracking-normal">
                     Paste a job description and I&apos;ll show you my most relevant projects
                   </span>
                 </label>
@@ -451,10 +451,10 @@ export default function Home() {
                     )}
 
                     <div className="flex items-baseline justify-between gap-4 mb-4 pr-36 sm:pr-40">
-                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.04em] text-black">
+                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.01em] text-black">
                         {project.title}
                       </h3>
-                      <span className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 text-right shrink-0">
+                      <span className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black/66 text-right shrink-0">
                         {project.company}
                       </span>
                     </div>
@@ -465,13 +465,13 @@ export default function Home() {
                         role="region"
                         aria-label="AI analysis reasoning"
                       >
-                        <p className="text-lg sm:text-[19px] leading-[160%] tracking-[-0.02em] text-black/80">
+                        <p className="text-lg sm:text-[19px] leading-[160%] tracking-normal text-black/80">
                           {project.reasoning}
                         </p>
                       </div>
                     )}
 
-                    <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black mb-4">
+                    <p className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black mb-4">
                       <span className="font-medium">Impact:</span> {project.impact}. {project.description}
                     </p>
 
@@ -509,7 +509,7 @@ export default function Home() {
               </div>
 
               <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
-                <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
+                <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4">
                   Let&apos;s chat about your project in more detail
                 </h3>
                 {!showCalendar ? (
@@ -567,7 +567,7 @@ export default function Home() {
 
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="work" aria-labelledby="projects-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-8 sm:mb-12 lg:mb-16">
+            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12 lg:mb-16">
               Featured Projects
             </h2>
 
@@ -601,15 +601,15 @@ export default function Home() {
                       )}
                       
                       <div className="p-6 sm:p-8 lg:p-10">
-                        <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
+                        <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-2">
                           {project.title}
                         </h3>
                         
-                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
+                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black/66 mb-4">
                           {project.company}
                         </p>
                         
-                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black mb-6">
+                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black mb-6">
                           <span className="font-medium">Impact:</span> {project.impact}. {project.description}
                         </p>
 
@@ -636,19 +636,19 @@ export default function Home() {
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="about" aria-labelledby="about-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="h-px w-full bg-black mb-6" role="presentation" />
-            <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-8 sm:mb-12">
+            <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12">
               About
             </h2>
             
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6 sm:mb-8">
+            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
               I&apos;m Asakala — a digital product designer. I care about helping people create better products and services. Currently based in London, UK.
             </p>
             
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6 sm:mb-8">
+            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
               Recently working with a start up looking at how AI can help streamline internal tools and customer communication within regulated financial industries.
             </p>
             
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black">
+            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black">
               At Transport for London, I redesigned the way an account dashboard works to help drivers and businesses better understand and manage their account, payments and discounts. I learnt about how to deliver value in public sector projects.
             </p>
           </div>
@@ -657,11 +657,11 @@ export default function Home() {
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="contact" aria-labelledby="contact-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="h-px w-full bg-black mb-6" role="presentation" />
-            <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-8 sm:mb-12">
+            <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12">
               Get in touch
             </h2>
             
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6 sm:mb-8">
+            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
               If you want to chat about a project — send me an email on{' '}
               <a 
                 href="mailto:asakalageraghty@gmail.com"
@@ -671,7 +671,7 @@ export default function Home() {
               </a>
             </p>
             
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-8 sm:mb-12">
+            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-8 sm:mb-12">
               I can help design a new digital product or consult on the best approach for your project.
             </p>
             
@@ -680,7 +680,7 @@ export default function Home() {
                 href="https://linkedin.com/in/asakala" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded min-h-[44px] flex items-center"
+                className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded min-h-[44px] flex items-center"
               >
                 LinkedIn
               </a>
@@ -688,7 +688,7 @@ export default function Home() {
                 href="https://github.com/kalasentient" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded min-h-[44px] flex items-center"
+                className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded min-h-[44px] flex items-center"
               >
                 GitHub
               </a>
@@ -698,7 +698,7 @@ export default function Home() {
 
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-black/55 text-sm sm:text-base tracking-[-0.03em]">
+            <p className="text-black/55 text-sm sm:text-base tracking-normal">
               © 2026 Asakala Geraghty
             </p>
           </div>
