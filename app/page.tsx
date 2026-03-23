@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Sparkles, Loader2, Volume2 } from 'lucide-react';
 
 interface Project {
@@ -95,8 +95,17 @@ export default function Home() {
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [announcement, setAnnouncement] = useState('');
+  const [dots, setDots] = useState('');
   const resultsRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    if (!analyzing) { setDots(''); return; }
+    const interval = setInterval(() => {
+      setDots(prev => prev.length >= 3 ? '' : prev + '.');
+    }, 400);
+    return () => clearInterval(interval);
+  }, [analyzing]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -373,6 +382,38 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {analyzing && (
+          <section className="w-full border-t border-black/8 pt-6 sm:pt-8 pb-12 sm:pb-16 bg-[#f2fce2]">
+            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
+              <div className="lg:max-w-[66.666%] lg:mx-auto">
+                <div className="flex items-center gap-2 mb-6 sm:mb-8">
+                  <Sparkles className="text-[#8071E1] animate-pulse" size={20} aria-hidden="true" />
+                  <p className="text-lg sm:text-xl text-black/50">Considering your role{dots}</p>
+                </div>
+                <div className="space-y-4 sm:space-y-6">
+                  {[0, 1, 2].map((i) => (
+                    <div
+                      key={i}
+                      className="bg-white rounded-xl p-6 sm:p-8 border border-black/10 animate-pulse"
+                      style={{ animationDelay: `${i * 200}ms` }}
+                    >
+                      <div className="h-7 bg-black/8 rounded-lg w-2/3 mb-4" />
+                      <div className="h-16 bg-black/5 rounded-lg mb-4" />
+                      <div className="h-5 bg-black/5 rounded-lg w-full mb-2" />
+                      <div className="h-5 bg-black/5 rounded-lg w-4/5 mb-4" />
+                      <div className="flex gap-2">
+                        <div className="h-8 w-20 bg-black/5 rounded-lg" />
+                        <div className="h-8 w-24 bg-black/5 rounded-lg" />
+                        <div className="h-8 w-16 bg-black/5 rounded-lg" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         {hasAnalyzed && analyzedProjects.length > 0 && (
           <section 
