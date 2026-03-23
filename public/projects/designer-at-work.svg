@@ -1,0 +1,56 @@
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background elements -->
+  <rect width="400" height="300" fill="#f5f5f5"/>
+  
+  <!-- Desk -->
+  <rect x="50" y="180" width="300" height="15" rx="3" fill="#d68170"/>
+  
+  <!-- Books stack (left side) -->
+  <rect x="60" y="155" width="50" height="10" rx="2" fill="#8071E1"/>
+  <rect x="65" y="145" width="50" height="10" rx="2" fill="#a091f1"/>
+  <rect x="70" y="135" width="50" height="10" rx="2" fill="#C6BEF8"/>
+  
+  <!-- Coffee cup (right side) -->
+  <ellipse cx="320" cy="165" rx="15" ry="5" fill="#d68170" opacity="0.3"/>
+  <rect x="305" y="145" width="30" height="25" rx="3" fill="#d68170"/>
+  <rect x="300" y="142" width="5" height="8" rx="2" fill="#d68170"/>
+  <!-- Steam -->
+  <path d="M 312 140 Q 310 130 312 125" stroke="#d68170" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <path d="M 320 140 Q 318 128 320 123" stroke="#d68170" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  <path d="M 328 140 Q 326 132 328 127" stroke="#d68170" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+  
+  <!-- Person -->
+  <!-- Head -->
+  <circle cx="200" cy="105" r="25" fill="#a091f1"/>
+  
+  <!-- Glasses -->
+  <circle cx="192" cy="105" r="8" fill="none" stroke="#333" stroke-width="2"/>
+  <circle cx="208" cy="105" r="8" fill="none" stroke="#333" stroke-width="2"/>
+  <line x1="200" y1="105" x2="200" y2="105" stroke="#333" stroke-width="2"/>
+  
+  <!-- Hair (messy bun) -->
+  <circle cx="200" cy="85" r="12" fill="#333"/>
+  <ellipse cx="200" cy="82" rx="10" ry="8" fill="#333"/>
+  
+  <!-- Neck -->
+  <rect x="195" y="125" width="10" height="10" fill="#a091f1"/>
+  
+  <!-- Body/shoulders -->
+  <path d="M 175 135 Q 200 145 225 135" fill="#8071E1"/>
+  <rect x="175" y="135" width="50" height="20" rx="5" fill="#8071E1"/>
+  
+  <!-- Arms typing -->
+  <rect x="140" y="155" width="35" height="8" rx="4" fill="#a091f1" transform="rotate(-15 157.5 159)"/>
+  <rect x="225" y="155" width="35" height="8" rx="4" fill="#a091f1" transform="rotate(15 242.5 159)"/>
+  
+  <!-- Hands on keyboard -->
+  <circle cx="140" cy="170" r="6" fill="#a091f1"/>
+  <circle cx="260" cy="170" r="6" fill="#a091f1"/>
+  
+  <!-- Floating hearts/sparkles (showing love for the work) -->
+  <text x="280" y="120" font-size="16" opacity="0.7">✨</text>
+  <text x="110" y="110" font-size="16" opacity="0.7">💡</text>
+  
+  <!-- Subtle smile -->
+  <path d="M 192 115 Q 200 118 208 115" stroke="#333" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

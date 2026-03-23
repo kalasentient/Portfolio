@@ -13,6 +13,7 @@ interface Project {
   matchScore?: number;
   framerUrl: string;
   reasoning?: string;
+  image?: string;
 }
 
 const projects: Project[] = [
@@ -23,7 +24,8 @@ const projects: Project[] = [
     description: 'Redesigned account dashboard for drivers and businesses to manage payments and discounts',
     skills: ['UX Research', 'Service Design', 'Dashboard Design', 'Public Sector'],
     impact: 'Improved account management for thousands of London drivers',
-    framerUrl: 'https://asakala.framer.website/tfl-dashboard'
+    framerUrl: 'https://asakala.framer.website/tfl-dashboard',
+    image: '/tfl-dashboard.avif'
   },
   {
     id: '2',
@@ -32,7 +34,8 @@ const projects: Project[] = [
     description: 'Enhanced customer service using Gen AI through WhatsApp messaging',
     skills: ['AI/ML', 'Conversational Design', 'Gen AI', 'Customer Service'],
     impact: 'Streamlined customer interactions using AI technology',
-    framerUrl: 'https://asakala.framer.website/john-lewis-chatbot'
+    framerUrl: 'https://asakala.framer.website/john-lewis-chatbot',
+    image: '/johnlewis-chatbot.avif'
   },
   {
     id: '3',
@@ -41,7 +44,8 @@ const projects: Project[] = [
     description: 'Automation in business banking payment systems',
     skills: ['FinTech', 'B2B', 'Payment Systems', 'Enterprise'],
     impact: 'Reduced processing time and improved accuracy',
-    framerUrl: 'https://asakala.framer.website/payment-system'
+    framerUrl: 'https://asakala.framer.website/payment-system',
+    image: '/payment-system.avif'
   },
   {
     id: '4',
@@ -99,7 +103,6 @@ export default function Home() {
 
   const playPronunciation = () => {
     try {
-      // Clean up previous audio if it exists
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
@@ -154,7 +157,6 @@ export default function Home() {
         setHasAnalyzed(true);
         setAnnouncement(`Analysis complete. Found ${data.rankedProjects.length} matching projects`);
         
-        // Focus on results after analysis
         setTimeout(() => {
           resultsRef.current?.focus();
         }, 100);
@@ -167,7 +169,6 @@ export default function Home() {
     }
   };
 
-  // Time slots for calendar
   const generateTimeSlots = () => {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
     const times = ['9:00-10:00', '10:00-11:00', '11:00-12:00', '14:00-15:00', '15:00-16:00', '16:00-17:00'];
@@ -196,7 +197,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Skip to main content link */}
       <a 
         href="#main-content" 
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white focus:rounded-lg"
@@ -204,7 +204,6 @@ export default function Home() {
         Skip to main content
       </a>
 
-      {/* Screen reader announcements */}
       <div 
         role="status" 
         aria-live="polite" 
@@ -215,7 +214,6 @@ export default function Home() {
       </div>
 
       <main id="main-content" className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc] transition-colors duration-1000">
-        {/* Header */}
         <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
             <button 
@@ -260,7 +258,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* Hero Section */}
         <section className="w-full py-12 sm:py-16 lg:py-24" aria-labelledby="hero-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
@@ -301,7 +298,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AI Match Section */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="relative mb-2">
@@ -309,7 +305,6 @@ export default function Home() {
                 Match your role with my experience
               </h2>
               
-              {/* Beta Badge */}
               <div 
                 className="mt-4 lg:mt-0 lg:absolute lg:-top-8 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
                 role="status"
@@ -375,7 +370,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AI Results Section */}
         {hasAnalyzed && analyzedProjects.length > 0 && (
           <section 
             ref={resultsRef}
@@ -386,19 +380,17 @@ export default function Home() {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
               <h2 id="results-heading" className="sr-only">Analysis Results</h2>
               
-              {/* AI Ethics Caveat */}
               <p className="text-sm sm:text-base text-black/50 mb-6 sm:mb-8 italic" role="note">
                 ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
               </p>
 
               <div className="space-y-4 sm:space-y-6">
-                {analyzedProjects.map((project, index) => (
+                {analyzedProjects.map((project) => (
                   <article
                     key={project.id}
                     className="bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
                     aria-labelledby={`project-title-${project.id}`}
                   >
-                    {/* Match Score Badge */}
                     {project.matchScore && (
                       <div className="mb-4">
                         <div 
@@ -420,7 +412,6 @@ export default function Home() {
                       {project.company}
                     </p>
                     
-                    {/* AI Reasoning */}
                     {project.reasoning && (
                       <div 
                         className="bg-[#f2fce2] rounded-lg p-4 mb-4"
@@ -456,7 +447,6 @@ export default function Home() {
                 ))}
               </div>
 
-              {/* Book a Call Section */}
               <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
                 <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
                   Let&apos;s chat about your project in more detail
@@ -505,7 +495,6 @@ export default function Home() {
                       disabled={selectedSlots.length === 0}
                       onClick={() => {
                         setAnnouncement(`Submitting ${selectedSlots.length} selected time slots`);
-                        // Add your submit logic here
                       }}
                       className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#9F92E8] disabled:to-[#B5A9ED] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
                       aria-label={`Submit ${selectedSlots.length} selected time slot${selectedSlots.length !== 1 ? 's' : ''}`}
@@ -519,7 +508,6 @@ export default function Home() {
           </section>
         )}
 
-        {/* Featured Projects */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="work" aria-labelledby="projects-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-8 sm:mb-12 lg:mb-16">
@@ -537,16 +525,23 @@ export default function Home() {
                     aria-label={`View ${project.title} project details`}
                   >
                     <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
-                      <div className="w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-6 sm:p-10">
-                        <div className="text-center">
-                          <div className="text-2xl sm:text-[32px] font-medium text-black/40 mb-2">
-                            {project.title}
-                          </div>
-                          <div className="text-lg sm:text-[20px] text-black/30">
-                            Project Image Here
-                          </div>
+                      {project.image ? (
+                        <div className="w-full aspect-[16/9] overflow-hidden bg-black">
+                          <img 
+                            src={project.image} 
+                            alt={`${project.title} project screenshot`}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
-                      </div>
+                      ) : (
+                        <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#f2fce2] to-[#eff0fc] flex items-center justify-center p-10">
+                          <img 
+                            src="/designer-at-work.svg" 
+                            alt="Designer at work illustration"
+                            className="w-full h-full max-w-md object-contain opacity-80"
+                          />
+                        </div>
+                      )}
                       
                       <div className="p-6 sm:p-8 lg:p-10">
                         <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
@@ -585,7 +580,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About Section */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="about" aria-labelledby="about-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="h-px w-full bg-black mb-6" role="presentation" />
@@ -607,7 +601,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="contact" aria-labelledby="contact-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="h-px w-full bg-black mb-6" role="presentation" />
@@ -650,7 +643,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <p className="text-black/55 text-sm sm:text-base tracking-[-0.03em]">
