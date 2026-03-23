@@ -90,6 +90,7 @@ export default function Home() {
   const [analyzing, setAnalyzing] = useState(false);
   const [analyzedProjects, setAnalyzedProjects] = useState<Project[]>([]);
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
+  const [showAllResults, setShowAllResults] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -141,6 +142,7 @@ export default function Home() {
 
     setAnalyzing(true);
     setHasAnalyzed(false);
+    setShowAllResults(false);
     setAnnouncement('Analysing job description, please wait');
 
     try {
@@ -314,12 +316,12 @@ export default function Home() {
               </div>
             </div>
             
-            <form 
+            <form
               onSubmit={(e) => {
                 e.preventDefault();
                 analyzeJobDescription();
               }}
-              className="mt-6"
+              className="mt-6 lg:pr-48"
             >
               <div className="govuk-form-group">
                 <label 
@@ -380,72 +382,76 @@ export default function Home() {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
               <h2 id="results-heading" className="sr-only">Analysis Results</h2>
               
-              <p className="text-sm sm:text-base text-black/50 mb-6 sm:mb-8 italic" role="note">
+              <p className="text-lg sm:text-xl text-black/50 mb-6 sm:mb-8" role="note">
                 ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
               </p>
 
               <div className="space-y-4 sm:space-y-6">
-                {analyzedProjects.map((project) => (
+                {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
+                    className="relative bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
                     aria-labelledby={`project-title-${project.id}`}
                   >
                     {project.matchScore && (
-                      <div className="mb-4">
-                        <div 
-                          className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8071E1] to-[#a091f1] text-white px-4 py-2 rounded-full text-sm font-medium"
-                          role="status"
-                          aria-label={`${project.matchScore} percent match`}
-                        >
-                          <Sparkles size={16} aria-hidden="true" />
-                          <span>{project.matchScore}% Match</span>
-                        </div>
+                      <div
+                        className="absolute top-6 right-6 sm:top-8 sm:right-8 inline-flex items-center gap-2 bg-gradient-to-r from-[#8071E1] to-[#a091f1] text-white px-4 py-2 rounded-full text-sm font-medium"
+                        role="status"
+                        aria-label={`${project.matchScore} percent match`}
+                      >
+                        <Sparkles size={16} aria-hidden="true" />
+                        <span>{project.matchScore}% Match</span>
                       </div>
                     )}
-                    
-                    <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
-                      {project.title}
-                    </h3>
-                    
-                    <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
-                      {project.company}
-                    </p>
-                    
+
+                    <div className="flex items-baseline justify-between gap-4 mb-4 pr-36 sm:pr-40">
+                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.04em] text-black">
+                        {project.title}
+                      </h3>
+                      <span className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 text-right shrink-0">
+                        {project.company}
+                      </span>
+                    </div>
+
                     {project.reasoning && (
-                      <div 
+                      <div
                         className="bg-[#f2fce2] rounded-lg p-4 mb-4"
                         role="region"
                         aria-label="AI analysis reasoning"
                       >
-                        <p className="text-base sm:text-[17px] leading-[160%] tracking-[-0.02em] text-black/80">
+                        <p className="text-lg sm:text-[19px] leading-[160%] tracking-[-0.02em] text-black/80">
                           {project.reasoning}
                         </p>
                       </div>
                     )}
-                    
-                    <p className="text-base sm:text-[18px] leading-[145%] tracking-[-0.03em] text-black mb-4">
-                      {project.description}
+
+                    <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black mb-4">
+                      <span className="font-medium">Impact:</span> {project.impact}. {project.description}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-4" role="list" aria-label="Project skills">
                       {project.skills.map((skill) => (
-                        <span 
-                          key={skill} 
-                          className="px-3 py-1 bg-black/5 text-black rounded-lg text-sm font-medium"
+                        <span
+                          key={skill}
+                          className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
                           role="listitem"
                         >
                           {skill}
                         </span>
                       ))}
                     </div>
-                    
-                    <p className="text-sm sm:text-[15px] leading-[145%] tracking-[-0.03em] text-black/70">
-                      <span className="font-medium">Impact:</span> {project.impact}
-                    </p>
                   </article>
                 ))}
               </div>
+
+              {analyzedProjects.length > 3 && !showAllResults && (
+                <button
+                  onClick={() => setShowAllResults(true)}
+                  className="mt-4 px-6 py-3 border-2 border-black/20 hover:border-black/40 rounded-xl font-medium text-black text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                >
+                  Show {analyzedProjects.length - 3} more project{analyzedProjects.length - 3 !== 1 ? 's' : ''}
+                </button>
+              )}
 
               <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
                 <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
