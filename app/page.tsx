@@ -298,11 +298,8 @@ export default function Home() {
                 <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-[-0.035em] text-black/66 mb-6 lg:mb-8">
                   A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
                 </p>
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-[-0.035em] text-black/66 mb-6 lg:mb-8">
-                  I&apos;m a Senior Product Designer with 8 years of experience. Based in London, UK.
-                </p>
                 <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-[-0.035em] text-black/66">
-                  Working with startups and FTSE 100 corporations I enjoy making products in the moving spaces between ideas, product experiences and just other people 🤓
+                  Working with startups and FTSE 100 corporations I enjoy solving systemic challenges and making products in the moving spaces between ideas, product experiences and just other people 🤓 Based in London, UK and working globally.
                 </p>
               </div>
             </div>
@@ -698,7 +695,7 @@ export default function Home() {
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <p className="text-black/55 text-sm sm:text-base tracking-[-0.03em]">
-              © 2025 Asakala Geraghty
+              © 2026 Asakala Geraghty
             </p>
           </div>
         </footer>
