@@ -671,8 +671,6 @@ export default function Home() {
           </div>
         </footer>
       </main>
-
-      </main>
       
       {/* TEMPORARY TEST BUTTON - Remove after testing */}
       <div className="fixed bottom-4 right-4 z-50">
@@ -689,8 +687,6 @@ export default function Home() {
           Test Audio
         </button>
       </div>
-    </>
-  
     </>
   );
 }
