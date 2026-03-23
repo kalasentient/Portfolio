@@ -12,6 +12,7 @@ interface Project {
   impact: string;
   matchScore?: number;
   framerUrl: string;
+  reasoning?: string;
 }
 
 const projects: Project[] = [
@@ -83,12 +84,20 @@ const projects: Project[] = [
 export default function Home() {
   const [jobDescription, setJobDescription] = useState('');
   const [analyzing, setAnalyzing] = useState(false);
-  const [analyzedProjects, setAnalyzedProjects] = useState<Project[]>(projects);
+  const [analyzedProjects, setAnalyzedProjects] = useState<Project[]>([]);
+  const [hasAnalyzed, setHasAnalyzed] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedSlots, setSelectedSlots] = useState<string[]>([]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const analyzeJobDescription = async () => {
     if (!jobDescription.trim()) return;
 
     setAnalyzing(true);
+    setHasAnalyzed(false);
 
     try {
       const response = await fetch('/api/analyze', {
@@ -101,6 +110,7 @@ export default function Home() {
       
       if (data.rankedProjects) {
         setAnalyzedProjects(data.rankedProjects);
+        setHasAnalyzed(true);
       }
     } catch (error) {
       console.error('Analysis failed:', error);
@@ -109,23 +119,46 @@ export default function Home() {
     }
   };
 
+  // Time slots for calendar
+  const generateTimeSlots = () => {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    const times = ['9:00-10:00', '10:00-11:00', '11:00-12:00', '14:00-15:00', '15:00-16:00', '16:00-17:00'];
+    return days.flatMap(day => times.map(time => `${day} ${time}`));
+  };
+
+  const timeSlots = generateTimeSlots();
+
+  const toggleTimeSlot = (slot: string) => {
+    setSelectedSlots(prev => 
+      prev.includes(slot) 
+        ? prev.filter(s => s !== slot)
+        : [...prev, slot]
+    );
+  };
+
+  const displayProjects = hasAnalyzed ? analyzedProjects : projects.slice(0, 3);
+
   return (
-    <main className="min-h-screen bg-[#f2fce2]">
+    <main className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc] transition-colors duration-1000">
       {/* Header */}
-      <header className="w-full border-b border-black/8 sticky top-0 bg-[#f2fce2]/80 backdrop-blur-sm z-40">
+      <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
         <div className="max-w-[1440px] mx-auto px-20 py-6 flex items-center justify-between">
-          <div className="flex items-center gap-5">
-            <div className="w-9 h-9 rounded-full bg-[#d68170] shadow-sm" />
-          </div>
+          <button 
+            onClick={scrollToTop}
+            className="flex items-center gap-5 group cursor-pointer"
+            aria-label="Scroll to top"
+          >
+            <div className="w-9 h-9 rounded-full bg-[#d68170] shadow-sm transition-all duration-300 group-hover:rounded-[20px] group-hover:bg-[#e89b87] group-hover:scale-110" />
+          </button>
           
           <nav className="flex items-center gap-10">
-            <a href="#work" className="text-black hover:text-black/60 transition-colors text-[17px] font-medium tracking-[-0.03em]">
+            <a href="#work" className="text-black hover:text-black/60 transition-colors text-[20px] font-semibold tracking-[-0.03em]">
               Work
             </a>
-            <a href="#about" className="text-black hover:text-black/60 transition-colors text-[17px] font-medium tracking-[-0.03em]">
+            <a href="#about" className="text-black hover:text-black/60 transition-colors text-[20px] font-semibold tracking-[-0.03em]">
               About
             </a>
-            <a href="#contact" className="text-black hover:text-black/60 transition-colors text-[17px] font-medium tracking-[-0.03em]">
+            <a href="#contact" className="text-black hover:text-black/60 transition-colors text-[20px] font-semibold tracking-[-0.03em]">
               Contact
             </a>
           </nav>
@@ -138,7 +171,7 @@ export default function Home() {
           <div className="grid grid-cols-12 gap-20">
             <div className="col-span-5">
               <h1 className="text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black">
-                Asakala<br />
+                Asakala.<br />
                 Product Designer
               </h1>
             </div>
@@ -148,7 +181,7 @@ export default function Home() {
                 A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
               </p>
               <p className="text-[32px] leading-[142%] tracking-[-0.035em] text-black/66 mb-8">
-                I&apos;m a Senior Product Designer with 8 years of experience. Based in London, UK.
+                I&apos;m a Senior Product Designer with 9 years of industry experience. Based in London, UK.
               </p>
               <p className="text-[32px] leading-[142%] tracking-[-0.035em] text-black/66">
                 Working with startups and FTSE 100 corporations I enjoy making products in the moving spaces between ideas, product experiences and just other people 🤓
@@ -162,18 +195,18 @@ export default function Home() {
       <section className="w-full border-t border-black/8 py-24">
         <div className="max-w-[1440px] mx-auto px-20">
           <div className="max-w-3xl mx-auto">
-            <div className="flex items-start justify-between mb-4">
+            <div className="relative mb-4">
               <h2 className="text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black">
                 Match your role with my experience
               </h2>
               
-              {/* Beta Badge */}
-              <div className="bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ml-4 mt-4">
-                Enhanced Portfolio • In Beta
+              {/* Beta Badge - positioned above and to the right */}
+              <div className="absolute -top-8 right-0 bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">
+                AI enhanced • In Beta
               </div>
             </div>
             
-            <div className="govuk-form-group">
+            <div className="govuk-form-group mt-12">
               <label htmlFor="job-description" className="block mb-2">
                 <span className="text-black/66 text-[24px] font-normal leading-relaxed block tracking-[-0.03em]">
                   Paste a job description and I&apos;ll show you my most relevant projects
@@ -196,23 +229,133 @@ export default function Home() {
               onClick={analyzeJobDescription}
               disabled={analyzing || !jobDescription.trim()}
               aria-busy={analyzing}
-              className="mt-4 px-8 py-4 bg-black hover:bg-black/80 disabled:bg-black/40 disabled:cursor-not-allowed rounded-xl font-medium flex items-center gap-2 transition-all text-white text-[17px]"
+              className="mt-4 px-8 py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-black/20 disabled:to-black/20 disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium flex items-center gap-2 transition-all text-white text-[17px]"
             >
               {analyzing ? (
                 <>
                   <Loader2 className="animate-spin" size={22} />
-                  Analyzing...
+                  Analysing...
                 </>
               ) : (
                 <>
                   <Sparkles size={22} />
-                  Analyze Match
+                  Analyse Match
                 </>
               )}
             </button>
           </div>
         </div>
       </section>
+
+      {/* AI Results Section */}
+      {hasAnalyzed && analyzedProjects.length > 0 && (
+        <section className="w-full border-t border-black/8 py-16 bg-white/50">
+          <div className="max-w-[1440px] mx-auto px-20">
+            <div className="max-w-4xl mx-auto">
+              {/* AI Ethics Caveat */}
+              <p className="text-[15px] text-black/50 mb-8 italic">
+                ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
+              </p>
+
+              <div className="space-y-6">
+                {analyzedProjects.map((project) => (
+                  <div
+                    key={project.id}
+                    className="bg-white rounded-xl p-8 border border-black/10 hover:border-black/20 transition-all"
+                  >
+                    {/* Match Score Badge */}
+                    {project.matchScore && (
+                      <div className="mb-4">
+                        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8071E1] to-[#a091f1] text-white px-4 py-2 rounded-full text-sm font-medium">
+                          <Sparkles size={16} />
+                          {project.matchScore}% Match
+                        </div>
+                      </div>
+                    )}
+                    
+                    <h3 className="text-[28px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
+                      {project.company}
+                    </p>
+                    
+                    {/* AI Reasoning */}
+                    {project.reasoning && (
+                      <div className="bg-[#f2fce2] rounded-lg p-4 mb-4">
+                        <p className="text-[17px] leading-[160%] tracking-[-0.02em] text-black/80">
+                          {project.reasoning}
+                        </p>
+                      </div>
+                    )}
+                    
+                    <p className="text-[18px] leading-[145%] tracking-[-0.03em] text-black mb-4">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.skills.map((skill) => (
+                        <span key={skill} className="px-3 py-1 bg-black/5 text-black rounded-lg text-sm font-medium">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <p className="text-[15px] leading-[145%] tracking-[-0.03em] text-black/70">
+                      <span className="font-medium">Impact:</span> {project.impact}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Book a Call Section */}
+              <div className="mt-16 pt-12 border-t border-black/10">
+                <h3 className="text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
+                  Let&apos;s chat about your project in more detail
+                </h3>
+                <p className="text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-6">
+                  I have limited availability at the moment. Please select some time slots this week when I could give you a call.
+                </p>
+                
+                {!showCalendar ? (
+                  <button
+                    onClick={() => setShowCalendar(true)}
+                    className="px-8 py-4 bg-black hover:bg-black/80 rounded-xl font-medium text-white text-[17px] transition-all"
+                  >
+                    Book a Call
+                  </button>
+                ) : (
+                  <div className="bg-white rounded-xl p-8 border border-black/10">
+                    <h4 className="text-[20px] font-medium mb-4">Select your available time slots:</h4>
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                      {timeSlots.map((slot) => (
+                        <button
+                          key={slot}
+                          onClick={() => toggleTimeSlot(slot)}
+                          className={`px-4 py-3 rounded-lg text-left text-[15px] transition-all ${
+                            selectedSlots.includes(slot)
+                              ? 'bg-[#8071E1] text-white'
+                              : 'bg-black/5 text-black hover:bg-black/10'
+                          }`}
+                        >
+                          {slot}
+                        </button>
+                      ))}
+                    </div>
+                    <button
+                      disabled={selectedSlots.length === 0}
+                      className="px-8 py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-black/20 disabled:to-black/20 disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-[17px] transition-all"
+                    >
+                      Submit ({selectedSlots.length} slot{selectedSlots.length !== 1 ? 's' : ''} selected)
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Featured Projects */}
       <section className="w-full border-t border-black/8 py-24" id="work">
@@ -222,21 +365,9 @@ export default function Home() {
           </h2>
 
           <div className="space-y-16">
-            {analyzedProjects.map((project) => (
+            {displayProjects.map((project) => (
               <a key={project.id} href={project.framerUrl} target="_blank" rel="noopener noreferrer" className="block group">
-                {/* Project Card */}
                 <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
-                  {/* Match Score Badge (if analyzed) */}
-                  {project.matchScore && (
-                    <div className="px-10 pt-8 pb-0">
-                      <div className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
-                        <Sparkles size={16} />
-                        {project.matchScore}% Match
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* Image Container - 16:9 aspect ratio */}
                   <div className="w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-10">
                     <div className="text-center">
                       <div className="text-[32px] font-medium text-black/40 mb-2">
@@ -248,7 +379,6 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  {/* Project Details */}
                   <div className="p-10">
                     <h3 className="text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
                       {project.title}
@@ -345,10 +475,10 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full border-t border-black/8 py-12 bg-[#f2fce2]">
+      <footer className="w-full border-t border-black/8 py-12">
         <div className="max-w-[1440px] mx-auto px-20">
           <p className="text-black/55 text-base tracking-[-0.03em]">
-            © 2025 Asakala Geraghty
+            © 2026 Asakala Geraghty
           </p>
         </div>
       </footer>
