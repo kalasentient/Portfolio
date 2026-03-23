@@ -266,7 +266,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
               <div className="lg:col-span-5">
                 <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black">
-                  <span className="flex flex-wrap items-center gap-3">
+                  <span className="inline-flex items-center gap-3">
                     <span>Asakala</span>
                     <button
                       onClick={playPronunciation}
@@ -282,7 +282,7 @@ export default function Home() {
                     </button>
                   </span>
                   <br />
-                  <span className="block sm:inline">Product Designer</span>
+                  Product Designer
                 </h1>
               </div>
               
@@ -304,75 +304,77 @@ export default function Home() {
         {/* AI Match Section */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="max-w-5xl mx-auto">
-              <div className="relative mb-8 lg:mb-4">
-                <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black pr-0 lg:pr-48">
-                  Match your role with my experience
-                </h2>
-                
-                {/* Beta Badge */}
-                <div 
-                  className="mt-4 lg:mt-0 lg:absolute lg:-top-8 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
-                  role="status"
-                  aria-label="This feature is AI enhanced and currently in beta"
-                >
-                  AI enhanced • In Beta
-                </div>
-              </div>
-              
-              <form 
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  analyzeJobDescription();
-                }}
-                className="mt-8 lg:mt-12"
-              >
-                <div className="govuk-form-group">
-                  <label 
-                    htmlFor="job-description" 
-                    className="block mb-2"
-                  >
-                    <span className="text-black/66 text-lg sm:text-xl lg:text-[24px] font-normal leading-relaxed block tracking-[-0.03em]">
-                      Paste a job description and I&apos;ll show you my most relevant projects
-                    </span>
-                  </label>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+              <div className="lg:col-start-5 lg:col-span-8">
+                <div className="relative mb-2">
+                  <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black pr-0 lg:pr-48">
+                    Match your role with my experience
+                  </h2>
                   
-                  <textarea
-                    id="job-description"
-                    name="jobDescription"
-                    value={jobDescription}
-                    onChange={(e) => setJobDescription(e.target.value)}
-                    rows={5}
-                    aria-describedby="job-description-hint"
-                    placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
-                    className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base sm:text-lg lg:text-[18px] leading-[1.6] transition-colors"
-                    aria-required="true"
-                  />
-                  <span id="job-description-hint" className="sr-only">
-                    Enter the job description text to analyse how your requirements match with Asakala&apos;s project experience
-                  </span>
+                  {/* Beta Badge */}
+                  <div 
+                    className="mt-4 lg:mt-0 lg:absolute lg:-top-8 lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
+                    role="status"
+                    aria-label="This feature is AI enhanced and currently in beta"
+                  >
+                    AI enhanced • In Beta
+                  </div>
                 </div>
                 
-                <button
-                  type="submit"
-                  disabled={analyzing || !jobDescription.trim()}
-                  aria-busy={analyzing}
-                  aria-disabled={analyzing || !jobDescription.trim()}
-                  className="mt-4 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#C6BEF8] disabled:to-[#D4CCFA] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium flex items-center gap-2 transition-all text-white text-base sm:text-lg lg:text-[17px] focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    analyzeJobDescription();
+                  }}
+                  className="mt-6"
                 >
-                  {analyzing ? (
-                    <>
-                      <Loader2 className="animate-spin" size={22} aria-hidden="true" />
-                      <span>Analysing...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles size={22} aria-hidden="true" />
-                      <span>Analyse Match</span>
-                    </>
-                  )}
-                </button>
-              </form>
+                  <div className="govuk-form-group">
+                    <label 
+                      htmlFor="job-description" 
+                      className="block mb-3"
+                    >
+                      <span className="text-black/66 text-xl sm:text-2xl lg:text-[32px] font-normal leading-relaxed block tracking-[-0.035em]">
+                        Paste a job description and I&apos;ll show you my most relevant projects
+                      </span>
+                    </label>
+                    
+                    <textarea
+                      id="job-description"
+                      name="jobDescription"
+                      value={jobDescription}
+                      onChange={(e) => setJobDescription(e.target.value)}
+                      rows={5}
+                      aria-describedby="job-description-hint"
+                      placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
+                      className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base sm:text-lg lg:text-[18px] leading-[1.6] transition-colors"
+                      aria-required="true"
+                    />
+                    <span id="job-description-hint" className="sr-only">
+                      Enter the job description text to analyse how your requirements match with Asakala&apos;s project experience
+                    </span>
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    disabled={analyzing || !jobDescription.trim()}
+                    aria-busy={analyzing}
+                    aria-disabled={analyzing || !jobDescription.trim()}
+                    className="mt-4 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#9F92E8] disabled:to-[#B5A9ED] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium flex items-center gap-2 transition-all text-white text-base sm:text-lg lg:text-[17px] focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
+                  >
+                    {analyzing ? (
+                      <>
+                        <Loader2 className="animate-spin" size={22} aria-hidden="true" />
+                        <span>Analysing...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles size={22} aria-hidden="true" />
+                        <span>Analyse Match</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </section>
@@ -386,137 +388,139 @@ export default function Home() {
             aria-labelledby="results-heading"
           >
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-              <div className="max-w-4xl mx-auto">
-                <h2 id="results-heading" className="sr-only">Analysis Results</h2>
-                
-                {/* AI Ethics Caveat */}
-                <p className="text-sm sm:text-base text-black/50 mb-6 sm:mb-8 italic" role="note">
-                  ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
-                </p>
-
-                <div className="space-y-4 sm:space-y-6">
-                  {analyzedProjects.map((project, index) => (
-                    <article
-                      key={project.id}
-                      className="bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
-                      aria-labelledby={`project-title-${project.id}`}
-                    >
-                      {/* Match Score Badge */}
-                      {project.matchScore && (
-                        <div className="mb-4">
-                          <div 
-                            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8071E1] to-[#a091f1] text-white px-4 py-2 rounded-full text-sm font-medium"
-                            role="status"
-                            aria-label={`${project.matchScore} percent match`}
-                          >
-                            <Sparkles size={16} aria-hidden="true" />
-                            <span>{project.matchScore}% Match</span>
-                          </div>
-                        </div>
-                      )}
-                      
-                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
-                        {project.company}
-                      </p>
-                      
-                      {/* AI Reasoning */}
-                      {project.reasoning && (
-                        <div 
-                          className="bg-[#f2fce2] rounded-lg p-4 mb-4"
-                          role="region"
-                          aria-label="AI analysis reasoning"
-                        >
-                          <p className="text-base sm:text-[17px] leading-[160%] tracking-[-0.02em] text-black/80">
-                            {project.reasoning}
-                          </p>
-                        </div>
-                      )}
-                      
-                      <p className="text-base sm:text-[18px] leading-[145%] tracking-[-0.03em] text-black mb-4">
-                        {project.description}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-4" role="list" aria-label="Project skills">
-                        {project.skills.map((skill) => (
-                          <span 
-                            key={skill} 
-                            className="px-3 py-1 bg-black/5 text-black rounded-lg text-sm font-medium"
-                            role="listitem"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <p className="text-sm sm:text-[15px] leading-[145%] tracking-[-0.03em] text-black/70">
-                        <span className="font-medium">Impact:</span> {project.impact}
-                      </p>
-                    </article>
-                  ))}
-                </div>
-
-                {/* Book a Call Section */}
-                <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
-                  <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
-                    Let&apos;s chat about your project in more detail
-                  </h3>
-                  <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-6">
-                    I have limited availability at the moment. Please select some time slots this week when I could give you a call.
-                  </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+                <div className="lg:col-start-5 lg:col-span-8">
+                  <h2 id="results-heading" className="sr-only">Analysis Results</h2>
                   
-                  {!showCalendar ? (
-                    <button
-                      onClick={() => {
-                        setShowCalendar(true);
-                        setAnnouncement('Calendar opened. Please select your available time slots');
-                      }}
-                      className="px-6 sm:px-8 py-3 sm:py-4 bg-black hover:bg-black/80 rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 min-h-[44px]"
-                    >
-                      Book a Call
-                    </button>
-                  ) : (
-                    <div className="bg-white rounded-xl p-6 sm:p-8 border border-black/10">
-                      <h4 className="text-lg sm:text-[20px] font-medium mb-4">
-                        Select your available time slots:
-                      </h4>
-                      <fieldset>
-                        <legend className="sr-only">Available time slots for callback</legend>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-                          {timeSlots.map((slot) => (
-                            <button
-                              key={slot}
-                              onClick={() => toggleTimeSlot(slot)}
-                              type="button"
-                              role="checkbox"
-                              aria-checked={selectedSlots.includes(slot)}
-                              className={`px-4 py-3 rounded-lg text-left text-sm sm:text-[15px] transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                                selectedSlots.includes(slot)
-                                  ? 'bg-[#8071E1] text-white focus:ring-[#8071E1]'
-                                  : 'bg-black/5 text-black hover:bg-black/10 focus:ring-black'
-                              }`}
+                  {/* AI Ethics Caveat */}
+                  <p className="text-sm sm:text-base text-black/50 mb-6 sm:mb-8 italic" role="note">
+                    ✨ These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
+                  </p>
+
+                  <div className="space-y-4 sm:space-y-6">
+                    {analyzedProjects.map((project, index) => (
+                      <article
+                        key={project.id}
+                        className="bg-white rounded-xl p-6 sm:p-8 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
+                        aria-labelledby={`project-title-${project.id}`}
+                      >
+                        {/* Match Score Badge */}
+                        {project.matchScore && (
+                          <div className="mb-4">
+                            <div 
+                              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8071E1] to-[#a091f1] text-white px-4 py-2 rounded-full text-sm font-medium"
+                              role="status"
+                              aria-label={`${project.matchScore} percent match`}
                             >
-                              {slot}
-                            </button>
+                              <Sparkles size={16} aria-hidden="true" />
+                              <span>{project.matchScore}% Match</span>
+                            </div>
+                          </div>
+                        )}
+                        
+                        <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
+                          {project.title}
+                        </h3>
+                        
+                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
+                          {project.company}
+                        </p>
+                        
+                        {/* AI Reasoning */}
+                        {project.reasoning && (
+                          <div 
+                            className="bg-[#f2fce2] rounded-lg p-4 mb-4"
+                            role="region"
+                            aria-label="AI analysis reasoning"
+                          >
+                            <p className="text-base sm:text-[17px] leading-[160%] tracking-[-0.02em] text-black/80">
+                              {project.reasoning}
+                            </p>
+                          </div>
+                        )}
+                        
+                        <p className="text-base sm:text-[18px] leading-[145%] tracking-[-0.03em] text-black mb-4">
+                          {project.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-2 mb-4" role="list" aria-label="Project skills">
+                          {project.skills.map((skill) => (
+                            <span 
+                              key={skill} 
+                              className="px-3 py-1 bg-black/5 text-black rounded-lg text-sm font-medium"
+                              role="listitem"
+                            >
+                              {skill}
+                            </span>
                           ))}
                         </div>
-                      </fieldset>
+                        
+                        <p className="text-sm sm:text-[15px] leading-[145%] tracking-[-0.03em] text-black/70">
+                          <span className="font-medium">Impact:</span> {project.impact}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+
+                  {/* Book a Call Section */}
+                  <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10">
+                    <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-4">
+                      Let&apos;s chat about your project in more detail
+                    </h3>
+                    <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black/66 mb-6">
+                      I have limited availability at the moment. Please select some time slots this week when I could give you a call.
+                    </p>
+                    
+                    {!showCalendar ? (
                       <button
-                        disabled={selectedSlots.length === 0}
                         onClick={() => {
-                          setAnnouncement(`Submitting ${selectedSlots.length} selected time slots`);
-                          // Add your submit logic here
+                          setShowCalendar(true);
+                          setAnnouncement('Calendar opened. Please select your available time slots');
                         }}
-                        className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#C6BEF8] disabled:to-[#D4CCFA] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
-                        aria-label={`Submit ${selectedSlots.length} selected time slot${selectedSlots.length !== 1 ? 's' : ''}`}
+                        className="px-6 sm:px-8 py-3 sm:py-4 bg-black hover:bg-black/80 rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 min-h-[44px]"
                       >
-                        Submit ({selectedSlots.length} slot{selectedSlots.length !== 1 ? 's' : ''} selected)
+                        Book a Call
                       </button>
-                    </div>
-                  )}
+                    ) : (
+                      <div className="bg-white rounded-xl p-6 sm:p-8 border border-black/10">
+                        <h4 className="text-lg sm:text-[20px] font-medium mb-4">
+                          Select your available time slots:
+                        </h4>
+                        <fieldset>
+                          <legend className="sr-only">Available time slots for callback</legend>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+                            {timeSlots.map((slot) => (
+                              <button
+                                key={slot}
+                                onClick={() => toggleTimeSlot(slot)}
+                                type="button"
+                                role="checkbox"
+                                aria-checked={selectedSlots.includes(slot)}
+                                className={`px-4 py-3 rounded-lg text-left text-sm sm:text-[15px] transition-all min-h-[44px] focus:outline-none focus:ring-2 focus:ring-offset-2 ${
+                                  selectedSlots.includes(slot)
+                                    ? 'bg-[#8071E1] text-white focus:ring-[#8071E1]'
+                                    : 'bg-black/5 text-black hover:bg-black/10 focus:ring-black'
+                                }`}
+                              >
+                                {slot}
+                              </button>
+                            ))}
+                          </div>
+                        </fieldset>
+                        <button
+                          disabled={selectedSlots.length === 0}
+                          onClick={() => {
+                            setAnnouncement(`Submitting ${selectedSlots.length} selected time slots`);
+                            // Add your submit logic here
+                          }}
+                          className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#9F92E8] disabled:to-[#B5A9ED] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
+                          aria-label={`Submit ${selectedSlots.length} selected time slot${selectedSlots.length !== 1 ? 's' : ''}`}
+                        >
+                          Submit ({selectedSlots.length} slot{selectedSlots.length !== 1 ? 's' : ''} selected)
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -526,65 +530,69 @@ export default function Home() {
         {/* Featured Projects */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="work" aria-labelledby="projects-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-8 sm:mb-12 lg:mb-16">
-              Featured Projects
-            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
+              <div className="lg:col-start-5 lg:col-span-8">
+                <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-8 sm:mb-12 lg:mb-16">
+                  Featured Projects
+                </h2>
 
-            <div className="space-y-8 sm:space-y-12 lg:space-y-16">
-              {displayProjects.map((project) => (
-                <article key={project.id}>
-                  <a 
-                    href={project.framerUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="block group focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-4 rounded-2xl"
-                    aria-label={`View ${project.title} project details`}
-                  >
-                    <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
-                      <div className="w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-6 sm:p-10">
-                        <div className="text-center">
-                          <div className="text-2xl sm:text-[32px] font-medium text-black/40 mb-2">
-                            {project.title}
+                <div className="space-y-8 sm:space-y-12 lg:space-y-16">
+                  {displayProjects.map((project) => (
+                    <article key={project.id}>
+                      <a 
+                        href={project.framerUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="block group focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-4 rounded-2xl"
+                        aria-label={`View ${project.title} project details`}
+                      >
+                        <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
+                          <div className="w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center p-6 sm:p-10">
+                            <div className="text-center">
+                              <div className="text-2xl sm:text-[32px] font-medium text-black/40 mb-2">
+                                {project.title}
+                              </div>
+                              <div className="text-lg sm:text-[20px] text-black/30">
+                                Project Image Here
+                              </div>
+                            </div>
                           </div>
-                          <div className="text-lg sm:text-[20px] text-black/30">
-                            Project Image Here
+                          
+                          <div className="p-6 sm:p-8 lg:p-10">
+                            <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
+                              {project.title}
+                            </h3>
+                            
+                            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
+                              {project.company}
+                            </p>
+                            
+                            <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6">
+                              {project.description}
+                            </p>
+                            
+                            <div className="flex flex-wrap gap-2 sm:gap-3 mb-6" role="list" aria-label="Project skills">
+                              {project.skills.map((skill) => (
+                                <span 
+                                  key={skill} 
+                                  className="px-3 sm:px-4 py-2 bg-black/5 text-black rounded-lg text-sm sm:text-base font-medium"
+                                  role="listitem"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                            
+                            <p className="text-sm sm:text-[17px] leading-[145%] tracking-[-0.03em] text-black">
+                              <span className="font-medium">Impact:</span> {project.impact}
+                            </p>
                           </div>
                         </div>
-                      </div>
-                      
-                      <div className="p-6 sm:p-8 lg:p-10">
-                        <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.04em] text-black mb-2">
-                          {project.title}
-                        </h3>
-                        
-                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black/66 mb-4">
-                          {project.company}
-                        </p>
-                        
-                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6">
-                          {project.description}
-                        </p>
-                        
-                        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6" role="list" aria-label="Project skills">
-                          {project.skills.map((skill) => (
-                            <span 
-                              key={skill} 
-                              className="px-3 sm:px-4 py-2 bg-black/5 text-black rounded-lg text-sm sm:text-base font-medium"
-                              role="listitem"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                        
-                        <p className="text-sm sm:text-[17px] leading-[145%] tracking-[-0.03em] text-black">
-                          <span className="font-medium">Impact:</span> {project.impact}
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </article>
-              ))}
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -671,22 +679,6 @@ export default function Home() {
           </div>
         </footer>
       </main>
-      
-      {/* TEMPORARY TEST BUTTON - Remove after testing */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <button
-          onClick={() => {
-            console.log('Testing audio...');
-            const audio = new Audio('/asakala-pronunciation.mp3');
-            audio.play()
-              .then(() => console.log('✅ Audio played successfully'))
-              .catch((err) => console.error('❌ Audio error:', err));
-          }}
-          className="bg-red-500 text-white px-4 py-2 rounded shadow-lg"
-        >
-          Test Audio
-        </button>
-      </div>
     </>
   );
 }
