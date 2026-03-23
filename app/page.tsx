@@ -568,14 +568,10 @@ export default function Home() {
                           {project.company}
                         </p>
                         
-                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-[-0.03em] text-black mb-6">
-                          {project.description}
-                        </p>
-                        
                         <div className="flex flex-wrap gap-2 sm:gap-3 mb-6" role="list" aria-label="Project skills">
                           {project.skills.map((skill) => (
-                            <span 
-                              key={skill} 
+                            <span
+                              key={skill}
                               className="px-3 sm:px-4 py-2 bg-black/5 text-black rounded-lg text-sm sm:text-base font-medium"
                               role="listitem"
                             >
@@ -583,9 +579,9 @@ export default function Home() {
                             </span>
                           ))}
                         </div>
-                        
-                        <p className="text-sm sm:text-[17px] leading-[145%] tracking-[-0.03em] text-black">
-                          <span className="font-medium">Impact:</span> {project.impact}
+
+                        <p className="text-lg sm:text-[20px] leading-[145%] tracking-[-0.03em] text-black">
+                          <span className="font-medium">Impact:</span> {project.impact}. {project.description}
                         </p>
                       </div>
                     </div>
