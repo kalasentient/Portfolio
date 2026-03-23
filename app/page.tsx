@@ -671,6 +671,26 @@ export default function Home() {
           </div>
         </footer>
       </main>
+
+      </main>
+      
+      {/* TEMPORARY TEST BUTTON - Remove after testing */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <button
+          onClick={() => {
+            console.log('Testing audio...');
+            const audio = new Audio('/asakala-pronunciation.mp3');
+            audio.play()
+              .then(() => console.log('✅ Audio played successfully'))
+              .catch((err) => console.error('❌ Audio error:', err));
+          }}
+          className="bg-red-500 text-white px-4 py-2 rounded shadow-lg"
+        >
+          Test Audio
+        </button>
+      </div>
+    </>
+  
     </>
   );
 }
