@@ -91,20 +91,46 @@ export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [announcement, setAnnouncement] = useState('');
   const resultsRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const playPronunciation = () => {
-    const audio = new Audio('/asakala-pronunciation.mp3');
-    setIsPlaying(true);
-    setAnnouncement('Playing pronunciation of Asakala');
-    audio.play();
-    audio.onended = () => {
+    try {
+      // Clean up previous audio if it exists
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+
+      const audio = new Audio('/asakala-pronunciation.mp3');
+      audioRef.current = audio;
+      setIsPlaying(true);
+      setAnnouncement('Playing pronunciation of Asakala');
+      
+      audio.play().catch((error) => {
+        console.error('Error playing audio:', error);
+        setIsPlaying(false);
+        setAnnouncement('Could not play pronunciation');
+      });
+      
+      audio.onended = () => {
+        setIsPlaying(false);
+        setAnnouncement('');
+        audioRef.current = null;
+      };
+
+      audio.onerror = () => {
+        setIsPlaying(false);
+        setAnnouncement('Could not load pronunciation file');
+        audioRef.current = null;
+      };
+    } catch (error) {
+      console.error('Error with pronunciation:', error);
       setIsPlaying(false);
-      setAnnouncement('');
-    };
+    }
   };
 
   const analyzeJobDescription = async () => {
@@ -214,19 +240,19 @@ export default function Home() {
             <nav aria-label="Main navigation" className="flex items-center gap-4 sm:gap-6 lg:gap-10">
               <a 
                 href="#work" 
-                className="text-black hover:text-black/60 transition-colors text-base sm:text-lg lg:text-[19px] font-medium tracking-[-0.03em] focus:outline-none focus:underline focus:underline-offset-4"
+                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
               >
                 Work
               </a>
               <a 
                 href="#about" 
-                className="text-black hover:text-black/60 transition-colors text-base sm:text-lg lg:text-[19px] font-medium tracking-[-0.03em] focus:outline-none focus:underline focus:underline-offset-4"
+                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
               >
                 About
               </a>
               <a 
                 href="#contact" 
-                className="text-black hover:text-black/60 transition-colors text-base sm:text-lg lg:text-[19px] font-medium tracking-[-0.03em] focus:outline-none focus:underline focus:underline-offset-4"
+                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
               >
                 Contact
               </a>
@@ -239,22 +265,24 @@ export default function Home() {
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
               <div className="lg:col-span-5">
-                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black flex flex-wrap items-center gap-3">
-                  <span>Asakala</span>
-                  <button
-                    onClick={playPronunciation}
-                    disabled={isPlaying}
-                    className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/5 hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all disabled:opacity-50"
-                    aria-label="Play pronunciation of Asakala"
-                  >
-                    <Volume2 
-                      size={20} 
-                      className={`text-black ${isPlaying ? 'animate-pulse' : ''}`} 
-                      aria-hidden="true"
-                    />
-                  </button>
-                  <br className="hidden lg:block" />
-                  <span>Product Designer</span>
+                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-[-0.05em] text-black">
+                  <span className="flex flex-wrap items-center gap-3">
+                    <span>Asakala</span>
+                    <button
+                      onClick={playPronunciation}
+                      disabled={isPlaying}
+                      className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/5 hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all disabled:opacity-50"
+                      aria-label="Play pronunciation of Asakala"
+                    >
+                      <Volume2 
+                        size={20} 
+                        className={`text-black ${isPlaying ? 'animate-pulse' : ''}`} 
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </span>
+                  <br />
+                  <span className="block sm:inline">Product Designer</span>
                 </h1>
               </div>
               
@@ -276,7 +304,7 @@ export default function Home() {
         {/* AI Match Section */}
         <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <div className="relative mb-8 lg:mb-4">
                 <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.04em] text-black pr-0 lg:pr-48">
                   Match your role with my experience
@@ -330,7 +358,7 @@ export default function Home() {
                   disabled={analyzing || !jobDescription.trim()}
                   aria-busy={analyzing}
                   aria-disabled={analyzing || !jobDescription.trim()}
-                  className="mt-4 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#8071E1]/30 disabled:to-[#a091f1]/30 disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium flex items-center gap-2 transition-all text-white text-base sm:text-lg lg:text-[17px] focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
+                  className="mt-4 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#C6BEF8] disabled:to-[#D4CCFA] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium flex items-center gap-2 transition-all text-white text-base sm:text-lg lg:text-[17px] focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
                 >
                   {analyzing ? (
                     <>
@@ -482,7 +510,7 @@ export default function Home() {
                           setAnnouncement(`Submitting ${selectedSlots.length} selected time slots`);
                           // Add your submit logic here
                         }}
-                        className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#8071E1]/30 disabled:to-[#a091f1]/30 disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
+                        className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#C6BEF8] disabled:to-[#D4CCFA] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium text-white text-base sm:text-lg lg:text-[17px] transition-all focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
                         aria-label={`Submit ${selectedSlots.length} selected time slot${selectedSlots.length !== 1 ? 's' : ''}`}
                       >
                         Submit ({selectedSlots.length} slot{selectedSlots.length !== 1 ? 's' : ''} selected)
