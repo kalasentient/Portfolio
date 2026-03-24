@@ -444,41 +444,43 @@ export default function Home() {
                       </div>
                     )}
 
-                    <div className="flex items-baseline justify-between gap-4 mb-4 pr-36 sm:pr-40">
-                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.01em] text-black">
-                        {project.title}
-                      </h3>
-                      <span className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black/66 text-right shrink-0">
-                        {project.company}
-                      </span>
-                    </div>
-
-                    {project.reasoning && (
-                      <div
-                        className="bg-[#ede9fa] rounded-lg p-4 mb-4 max-w-[75%]"
-                        role="region"
-                        aria-label="AI analysis reasoning"
-                      >
-                        <p className="text-lg sm:text-[19px] leading-[160%] tracking-normal text-black/80">
-                          {project.reasoning}
-                        </p>
-                      </div>
-                    )}
-
-                    <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-4">
-                      <span className="font-medium">Impact:</span> {project.impact}. {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-4" role="list" aria-label="Project skills">
-                      {project.skills.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
-                          role="listitem"
-                        >
-                          {skill}
+                    <div className="max-w-[75%]">
+                      <div className="flex items-baseline gap-4 mb-4">
+                        <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.01em] text-black">
+                          {project.title}
+                        </h3>
+                        <span className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black/66 shrink-0">
+                          {project.company}
                         </span>
-                      ))}
+                      </div>
+
+                      {project.reasoning && (
+                        <div
+                          className="bg-[#ede9fa] rounded-lg p-4 mb-4"
+                          role="region"
+                          aria-label="AI analysis reasoning"
+                        >
+                          <p className="text-lg sm:text-[19px] leading-[160%] tracking-normal text-black/80">
+                            {project.reasoning}
+                          </p>
+                        </div>
+                      )}
+
+                      <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-4">
+                        <span className="font-medium">Impact:</span> {project.impact}. {project.description}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2 mb-4" role="list" aria-label="Project skills">
+                        {project.skills.map((skill) => (
+                          <span
+                            key={skill}
+                            className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
+                            role="listitem"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </article>
                 ))}
