@@ -444,16 +444,16 @@ export default function Home() {
                       </div>
                     )}
 
-                    <div className="max-w-[75%]">
-                      <div className="flex items-baseline gap-4 mb-4">
-                        <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.01em] text-black">
-                          {project.title}
-                        </h3>
-                        <span className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black/66 shrink-0">
-                          {project.company}
-                        </span>
-                      </div>
+                    <div className="flex items-baseline justify-between gap-4 mb-4 pr-36 sm:pr-40">
+                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.01em] text-black">
+                        {project.title}
+                      </h3>
+                      <span className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black/66 text-right shrink-0">
+                        {project.company}
+                      </span>
+                    </div>
 
+                    <div className="max-w-[75%]">
                       {project.reasoning && (
                         <div
                           className="bg-[#ede9fa] rounded-lg p-4 mb-4"
