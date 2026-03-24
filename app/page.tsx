@@ -274,18 +274,23 @@ export default function Home() {
                 <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black">
                   <span className="inline-flex items-center gap-3">
                     <span>Asakala</span>
-                    <button
-                      onClick={playPronunciation}
-                      disabled={isPlaying}
-                      className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/5 hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all disabled:opacity-50"
-                      aria-label="Play pronunciation of Asakala"
-                    >
-                      <Volume2 
-                        size={20} 
-                        className={`text-black ${isPlaying ? 'animate-pulse' : ''}`} 
-                        aria-hidden="true"
-                      />
-                    </button>
+                    <span className="relative group">
+                      <button
+                        onClick={playPronunciation}
+                        disabled={isPlaying}
+                        className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/5 hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all disabled:opacity-50"
+                        aria-label="Play pronunciation of Asakala"
+                      >
+                        <Volume2
+                          size={20}
+                          className={`text-black ${isPlaying ? 'animate-pulse' : ''}`}
+                          aria-hidden="true"
+                        />
+                      </button>
+                      <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 w-max max-w-[220px] rounded-lg bg-black text-white text-sm font-normal px-3 py-2 leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-150 text-center z-50">
+                        pronounced a bit like, only because I get asked a lot :)
+                      </span>
+                    </span>
                   </span>
                   <br />
                   Product Designer
