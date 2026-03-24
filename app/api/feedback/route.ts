@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
 
   const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
-  await resend.emails.send({
+  const { data, error } = await resend.emails.send({
     from: 'Portfolio Feedback <onboarding@resend.dev>',
     to: 'asakalageraghty@gmail.com',
     subject: `AI Match Feedback — ${stars} (${rating}/5)`,
@@ -23,5 +23,10 @@ export async function POST(request: NextRequest) {
     ].join('\n\n'),
   });
 
-  return NextResponse.json({ ok: true });
+  if (error) {
+    console.error('Resend error:', error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true, id: data?.id });
 }
