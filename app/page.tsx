@@ -430,7 +430,7 @@ export default function Home() {
                 {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="relative bg-white rounded-xl p-6 sm:p-8 pb-8 sm:pb-10 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
+                    className="relative bg-white rounded-xl p-6 sm:p-8 pb-8 sm:pb-10 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black max-w-[75%]"
                     aria-labelledby={`project-title-${project.id}`}
                   >
                     {project.matchScore && (
@@ -453,8 +453,7 @@ export default function Home() {
                       </span>
                     </div>
 
-                    <div className="max-w-[75%]">
-                      {project.reasoning && (
+                    {project.reasoning && (
                         <div
                           className="bg-[#ede9fa] rounded-lg p-4 mb-4"
                           role="region"
@@ -481,7 +480,6 @@ export default function Home() {
                           </span>
                         ))}
                       </div>
-                    </div>
                   </article>
                 ))}
               </div>
