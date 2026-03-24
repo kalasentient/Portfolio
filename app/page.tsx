@@ -306,7 +306,7 @@ export default function Home() {
 
         <section className="w-full border-t border-black/8 pt-12 sm:pt-16 lg:pt-24 pb-8 sm:pb-10" aria-labelledby="match-heading">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="w-full lg:w-fit lg:mx-auto">
+            <div className="w-full lg:max-w-4xl lg:mx-auto">
               <div className="relative mb-0">
                 <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black">
                   Match your role with my experience
@@ -382,7 +382,7 @@ export default function Home() {
         {analyzing && (
           <section className="w-full pb-12 sm:pb-16 bg-[#f2fce2]">
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-              <div className="lg:max-w-[66.666%] lg:mx-auto">
+              <div className="w-full lg:max-w-4xl lg:mx-auto">
                 <div className="flex items-center gap-2 mb-6 sm:mb-8">
                   <Sparkles className="text-[#8071E1] animate-pulse" size={20} aria-hidden="true" />
                   <p className="text-lg sm:text-xl text-black/50">Considering your role{dots}</p>
@@ -421,7 +421,7 @@ export default function Home() {
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
               <h2 id="results-heading" className="sr-only">Analysis Results</h2>
 
-              <div className="lg:max-w-[66.666%] lg:mx-auto">
+              <div className="w-full lg:max-w-4xl lg:mx-auto">
               <p className="text-lg sm:text-xl text-black/50 mb-6 sm:mb-8" role="note">
                 🔮 These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
               </p>
