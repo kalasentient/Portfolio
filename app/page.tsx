@@ -500,6 +500,79 @@ export default function Home() {
                   Show less
                 </button>
               )}
+
+              {/* Feedback module — right-aligned below last card */}
+              <div className="flex justify-end mt-6">
+                {feedbackSubmitted ? (
+                  <p className="text-sm text-black/60">Thanks for the feedback 🙏</p>
+                ) : (
+                  <div className="text-right">
+                    <p className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">Rate this match</p>
+                    <div className="flex gap-1.5 justify-end mb-4" role="group" aria-label="Star rating">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setFeedbackRating(star)}
+                          onMouseEnter={() => setFeedbackHover(star)}
+                          onMouseLeave={() => setFeedbackHover(0)}
+                          aria-label={`Rate ${star} out of 5`}
+                          aria-pressed={feedbackRating === star}
+                          className="focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 rounded"
+                        >
+                          <Star
+                            size={24}
+                            className="transition-colors"
+                            fill={(feedbackHover || feedbackRating) >= star ? '#8071E1' : 'transparent'}
+                            stroke={(feedbackHover || feedbackRating) >= star ? '#8071E1' : '#00000033'}
+                          />
+                        </button>
+                      ))}
+                    </div>
+
+                    {feedbackRating > 0 && (
+                      <div className="space-y-3 w-72">
+                        <textarea
+                          value={feedbackText}
+                          onChange={(e) => setFeedbackText(e.target.value)}
+                          rows={3}
+                          placeholder="Any thoughts on the results? (optional)"
+                          className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-sm leading-[1.6] transition-colors text-left"
+                        />
+                        <input
+                          type="email"
+                          value={feedbackEmail}
+                          onChange={(e) => setFeedbackEmail(e.target.value)}
+                          placeholder="Your email (optional)"
+                          className="w-full bg-white border-2 border-black/20 rounded-xl px-4 py-3 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-sm transition-colors text-left"
+                        />
+                        <div className="flex justify-end">
+                          <button
+                            type="button"
+                            disabled={feedbackLoading}
+                            onClick={async () => {
+                              setFeedbackLoading(true);
+                              try {
+                                await fetch('/api/feedback', {
+                                  method: 'POST',
+                                  headers: { 'Content-Type': 'application/json' },
+                                  body: JSON.stringify({ rating: feedbackRating, text: feedbackText, email: feedbackEmail }),
+                                });
+                              } finally {
+                                setFeedbackLoading(false);
+                                setFeedbackSubmitted(true);
+                              }
+                            }}
+                            className="px-5 py-2.5 bg-black hover:bg-black/80 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium text-white text-sm transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                          >
+                            {feedbackLoading ? 'Sending…' : 'Send feedback'}
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
               </div>
 
               <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10 flex flex-col items-center text-center">
@@ -514,77 +587,6 @@ export default function Home() {
                     asakala [at] gmail [dot] com
                   </a>
                 </p>
-              </div>
-
-              {/* Feedback module */}
-              <div className="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-black/10">
-                {feedbackSubmitted ? (
-                  <p className="text-lg sm:text-[20px] text-black/60 text-center">Thanks for the feedback 🙏</p>
-                ) : (
-                  <div>
-                    <p className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">Rate this match</p>
-                    <div className="flex gap-2 mb-5" role="group" aria-label="Star rating">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          type="button"
-                          onClick={() => setFeedbackRating(star)}
-                          onMouseEnter={() => setFeedbackHover(star)}
-                          onMouseLeave={() => setFeedbackHover(0)}
-                          aria-label={`Rate ${star} out of 5`}
-                          aria-pressed={feedbackRating === star}
-                          className="focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 rounded"
-                        >
-                          <Star
-                            size={28}
-                            className="transition-colors"
-                            fill={(feedbackHover || feedbackRating) >= star ? '#8071E1' : 'transparent'}
-                            stroke={(feedbackHover || feedbackRating) >= star ? '#8071E1' : '#00000033'}
-                          />
-                        </button>
-                      ))}
-                    </div>
-
-                    {feedbackRating > 0 && (
-                      <div className="space-y-3 max-w-xl">
-                        <textarea
-                          value={feedbackText}
-                          onChange={(e) => setFeedbackText(e.target.value)}
-                          rows={3}
-                          placeholder="Any thoughts on the results? (optional)"
-                          className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base leading-[1.6] transition-colors"
-                        />
-                        <input
-                          type="email"
-                          value={feedbackEmail}
-                          onChange={(e) => setFeedbackEmail(e.target.value)}
-                          placeholder="Your email (optional)"
-                          className="w-full bg-white border-2 border-black/20 rounded-xl px-4 py-3 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-base transition-colors"
-                        />
-                        <button
-                          type="button"
-                          disabled={feedbackLoading}
-                          onClick={async () => {
-                            setFeedbackLoading(true);
-                            try {
-                              await fetch('/api/feedback', {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ rating: feedbackRating, text: feedbackText, email: feedbackEmail }),
-                              });
-                            } finally {
-                              setFeedbackLoading(false);
-                              setFeedbackSubmitted(true);
-                            }
-                          }}
-                          className="px-6 py-3 bg-black hover:bg-black/80 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium text-white text-base transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-                        >
-                          {feedbackLoading ? 'Sending…' : 'Send feedback'}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
               </div>
 
             </div>
