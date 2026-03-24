@@ -507,7 +507,7 @@ export default function Home() {
                   <p className="text-sm text-black/60">Thanks for the feedback 🙏</p>
                 ) : (
                   <div className="text-right">
-                    <p className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">Rate this match</p>
+                    <p className="text-sm font-medium text-black/60 tracking-wide mb-3">Rate this match</p>
                     <div className="flex gap-1.5 justify-end mb-4" role="group" aria-label="Star rating">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
