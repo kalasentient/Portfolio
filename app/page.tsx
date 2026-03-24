@@ -489,7 +489,7 @@ export default function Home() {
                   onClick={() => setShowAllResults(true)}
                   className="mt-4 px-6 py-3 border-2 border-black/20 hover:border-black/40 rounded-xl font-medium text-black text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                 >
-                  Show {analyzedProjects.length - 3} more project{analyzedProjects.length - 3 !== 1 ? 's' : ''}
+                  Show more projects
                 </button>
               )}
               {analyzedProjects.length > 3 && showAllResults && (
@@ -507,7 +507,7 @@ export default function Home() {
                   <p className="text-sm text-black/60">Thanks for the feedback 🙏</p>
                 ) : (
                   <div className="text-right">
-                    <p className="text-sm font-medium text-black/60 tracking-wide mb-3">Rate this match</p>
+                    <p className="text-base font-medium text-black/60 tracking-wide mb-3">Rate this match</p>
                     <div className="flex gap-1.5 justify-end mb-4" role="group" aria-label="Star rating">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
@@ -521,7 +521,7 @@ export default function Home() {
                           className="focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 rounded"
                         >
                           <Star
-                            size={24}
+                            size={20}
                             className="transition-colors"
                             fill={(feedbackHover || feedbackRating) >= star ? '#8071E1' : 'transparent'}
                             stroke={(feedbackHover || feedbackRating) >= star ? '#8071E1' : '#00000033'}
@@ -537,14 +537,14 @@ export default function Home() {
                           onChange={(e) => setFeedbackText(e.target.value)}
                           rows={3}
                           placeholder="Any thoughts on the results? (optional)"
-                          className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-sm leading-[1.6] transition-colors text-left"
+                          className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base leading-[1.6] transition-colors text-left"
                         />
                         <input
                           type="email"
                           value={feedbackEmail}
                           onChange={(e) => setFeedbackEmail(e.target.value)}
                           placeholder="Your email (optional)"
-                          className="w-full bg-white border-2 border-black/20 rounded-xl px-4 py-3 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-sm transition-colors text-left"
+                          className="w-full bg-white border-2 border-black/20 rounded-xl px-4 py-3 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-base transition-colors text-left"
                         />
                         <div className="flex justify-end">
                           <button
@@ -563,7 +563,7 @@ export default function Home() {
                                 setFeedbackSubmitted(true);
                               }
                             }}
-                            className="px-5 py-2.5 bg-black hover:bg-black/80 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium text-white text-sm transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                            className="px-5 py-2.5 bg-black hover:bg-black/80 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium text-white text-base transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                           >
                             {feedbackLoading ? 'Sending…' : 'Send feedback'}
                           </button>
@@ -586,6 +586,13 @@ export default function Home() {
                   >
                     asakala [at] gmail [dot] com
                   </a>
+                  <button
+                    onClick={copyEmail}
+                    className="ml-3 inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium bg-black/5 hover:bg-black/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 align-middle"
+                    aria-label="Copy email address"
+                  >
+                    {emailCopied ? 'Copied!' : 'Copy'}
+                  </button>
                 </p>
               </div>
 
