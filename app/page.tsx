@@ -350,7 +350,7 @@ export default function Home() {
                   onChange={(e) => setJobDescription(e.target.value)}
                   rows={5}
                   aria-describedby="job-description-hint"
-                  placeholder="We're looking for a Senior UX Designer with experience in AI products, and user research..."
+                  placeholder="We're looking for a Lead Product Designer with experience with AI products and user research..."
                   className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-lg sm:text-[24px] leading-[1.6] transition-colors"
                   aria-required="true"
                 />
