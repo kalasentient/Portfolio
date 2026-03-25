@@ -288,7 +288,7 @@ export default function Home() {
                         />
                       </button>
                       <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 w-max max-w-[220px] rounded-lg bg-black text-white text-sm font-normal px-3 py-2 leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-150 text-center z-50">
-                        pronounced a bit like, only because I get asked a lot :)
+                        How to pronounce my name
                       </span>
                     </span>
                   </span>
