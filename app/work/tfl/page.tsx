@@ -47,7 +47,7 @@ const processImages = [
   },
   {
     src: '/projects/tfl/Tfl-image5.avif',
-    caption: 'Exploring how an account might look for a customer who drives and uses other public transport regularly. The cards would change positioning based on priority. For example even if charges were not regularly due for a specific car, if the discount applied was due to expire we would need this prompt to feature first and take precedence above recent charges due to the dire consequences for the customer of non action. The scope of the project didn't allow certain penalty charge systems to communicate with account dashboard systems for example',
+    caption: "Exploring how an account might look for a customer who drives and uses other public transport regularly. The cards would change positioning based on priority. For example even if charges were not regularly due for a specific car, if the discount applied was due to expire we would need this prompt to feature first and take precedence above recent charges due to the dire consequences for the customer of non action. The scope of the project didn't allow certain penalty charge systems to communicate with account dashboard systems for example",
   },
   {
     src: '/projects/tfl/Tfl-image6.avif',
@@ -59,7 +59,7 @@ const processImages = [
   },
   {
     src: '/projects/tfl/Tfl-image8.avif',
-    caption: 'Creating specification documents for each account state. Aligning with the product engineering team to ensure shared understanding. Agreeing with Product on which notifications were part of service notification and so the customer didn't need to be opted in.',
+    caption: "Creating specification documents for each account state. Aligning with the product engineering team to ensure shared understanding. Agreeing with Product on which notifications were part of service notification and so the customer didn't need to be opted in.",
   },
 ];
 
