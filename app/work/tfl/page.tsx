@@ -183,7 +183,7 @@ export default function TflProject() {
               className="w-full h-auto"
             />
             <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
-              <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{item.caption}</p>
+              <p className="text-lg sm:text-[20px] leading-[150%] tracking-normal text-black/80 max-w-xl">{item.caption}</p>
             </div>
           </section>
         ))}
