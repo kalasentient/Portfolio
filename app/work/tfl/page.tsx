@@ -39,7 +39,7 @@ const processImages = [
   },
   {
     src: '/projects/tfl/Tfl-image3.avif',
-    caption: 'Initial thinking wireframes and permutations of status. How do the Pay as you go features interact with the AutoPay functionalities and how do we balance the intentions of the organisation vs the customer's journey priority',
+    caption: "Initial thinking wireframes and permutations of status. How do the Pay as you go features interact with the AutoPay functionalities and how do we balance the intentions of the organisation vs the customer's journey priority",
   },
   {
     src: '/projects/tfl/Tfl-image4.avif',
