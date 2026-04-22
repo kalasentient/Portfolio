@@ -31,35 +31,35 @@ const impact = [
 const processImages = [
   {
     src: '/projects/tfl/Tfl-image1.avif',
-    caption: 'Existing live experience and what the project team were considering to implement before I joined (using existing library components)',
+    caption: 'Existing live experience and what the project team were considering to implement before I joined (using existing library components) Essentially no data was being brought forward for users to view',
   },
   {
     src: '/projects/tfl/Tfl-image2.avif',
-    caption: 'Workshops I led to understand and organise the account statuses and actions',
+    caption: 'Initially the challenge was being able to sell the value of making sure we understood the business Fleet users too. I created user testing proposals and discussion guides. This was the first step to bringing the wider business teams into the impact that these changes would have on both indivudal customers and businesses who were paying for driving charges and how each of their needs were so different. I led a series of workshops to uncover and organise the account statuses, data points and user actions. Digging into what were considerd edge cases and understanding the size of their impact. For example for the various discounts and the knock on affects of customers lack of understanding on how to use them.',
   },
   {
     src: '/projects/tfl/Tfl-image3.avif',
-    caption: 'Illustration of high level process map',
+    caption: 'Initial thinking wireframes and permutations of status. How do the Pay as you go features interact with the AutoPay functionalities and how do we balance the intentions of the organisation vs the customer's journey priority',
   },
   {
     src: '/projects/tfl/Tfl-image4.avif',
-    caption: 'Initial wireframes and permutations of status',
+    caption: 'Working with other designers on the team to understand the evolving landscape of new visual language that was due to be released soon. This included looking at how "driving" was positioned within the whole Tfl ecosystem and how the data within card components were prioritised progressively expanded ',
   },
   {
     src: '/projects/tfl/Tfl-image5.avif',
-    caption: 'Exploring visual language for notification states',
+    caption: 'Exploring how an account might look for a customer who drives and uses other public transport regularly. The cards would change positioning based on priority. For example even if charges were not regularly due for a specific car, if the discount applied was due to expire we would need this prompt to feature first and take precedence above recent charges due to the dire consequences for the customer of non action. The scope of the project didn't allow certain penalty charge systems to communicate with account dashboard systems for example',
   },
   {
     src: '/projects/tfl/Tfl-image6.avif',
-    caption: 'Considering future states of the wider changes to the TfL architecture as a whole',
+    caption: 'Refining urgent notification states and visual language and considering how these card patterns might scale in other scenarios and remain up to the WCAG AA guidelines standards',
   },
   {
     src: '/projects/tfl/Tfl-image7.avif',
-    caption: 'Refining notification states and language',
+    caption: 'Refining the card layout, all possible language states across customer and business fleet accounts',
   },
   {
     src: '/projects/tfl/Tfl-image8.avif',
-    caption: 'Final state and specifications',
+    caption: 'Creating specification documents for each account state. Aligning with the product engineering team to ensure shared understanding. Agreeing with Product on which notifications were part of service notification and so the customer didn't need to be opted in.',
   },
 ];
 
