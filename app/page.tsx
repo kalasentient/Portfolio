@@ -95,6 +95,7 @@ const projects: Project[] = [
     skills: [],
     impact: '',
     framerUrl: '#',
+    internalUrl: '/work/other-creations',
     image: '/projects/OtherCreative-projects/Olfactory/10-IlluminumLondon-LimitedEditionCollection03.jpg'
   }
 ];
