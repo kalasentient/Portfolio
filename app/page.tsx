@@ -86,6 +86,16 @@ const projects: Project[] = [
     skills: ['Chatbot', 'FinTech', 'Conversational UI', 'Customer Support'],
     impact: 'Automated customer support for financial services',
     framerUrl: 'https://asakala.framer.website/mespo-chatbot'
+  },
+  {
+    id: '8',
+    title: 'My other creations',
+    company: '',
+    description: '',
+    skills: [],
+    impact: '',
+    framerUrl: '#',
+    image: '/projects/OtherCreative-projects/Olfactory/10-IlluminumLondon-LimitedEditionCollection03.jpg'
   }
 ];
 
