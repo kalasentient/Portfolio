@@ -149,7 +149,7 @@ export default function OtherCreations() {
                     rel="noopener noreferrer"
                     className="inline-block mt-4 text-base sm:text-lg text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
                   >
-                    Featured in Wallpaper Magazine ↗
+                    As featured in Wallpaper Magazine ↗
                   </a>
                 )}
               </div>
