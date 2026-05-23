@@ -10,7 +10,7 @@ const tabs = [
     id: 'olfactory',
     label: 'Olfactory',
     heading: 'Olfactory',
-    description: 'Creative and Art direction for niche perfume house Illuminum London.',
+    description: 'Creative and Art direction for new branding of niche perfume brand Illuminum London located on Dover St, Mayfair. Included art direction, sourcing, research and product management of physical product, fragrance, physical store, website, launch event.',
     images: [
       '/projects/OtherCreative-projects/Olfactory/06-IlluminumLondon-CoreCollection07.jpg',
       '/projects/OtherCreative-projects/Olfactory/07-IlluminumLondon-CoreCollection02.jpg',
