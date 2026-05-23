@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import BackButton from '@/app/components/BackButton';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const tabs = [
   {
@@ -42,7 +43,31 @@ const tabs = [
 
 export default function OtherCreations() {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
-  const current = tabs.find(t => t.id === activeTab)!;
+  const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
+
+  const openLightbox = (images: string[], index: number) => setLightbox({ images, index });
+  const closeLightbox = () => setLightbox(null);
+
+  const prev = useCallback(() => {
+    if (!lightbox) return;
+    setLightbox({ ...lightbox, index: (lightbox.index - 1 + lightbox.images.length) % lightbox.images.length });
+  }, [lightbox]);
+
+  const next = useCallback(() => {
+    if (!lightbox) return;
+    setLightbox({ ...lightbox, index: (lightbox.index + 1) % lightbox.images.length });
+  }, [lightbox]);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox, prev, next]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc]">
@@ -122,12 +147,18 @@ export default function OtherCreations() {
               <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6">
                 {tab.images.map((src, i) => (
                   <div key={i} className="break-inside-avoid mb-4 sm:mb-6">
-                    <img
-                      src={src}
-                      alt=""
-                      className="w-full h-auto rounded-xl"
-                      loading={i < 3 ? 'eager' : 'lazy'}
-                    />
+                    <button
+                      onClick={() => openLightbox(tab.images, i)}
+                      className="block w-full group focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-xl"
+                      aria-label="Enlarge image"
+                    >
+                      <img
+                        src={src}
+                        alt=""
+                        className="w-full h-auto rounded-xl group-hover:opacity-90 transition-opacity cursor-zoom-in"
+                        loading={i < 3 ? 'eager' : 'lazy'}
+                      />
+                    </button>
                   </div>
                 ))}
               </div>
@@ -143,6 +174,57 @@ export default function OtherCreations() {
           <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
         </div>
       </footer>
+
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+        >
+          {/* Close */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-full transition-colors"
+            aria-label="Close"
+          >
+            <X size={28} />
+          </button>
+
+          {/* Prev */}
+          <button
+            onClick={(e) => { e.stopPropagation(); prev(); }}
+            className="absolute left-3 sm:left-6 p-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-full transition-colors"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={36} />
+          </button>
+
+          {/* Image */}
+          <img
+            src={lightbox.images[lightbox.index]}
+            alt=""
+            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+
+          {/* Next */}
+          <button
+            onClick={(e) => { e.stopPropagation(); next(); }}
+            className="absolute right-3 sm:right-6 p-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-full transition-colors"
+            aria-label="Next image"
+          >
+            <ChevronRight size={36} />
+          </button>
+
+          {/* Counter */}
+          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-sm tabular-nums">
+            {lightbox.index + 1} / {lightbox.images.length}
+          </p>
+        </div>
+      )}
 
     </div>
   );
