@@ -89,7 +89,7 @@ const projects: Project[] = [
   },
   {
     id: '8',
-    title: 'My other creations',
+    title: 'Other creative work',
     company: '',
     description: '',
     skills: [],

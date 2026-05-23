@@ -90,7 +90,7 @@ export default function OtherCreations() {
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">Creative Work</p>
             <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
-              My other creations
+              Other creative work
             </h1>
           </div>
         </section>
