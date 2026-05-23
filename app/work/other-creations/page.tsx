@@ -142,6 +142,16 @@ export default function OtherCreations() {
                 <p className="text-lg sm:text-[20px] leading-[150%] tracking-normal text-black/80">
                   {tab.description}
                 </p>
+                {tab.id === 'olfactory' && (
+                  <a
+                    href="https://www.wallpaper.com/lifestyle/colour-as-a-narrative-perfume-brand-illuminum-explores-realm-of-scent-through-architecture"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-4 text-base sm:text-lg text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
+                  >
+                    Featured in Wallpaper Magazine ↗
+                  </a>
+                )}
               </div>
 
               <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6">
