@@ -25,6 +25,7 @@ const tabs = [
   {
     id: 'fashion',
     label: 'Fashion & Textiles',
+    hidden: true,
     heading: 'Fashion and Textiles',
     description: 'Designed and constructed collections of textiles and garments.',
     images: [
@@ -42,7 +43,8 @@ const tabs = [
 ];
 
 export default function OtherCreations() {
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const visibleTabs = tabs.filter(t => !t.hidden);
+  const [activeTab, setActiveTab] = useState(visibleTabs[0].id);
   const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
 
   const openLightbox = (images: string[], index: number) => setLightbox({ images, index });
@@ -103,7 +105,7 @@ export default function OtherCreations() {
               aria-label="Creative work categories"
               className="flex gap-0 border-b border-black/10"
             >
-              {tabs.map(tab => (
+              {visibleTabs.map(tab => (
                 <button
                   key={tab.id}
                   role="tab"
@@ -125,7 +127,7 @@ export default function OtherCreations() {
         </section>
 
         {/* Tab panels */}
-        {tabs.map(tab => (
+        {visibleTabs.map(tab => (
           <section
             key={tab.id}
             id={`panel-${tab.id}`}
