@@ -313,7 +313,7 @@ export default function Home() {
                   A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
                 </p>
                 <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66 mb-6 lg:mb-8">
-                  Working with startups and FTSE 100 corporations I enjoy solving systemic challenges. For example re designing payment systems or the way delivery tracking works by understanding and helping to shape how structure work as well as how users interact with it.
+                  Working with startups and FTSE 100 corporations I enjoy solving systemic challenges. For example re designing payment systems or the way delivery tracking works by understanding and helping to shape how structures work as well as how users interact with them.
                 </p>
                 <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66">
                   I enjoy making products in the moving spaces between ideas, product experiences and just other people 🤓 Based in London, UK and working globally.
