@@ -108,32 +108,31 @@ const impact = [
 ];
 
 const keptFixed = [
-  'the user’s voice, and access to test with them',
-  'clear measures of success',
-  'a high bar for craft',
+  'The user’s voice and access to test with them',
+  'Clear measures of success',
+  'Keeping accessibility and UI at a high standard',
+  'Guardrails for AI ethics and safety',
 ];
 
-const bodyText = 'text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80';
-const listItem = 'flex gap-3 text-lg sm:text-[20px] leading-[155%] tracking-normal text-black/80';
-const bullet = <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-black/30 shrink-0" aria-hidden="true" />;
-const sectionHeading = 'text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14';
+const bodyText = 'text-lg sm:text-[24px] leading-[145%] tracking-normal text-black';
+const listItem = 'text-lg sm:text-[24px] leading-[145%] tracking-normal text-black';
+const listStyle = 'list-disc pl-6 sm:pl-8 space-y-3 marker:text-black/40';
+const sectionHeading = 'text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12';
 
 function PrincipleBlock({ principle, className = '' }: { principle: Principle; className?: string }) {
   return (
-    <div className={`max-w-2xl ${className}`}>
-      <h3 className="text-xl sm:text-2xl font-medium text-black mb-4">{principle.title}</h3>
-      <ul className="space-y-3 pl-4">
+    <div className={`max-w-4xl ${className}`}>
+      <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4 sm:mb-6">{principle.title}</h3>
+      <ul className={listStyle}>
         {principle.points.map((point) => (
           <li key={point.text} className={listItem}>
-            {bullet}
             <div>
               {point.label && <span className="font-medium">{point.label}: </span>}
               {point.text}
               {point.subPoints && (
-                <ul className="space-y-2 pl-4 mt-3">
+                <ul className={`${listStyle} mt-3 list-[circle]`}>
                   {point.subPoints.map((sub) => (
                     <li key={sub} className={listItem}>
-                      {bullet}
                       {sub}
                     </li>
                   ))}
@@ -156,7 +155,7 @@ function ImageBlock({ image }: { image: { src: string; caption: string } }) {
         className="w-full h-auto"
       />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
-        <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{image.caption}</p>
+        <p className="text-lg sm:text-xl text-black/50 leading-[145%] max-w-3xl">{image.caption}</p>
       </div>
     </section>
   );
@@ -171,9 +170,9 @@ export default function JohnLewisProject() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
           <BackButton />
           <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
-            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>
-            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
+            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
+            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4">About</Link>
+            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
           </nav>
         </div>
       </header>
@@ -183,8 +182,8 @@ export default function JohnLewisProject() {
         {/* Hero */}
         <section className="w-full py-16 sm:py-20 lg:py-28">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">John Lewis · 2023 · Senior product designer · 5-month contract</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-4xl">
+            <p className="text-lg sm:text-xl text-black/50 mb-6">John Lewis · 2023 · Senior product designer · 5-month contract</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-5xl">
               Shipping a GenAI chatbot while the ground kept moving
             </h1>
           </div>
@@ -210,18 +209,17 @@ export default function JohnLewisProject() {
 
               {/* Goal */}
               <div className="lg:col-span-6">
-                <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">The goal</h3>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black mb-6">
+                <h3 className="text-lg sm:text-xl text-black/50 mb-3">The goal</h3>
+                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black mb-6 lg:mb-8">
                   John Lewis wanted to use GenAI to make its WhatsApp customer service faster, both for customers and for the agents who pick up conversations.
                 </p>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black/60 mb-4">
+                <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black/66 mb-4">
                   The brief kept shifting as we went:
                 </p>
-                <ul className="space-y-3 pl-4">
+                <ul className={listStyle}>
                   {shiftingBrief.map((item) => (
-                    <li key={item.label} className="flex gap-3 text-lg sm:text-xl lg:text-[20px] leading-[155%] tracking-normal text-black/60">
-                      {bullet}
-                      <span><span className="font-medium text-black/80">{item.label}:</span> {item.text}</span>
+                    <li key={item.label} className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black/66">
+                      <span className="font-medium text-black">{item.label}:</span> {item.text}
                     </li>
                   ))}
                 </ul>
@@ -231,26 +229,26 @@ export default function JohnLewisProject() {
               <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
 
                 <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">My contribution</h3>
+                  <h3 className="text-lg sm:text-xl text-black/50 mb-3">My contribution</h3>
                   <ul className="space-y-3">
                     {contribution.map((item) => (
-                      <li key={item} className="text-base lg:text-[17px] leading-[150%] text-black/80">{item}</li>
+                      <li key={item} className="text-lg sm:text-[20px] leading-[145%] text-black">{item}</li>
                     ))}
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">The team</h3>
+                  <h3 className="text-lg sm:text-xl text-black/50 mb-3">The team</h3>
                   <ul className="space-y-3">
                     {team.map((item) => (
-                      <li key={item} className="text-base lg:text-[17px] leading-[150%] text-black/80">{item}</li>
+                      <li key={item} className="text-lg sm:text-[20px] leading-[145%] text-black">{item}</li>
                     ))}
                   </ul>
                 </div>
 
                 <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">Year</h3>
-                  <p className="text-base lg:text-[17px] text-black/80">2023</p>
+                  <h3 className="text-lg sm:text-xl text-black/50 mb-3">Year</h3>
+                  <p className="text-lg sm:text-[20px] leading-[145%] text-black">2023</p>
                 </div>
 
               </div>
@@ -295,7 +293,7 @@ export default function JohnLewisProject() {
             <h2 className={sectionHeading}>
               A moment the requirements changed
             </h2>
-            <div className="max-w-2xl">
+            <div className="max-w-4xl">
               <p className={bodyText}>
                 Midway through, another part of the business began changing how customers and agents troubleshoot an entire product category. That changed the bot&apos;s routing completely while its structure was already in build. I negotiated a phased approach and quickly redesigned parts of the bot&apos;s structure without compromising the overall design.
               </p>
@@ -311,10 +309,9 @@ export default function JohnLewisProject() {
             <h2 className={sectionHeading}>
               Impact
             </h2>
-            <ul className="max-w-2xl space-y-3 pl-4">
+            <ul className={`max-w-4xl ${listStyle}`}>
               {impact.map((item) => (
                 <li key={item} className={listItem}>
-                  {bullet}
                   {item}
                 </li>
               ))}
@@ -328,14 +325,13 @@ export default function JohnLewisProject() {
             <h2 className={sectionHeading}>
               What this means for how I work now
             </h2>
-            <div className="max-w-2xl space-y-6">
+            <div className="max-w-4xl space-y-6">
               <p className={bodyText}>
-                On AI products, requirements will keep moving. I keep a few things fixed:
+                On AI products, requirements tend to keep moving. Some things I hold strong as a designer:
               </p>
-              <ul className="space-y-3 pl-4">
+              <ul className={listStyle}>
                 {keptFixed.map((item) => (
                   <li key={item} className={listItem}>
-                    {bullet}
                     {item}
                   </li>
                 ))}
@@ -347,8 +343,8 @@ export default function JohnLewisProject() {
         {/* Footer */}
         <footer className="w-full border-t border-black/8 py-8 sm:py-12">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
-            <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
+            <p className="text-black/55 text-sm sm:text-base tracking-normal">© 2026 Asakala Geraghty</p>
+            <Link href="/" className="text-sm sm:text-base text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
           </div>
         </footer>
 
