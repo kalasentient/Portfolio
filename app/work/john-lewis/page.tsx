@@ -81,24 +81,24 @@ const principleFive: Principle = {
   ],
 };
 
-const processImages = [
-  {
+const images = {
+  routingTest: {
     src: '/projects/john-lewis/jl-image1.webp',
-    caption: 'A conversational flow diagram',
+    caption: 'Our first version testing if “routing to a team” was working and useful',
   },
-  {
+  processMap: {
     src: '/projects/john-lewis/jl-image2.webp',
-    caption: 'Illustration of high level process map',
+    caption: 'Illustration of high level process map and the new phase 1/2 plan',
   },
-  {
+  trainingPrototyping: {
     src: '/projects/john-lewis/jl-image3.webp',
     caption: 'Image detailing processes for training and prototyping the AI Bot',
   },
-  {
+  accuracyFramework: {
     src: '/projects/john-lewis/jl-image4.webp',
     caption: 'Accuracy classification framework — working out more accurate intent matching classifications',
   },
-];
+};
 
 const impact = [
   'Fewer customers waiting in the queue at any one time',
@@ -144,6 +144,21 @@ function PrincipleBlock({ principle, className = '' }: { principle: Principle; c
         ))}
       </ul>
     </div>
+  );
+}
+
+function ImageBlock({ image }: { image: { src: string; caption: string } }) {
+  return (
+    <section className="w-full py-8 sm:py-10">
+      <img
+        src={image.src}
+        alt={image.caption}
+        className="w-full h-auto"
+      />
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
+        <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{image.caption}</p>
+      </div>
+    </section>
   );
 }
 
@@ -243,40 +258,33 @@ export default function JohnLewisProject() {
           </div>
         </section>
 
-        {/* Guiding principles 1–4 */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
+        {/* Guiding principles 1–2 */}
+        <section className="w-full border-t border-black/8 pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-10">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
             <h2 className={sectionHeading}>
               Guiding principles I created for this project
             </h2>
-
-            {principles.map((principle, i) => (
-              <PrincipleBlock
-                key={principle.title}
-                principle={principle}
-                className={i < principles.length - 1 ? 'mb-12 sm:mb-16' : ''}
-              />
-            ))}
+            <PrincipleBlock principle={principles[0]} className="mb-12 sm:mb-16" />
+            <PrincipleBlock principle={principles[1]} />
           </div>
         </section>
 
-        {/* Process images */}
-        {processImages.map((item, i) => (
-          <section key={i} className="w-full py-8 sm:py-10">
-            <img
-              src={item.src}
-              alt={item.caption}
-              className="w-full h-auto"
-            />
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
-              <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{item.caption}</p>
-            </div>
-          </section>
-        ))}
+        <ImageBlock image={images.routingTest} />
+        <ImageBlock image={images.trainingPrototyping} />
 
-        {/* Guiding principle 5 */}
-        <section className="w-full py-16 sm:py-20 lg:py-24">
+        {/* Guiding principle 3 */}
+        <section className="w-full py-8 sm:py-10">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
+            <PrincipleBlock principle={principles[2]} />
+          </div>
+        </section>
+
+        <ImageBlock image={images.accuracyFramework} />
+
+        {/* Guiding principles 4–5 */}
+        <section className="w-full pt-8 sm:pt-10 pb-16 sm:pb-20 lg:pb-24">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
+            <PrincipleBlock principle={principles[3]} className="mb-12 sm:mb-16" />
             <PrincipleBlock principle={principleFive} />
           </div>
         </section>
@@ -294,6 +302,8 @@ export default function JohnLewisProject() {
             </div>
           </div>
         </section>
+
+        <ImageBlock image={images.processMap} />
 
         {/* Impact */}
         <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
