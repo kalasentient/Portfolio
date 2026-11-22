@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import BackButton from '@/app/components/BackButton';
+import CaseStudyLayout from '@/app/components/CaseStudyLayout';
+import { CaseStudyHeader, Facts, Figure, Prose, Section, SectionHeader } from '@/app/components/ui';
 
 export const metadata: Metadata = {
   title: 'UK Bank — Designing systems with automation · Asakala',
@@ -69,133 +69,47 @@ const processImages = [
 
 export default function PaymentSystemProject() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc]">
+    <CaseStudyLayout>
+      {/* Intro */}
+      <div className="flex flex-col gap-12">
+        <CaseStudyHeader eyebrow="UK Bank · 2021/2022" title="Designing systems with automation" />
+        <Figure src="/payment-system.avif" alt="Payment system automation interface" fit="cover" priority />
+        <Facts
+          facts={[
+            { label: 'My contribution', value: <ul className="space-y-3">{contribution.map((item) => <li key={item}>{item}</li>)}</ul> },
+            { label: 'The team', value: <ul className="space-y-3">{team.map((item) => <li key={item}>{item}</li>)}</ul> },
+            { label: 'Year', value: '2021/2022' },
+          ]}
+        />
+      </div>
 
-      {/* Header */}
-      <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <BackButton />
-          <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
-            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>
-            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
-          </nav>
-        </div>
-      </header>
+      {/* Overview */}
+      <Section aria-labelledby="goal-heading">
+        <SectionHeader id="goal-heading" eyebrow="01 — Overview" title="The goal" />
+        <Prose>
+          <p className="text-body-lg text-foreground">
+            How do you introduce automation into a process that traditionally relies upon human relationships in business banking?
+          </p>
+          <p className="text-body-sm text-muted-foreground border-l-2 border-input pl-4">
+            Kindly note that the assets in this project are referential and limited due to the nature of the project.
+          </p>
+        </Prose>
+      </Section>
 
-      <main>
-
-        {/* Hero */}
-        <section className="w-full py-16 sm:py-20 lg:py-28">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">UK Bank · 2021/2022</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
-              Designing systems with automation
-            </h1>
-          </div>
-        </section>
-
-        {/* Hero image */}
-        <section className="w-full">
-          <img
-            src="/payment-system.avif"
-            alt="Payment system automation interface"
-            className="w-full h-auto"
-          />
-        </section>
-
-        {/* Overview */}
-        <section className="w-full py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
-              Overview
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
-
-              {/* Goal */}
-              <div className="lg:col-span-6">
-                <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">The goal</h3>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black mb-6">
-                  How do you introduce automation into a process that traditionally relies upon human relationships in business banking?
-                </p>
-                <p className="text-sm text-black/40 leading-[150%] mt-8 border-l-2 border-black/10 pl-4">
-                  Kindly note that the assets in this project are referential and limited due to the nature of the project.
-                </p>
-              </div>
-
-              {/* Meta */}
-              <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
-
-                <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">My contribution</h3>
-                  <ul className="space-y-3">
-                    {contribution.map((item) => (
-                      <li key={item} className="text-base lg:text-[17px] leading-[150%] text-black/80">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">The team</h3>
-                  <ul className="space-y-3">
-                    {team.map((item) => (
-                      <li key={item} className="text-base lg:text-[17px] leading-[150%] text-black/80">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">Year</h3>
-                  <p className="text-base lg:text-[17px] text-black/80">2021/2022</p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Process */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
-              Process
-            </h2>
-
-            <ul className="max-w-2xl space-y-5">
-              {processSteps.map((step, i) => (
-                <li key={i} className="flex gap-3 text-lg sm:text-[20px] leading-[160%] tracking-normal text-black/80">
-                  <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-black/30 shrink-0" />
-                  {step.body}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Process images */}
+      {/* Process */}
+      <Section aria-labelledby="process-heading">
+        <SectionHeader id="process-heading" eyebrow="02 — Approach" title="Process" />
+        <Prose>
+          <ul>
+            {processSteps.map((step, i) => (
+              <li key={i}>{step.body}</li>
+            ))}
+          </ul>
+        </Prose>
         {processImages.map((item, i) => (
-          <section key={i} className="w-full py-8 sm:py-10">
-            <img
-              src={item.src}
-              alt={item.caption}
-              className="w-full h-auto"
-            />
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
-              <p className="text-sm sm:text-base text-black/40 leading-[150%] max-w-xl">{item.caption}</p>
-            </div>
-          </section>
+          <Figure key={item.src} src={item.src} number={i + 1} caption={item.caption || undefined} />
         ))}
-
-        {/* Footer */}
-        <footer className="w-full border-t border-black/8 py-8 sm:py-12">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
-            <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
-          </div>
-        </footer>
-
-      </main>
-    </div>
+      </Section>
+    </CaseStudyLayout>
   );
 }
