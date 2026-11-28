@@ -1,26 +1,297 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Portfolio design system tokens.
+ * Source of truth: Figma "Portfolio Design System" (Foundations + Components).
+ * Names follow shadcn conventions. Every text token meets WCAG 2.2 AAA (7:1)
+ * against both ends of the page gradient, in light and dark.
+ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  /* Page */
+  --background: #f2fce2;
+  --background-end: #eff0fc;
+  --foreground: #000000;
+  --body: #333333;
+  --muted-foreground: #4d4d4d;
+
+  /* Surfaces */
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --muted: #ede9fa;
+  --hover: #f2f2f2;
+
+  /* Actions */
+  --primary: #4f3fb8;
+  --primary-hover: #3f31a0;
+  --primary-foreground: #ffffff;
+  --link: #3f31a0;
+  --ring: #3f31a0;
+
+  /* Brand accent (decorative only, never for text) */
+  --accent: #d68170;
+  --accent-hover: #e89b87;
+
+  /* Lines */
+  --border: #ebebeb;
+  --input: #7a7a7a;
+
+  /* Disabled */
+  --disabled: #e0e0e0;
+  --disabled-foreground: #8d8d8d;
+
+  /* Spacing (8px base) */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 96px;
+
+  --radius-lg: 12px;
+  --gutter: 16px;
+
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #10140b;
+    --background-end: #0f101a;
+    --foreground: #eff0fc;
+    --body: #c9cbd4;
+    --muted-foreground: #b4b6c0;
+
+    --card: #1b1d27;
+    --card-foreground: #eff0fc;
+    --muted: #262340;
+    --hover: #252836;
+
+    --primary: #a091f1;
+    --primary-hover: #b5a9ed;
+    --primary-foreground: #000000;
+    --link: #b5a9ed;
+    --ring: #b5a9ed;
+
+    --accent: #e89b87;
+    --accent-hover: #f0b4a4;
+
+    --border: #2c2f3b;
+    --input: #6b6e7a;
+
+    --disabled: #2c2f3b;
+    --disabled-foreground: #9a9ca6;
+
+    color-scheme: dark;
   }
 }
 
+@media (min-width: 640px) {
+  :root { --gutter: 32px; }
+}
+@media (min-width: 1024px) {
+  :root { --gutter: 48px; }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-end: var(--background-end);
+  --color-foreground: var(--foreground);
+  --color-body: var(--body);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-hover: var(--hover);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-link: var(--link);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-disabled: var(--disabled);
+  --color-disabled-foreground: var(--disabled-foreground);
+
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --radius-lg: var(--radius-lg);
+}
+
+/* ---------- Type scale (Figma text styles) ---------- */
+
+@utility text-display {
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  @media (min-width: 640px) {
+    font-size: 52px;
+    line-height: 60px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 64px;
+    line-height: 72px;
+  }
+}
+@utility text-h1 {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 600;
+  @media (min-width: 1024px) {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+@utility text-h2 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+  @media (min-width: 1024px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
+@utility text-h3 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  @media (min-width: 1024px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+@utility text-lead {
+  font-size: 22px;
+  line-height: 34px;
+  font-weight: 400;
+  @media (min-width: 1024px) {
+    font-size: 28px;
+    line-height: 42px;
+  }
+}
+@utility text-body-lg {
+  font-size: 22px;
+  line-height: 34px;
+  font-weight: 400;
+}
+@utility text-body {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 400;
+}
+@utility text-body-sm {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+@utility text-label {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+}
+@utility text-nav {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  @media (min-width: 1024px) {
+    font-size: 22px;
+  }
+}
+@utility text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* Page container: 1200px content inside a responsive gutter */
+@utility container-page {
+  width: 100%;
+  max-width: calc(1200px + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Readable text column (≈70 characters, WCAG 1.4.8) */
+@utility measure {
+  max-width: 680px;
+}
+
+/* Focus ring used across interactive elements (WCAG 2.4.13 AAA) */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* ---------- Base ---------- */
+
+html {
+  background: var(--background-end);
+  scroll-padding-top: 112px; /* keeps anchored/focused content clear of the sticky header (2.4.12) */
+}
+
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background: linear-gradient(to bottom, var(--background), var(--background-end));
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ---------- Header blob ---------- */
+
+.blob {
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background: var(--accent);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+  clip-path: circle(50% at 50% 50%);
+}
+@media (min-width: 640px) {
+  .blob { width: 44px; height: 44px; }
+}
+.blob-link:hover .blob,
+.blob-link:focus-visible .blob {
+  background: var(--accent-hover);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .blob {
+    transition: background-color 300ms ease, transform 300ms ease, clip-path 300ms ease;
+  }
+  .blob-link:hover .blob {
+    transform: scale(1.1);
+    clip-path: ellipse(60% 45% at 35% 50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

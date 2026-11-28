@@ -2,6 +2,9 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Sparkles, Loader2, Volume2, Star } from 'lucide-react';
+import SiteHeader from '@/app/components/SiteHeader';
+import SiteFooter from '@/app/components/SiteFooter';
+import { Button, Eyebrow, Figure, SectionHeader, TagList, buttonClasses } from '@/app/components/ui';
 
 interface Project {
   id: string;
@@ -127,10 +130,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [analyzing]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const playPronunciation = () => {
     try {
       if (audioRef.current) {
@@ -215,558 +214,382 @@ export default function Home() {
 
   const featuredProjects = projects.filter(p => p.image);
 
+  const inputClasses =
+    'w-full rounded-lg border-2 border-input bg-card p-4 text-foreground placeholder:text-muted-foreground transition-colors focus-visible:border-ring';
+  const textLink =
+    'text-link underline underline-offset-4 hover:decoration-2';
+  const copyButton = (
+    <button
+      type="button"
+      onClick={copyEmail}
+      className={buttonClasses('secondary', 'ml-3 min-h-11 px-4 py-1 align-middle text-base')}
+      aria-label="Copy email address"
+    >
+      {emailCopied ? 'Copied!' : 'Copy'}
+    </button>
+  );
+
   return (
     <>
-      <a 
-        href="#main-content" 
-        className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:top-4 focus-visible:left-4 focus-visible:z-50 focus-visible:px-4 focus-visible:py-2 focus-visible:bg-black focus-visible:text-white focus-visible:rounded-lg"
-      >
-        Skip to main content
-      </a>
-
-      <div 
-        role="status" 
-        aria-live="polite" 
-        aria-atomic="true" 
-        className="sr-only"
-      >
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
         {announcement}
       </div>
 
-      <main id="main-content" className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc] transition-colors duration-1000">
-        <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-            <button 
-              onClick={scrollToTop}
-              className="flex items-center gap-5 group cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-full"
-              aria-label="Scroll to top of page"
-            >
-              <div 
-                className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#d68170] shadow-sm transition-all duration-300 group-hover:bg-[#e89b87] group-hover:scale-110 group-focus:ring-2 group-focus:ring-black"
-                style={{
-                  clipPath: 'circle(50% at 50% 50%)',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.clipPath = 'ellipse(60% 45% at 35% 50%)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.clipPath = 'circle(50% at 50% 50%)';
-                }}
-              />
-            </button>
-            
-            <nav aria-label="Main navigation" className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-              <a 
-                href="#work" 
-                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
-              >
-                Work
-              </a>
-              <a 
-                href="#about" 
-                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
-              >
-                About
-              </a>
-              <a
-                href="#contact"
-                className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4"
-              >
-                Contact
-              </a>
-            </nav>
-          </div>
-        </header>
+      <SiteHeader />
 
-        <section className="w-full py-12 sm:py-16 lg:py-24" aria-labelledby="hero-heading">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20">
-              <div className="lg:col-span-5">
-                <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black">
-                  <span className="inline-flex items-center gap-3">
-                    <span>Asakala</span>
-                    <span className="relative group">
-                      <button
-                        onClick={playPronunciation}
-                        disabled={isPlaying}
-                        className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/5 hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 transition-all disabled:opacity-50"
-                        aria-label="Play pronunciation of Asakala"
-                      >
-                        <Volume2
-                          size={20}
-                          className={`text-black ${isPlaying ? 'animate-pulse' : ''}`}
-                          aria-hidden="true"
-                        />
-                      </button>
-                      <span className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 w-max max-w-[220px] rounded-lg bg-black text-white text-sm font-normal px-3 py-2 leading-snug opacity-0 group-hover:opacity-100 transition-opacity duration-150 text-center z-50">
-                        How to pronounce my name
-                      </span>
-                    </span>
+      <main id="main-content" tabIndex={-1} className="container-page flex flex-col gap-24 pt-8 focus:outline-none sm:pt-12 lg:pt-16 lg:gap-32">
+        {/* Hero */}
+        <section aria-labelledby="hero-heading" className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <h1 id="hero-heading" className="text-display text-foreground">
+              <span className="inline-flex items-center gap-3">
+                <span>Asakala</span>
+                <span className="group relative inline-flex">
+                  <button
+                    type="button"
+                    onClick={playPronunciation}
+                    disabled={isPlaying}
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-card text-foreground transition-colors hover:bg-hover disabled:opacity-70"
+                    aria-label="Play pronunciation of Asakala"
+                  >
+                    <Volume2 size={22} className={isPlaying ? 'motion-safe:animate-pulse' : ''} aria-hidden="true" />
+                  </button>
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 w-max max-w-[220px] -translate-x-1/2 rounded-lg bg-foreground px-3 py-2 text-center text-base font-normal tracking-normal text-background opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+                  >
+                    How to pronounce my name
                   </span>
-                  <br />
-                  Product Designer
-                </h1>
-              </div>
-              
-              <div className="lg:col-span-7">
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66 mb-6 lg:mb-8">
-                  A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
-                </p>
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66 mb-6 lg:mb-8">
-                  Working with startups and FTSE 100 corporations I enjoy solving systemic challenges. For example re designing payment systems or the way delivery tracking works by understanding and helping to shape how structures work as well as how users interact with them.
-                </p>
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black/66">
-                  I enjoy making products in the moving spaces between ideas, product experiences and just other people 🤓 Based in London, UK and working globally.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full border-t border-black/8 pt-12 sm:pt-16 lg:pt-24 pb-8 sm:pb-10" aria-labelledby="match-heading">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="w-full lg:max-w-4xl lg:mx-auto">
-              <div className="relative mb-0">
-                <h2 id="match-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black">
-                  Match your role with my experience
-                </h2>
-
-                <div
-                  className="mt-4 lg:mt-0 lg:absolute lg:-top-[4.5rem] lg:right-0 inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap"
-                  role="status"
-                  aria-label="This feature is AI enhanced and currently in beta"
-                >
-                  AI enhanced • In Beta
-                </div>
-              </div>
-
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  analyzeJobDescription();
-                }}
-                className="mt-3"
-              >
-              <div className="govuk-form-group">
-                <label
-                  htmlFor="job-description"
-                  className="block mb-1"
-                >
-                  <span className="text-black/66 text-lg sm:text-xl lg:text-[24px] font-normal leading-relaxed block tracking-normal">
-                    Paste a job description and I&apos;ll show you my most relevant projects
-                  </span>
-                </label>
-
-                <textarea
-                  id="job-description"
-                  name="jobDescription"
-                  value={jobDescription}
-                  onChange={(e) => setJobDescription(e.target.value)}
-                  rows={5}
-                  aria-describedby="job-description-hint"
-                  placeholder="We're looking for a Lead Product Designer with experience with AI products and user research..."
-                  className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-lg sm:text-[24px] leading-[1.6] transition-colors"
-                  aria-required="true"
-                />
-                <span id="job-description-hint" className="sr-only">
-                  Enter the job description text to analyse how your requirements match with Asakala&apos;s project experience
                 </span>
-              </div>
-              
-              <button
-                type="submit"
-                disabled={analyzing || !jobDescription.trim()}
-                aria-busy={analyzing}
-                aria-disabled={analyzing || !jobDescription.trim()}
-                className="mt-4 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#8071E1] to-[#a091f1] hover:shadow-[0_0_20px_rgba(128,113,225,0.5)] disabled:from-[#9F92E8] disabled:to-[#B5A9ED] disabled:cursor-not-allowed disabled:shadow-none rounded-xl font-medium flex items-center gap-2 transition-all text-white text-base sm:text-lg lg:text-[17px] focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 min-h-[44px]"
-              >
-                {analyzing ? (
-                  <>
-                    <Loader2 className="animate-spin" size={22} aria-hidden="true" />
-                    <span>Analysing...</span>
-                  </>
-                ) : (
-                  <>
-                    <Sparkles size={22} aria-hidden="true" />
-                    <span>Analyse Match</span>
-                  </>
-                )}
-              </button>
+              </span>
+              <br />
+              Product Designer
+            </h1>
+          </div>
 
-              </form>
-            </div>
+          <div className="flex flex-col gap-6 lg:col-span-7 lg:gap-8">
+            <p className="text-lead text-body">
+              A recent thought: how does your product fit in or around the evolving context of the user&apos;s attention? These users maybe customers or teams working within your company.
+            </p>
+            <p className="text-lead text-body">
+              Working with startups and FTSE 100 corporations I enjoy solving systemic challenges. For example re designing payment systems or the way delivery tracking works by understanding and helping to shape how structures work as well as how users interact with them.
+            </p>
+            <p className="text-lead text-body">
+              I enjoy making products in the moving spaces between ideas, product experiences and just other people 🤓 Based in London, UK and working globally.
+            </p>
           </div>
         </section>
 
-        {analyzing && (
-          <section className="w-full pb-12 sm:pb-16 bg-[#f2fce2]">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-              <div className="w-full lg:max-w-4xl lg:mx-auto">
-                <div className="flex items-center gap-2 mb-6 sm:mb-8">
-                  <Sparkles className="text-[#8071E1] animate-pulse" size={20} aria-hidden="true" />
-                  <p className="text-lg sm:text-xl text-black/50">Considering your role{dots}</p>
-                </div>
-                <div className="space-y-4 sm:space-y-6">
-                  {[0, 1, 2].map((i) => (
-                    <div
-                      key={i}
-                      className="bg-white rounded-xl p-6 sm:p-8 border border-black/10 animate-pulse"
-                      style={{ animationDelay: `${i * 200}ms` }}
-                    >
-                      <div className="h-7 bg-black/8 rounded-lg w-2/3 mb-4" />
-                      <div className="h-16 bg-black/5 rounded-lg mb-4" />
-                      <div className="h-5 bg-black/5 rounded-lg w-full mb-2" />
-                      <div className="h-5 bg-black/5 rounded-lg w-4/5 mb-4" />
-                      <div className="flex gap-2">
-                        <div className="h-8 w-20 bg-black/5 rounded-lg" />
-                        <div className="h-8 w-24 bg-black/5 rounded-lg" />
-                        <div className="h-8 w-16 bg-black/5 rounded-lg" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
+        {/* Match your role */}
+        <section aria-labelledby="match-heading" className="flex flex-col gap-12">
+          <div className="mx-auto flex w-full max-w-[880px] flex-col gap-8">
+            <SectionHeader id="match-heading" eyebrow="AI enhanced · In beta" title="Match your role with my experience" />
+
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                analyzeJobDescription();
+              }}
+              className="flex flex-col gap-4"
+            >
+              <label htmlFor="job-description" className="text-body-lg text-body">
+                Paste a job description and I&apos;ll show you my most relevant projects
+              </label>
+              <textarea
+                id="job-description"
+                name="jobDescription"
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
+                rows={5}
+                aria-describedby="job-description-hint"
+                placeholder="We're looking for a Lead Product Designer with experience with AI products and user research..."
+                className={`${inputClasses} resize-none text-body`}
+                aria-required="true"
+              />
+              <span id="job-description-hint" className="sr-only">
+                Enter the job description text to analyse how your requirements match with Asakala&apos;s project experience
+              </span>
+              <div>
+                <Button type="submit" disabled={analyzing || !jobDescription.trim()} aria-busy={analyzing}>
+                  {analyzing ? (
+                    <>
+                      <Loader2 className="motion-safe:animate-spin" size={22} aria-hidden="true" />
+                      <span>Analysing...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles size={22} aria-hidden="true" />
+                      <span>Analyse Match</span>
+                    </>
+                  )}
+                </Button>
               </div>
-            </div>
-          </section>
-        )}
+            </form>
 
-        {hasAnalyzed && analyzedProjects.length > 0 && (
-          <section 
-            ref={resultsRef}
-            tabIndex={-1}
-            className="w-full border-t border-black/8 pt-6 sm:pt-8 pb-12 sm:pb-16 bg-[#f2fce2] focus:outline-none"
-            aria-labelledby="results-heading"
-          >
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-              <h2 id="results-heading" className="sr-only">Analysis Results</h2>
+            {analyzing && (
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="text-primary motion-safe:animate-pulse" size={20} aria-hidden="true" />
+                  <p className="text-body text-body">Considering your role{dots}</p>
+                </div>
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className="border border-border bg-card p-6 motion-safe:animate-pulse sm:p-8"
+                    style={{ animationDelay: `${i * 200}ms` }}
+                    aria-hidden="true"
+                  >
+                    <div className="mb-4 h-7 w-2/3 bg-hover" />
+                    <div className="mb-4 h-16 bg-hover" />
+                    <div className="mb-2 h-5 w-full bg-hover" />
+                    <div className="mb-4 h-5 w-4/5 bg-hover" />
+                    <div className="flex gap-2">
+                      <div className="h-8 w-20 bg-hover" />
+                      <div className="h-8 w-24 bg-hover" />
+                      <div className="h-8 w-16 bg-hover" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
-              <div className="w-full lg:max-w-4xl lg:mx-auto">
-              <p className="text-lg sm:text-xl text-black/50 mb-6 sm:mb-8" role="note">
-                🔮 These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
-              </p>
+            {hasAnalyzed && analyzedProjects.length > 0 && (
+              <div
+                ref={resultsRef}
+                tabIndex={-1}
+                className="flex flex-col gap-6 focus:outline-none"
+                aria-labelledby="results-heading"
+                role="region"
+              >
+                <h3 id="results-heading" className="sr-only">Analysis Results</h3>
+                <p className="text-body text-body" role="note">
+                  🔮 These results are AI-generated and may not be perfect. Please review them as helpful suggestions rather than definitive assessments.
+                </p>
 
-              <div className="space-y-4 sm:space-y-6">
                 {(showAllResults ? analyzedProjects : analyzedProjects.slice(0, 3)).map((project) => (
                   <article
                     key={project.id}
-                    className="relative bg-white rounded-xl p-6 sm:p-8 pb-8 sm:pb-10 border border-black/10 hover:border-black/20 transition-all focus-within:ring-2 focus-within:ring-black"
+                    className="flex flex-col gap-4 border border-border bg-card p-6 sm:p-8"
                     aria-labelledby={`project-title-${project.id}`}
                   >
-                    {project.matchScore && (
-                      <div
-                        className="absolute top-6 right-6 sm:top-8 sm:right-8 inline-flex items-center gap-2 bg-gradient-to-r from-[#8071E1] to-[#a091f1] text-white px-4 py-2 rounded-full text-sm font-medium"
-                        role="status"
-                        aria-label={`${project.matchScore} percent match`}
-                      >
-                        <Sparkles size={16} aria-hidden="true" />
-                        <span>{project.matchScore}% Match</span>
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div className="flex flex-col gap-1">
+                        {project.company && <Eyebrow>{project.company}</Eyebrow>}
+                        <h4 id={`project-title-${project.id}`} className="text-h3 text-card-foreground">
+                          {project.internalUrl ? (
+                            <a href={project.internalUrl} className="underline-offset-4 hover:underline">{project.title}</a>
+                          ) : (
+                            project.title
+                          )}
+                        </h4>
                       </div>
-                    )}
-
-                    <div className="flex items-baseline justify-between gap-4 mb-4 pr-36 sm:pr-40">
-                      <h3 id={`project-title-${project.id}`} className="text-2xl sm:text-[28px] font-medium leading-[120%] tracking-[-0.01em] text-black">
-                        {project.title}
-                      </h3>
-                      <span className="text-lg sm:text-[20px] leading-[145%] tracking-normal text-black/66 text-right shrink-0">
-                        {project.company}
-                      </span>
+                      {project.matchScore && (
+                        <span className="inline-flex items-center gap-2 rounded-lg bg-primary px-3 py-1 text-label text-primary-foreground">
+                          <Sparkles size={16} aria-hidden="true" />
+                          {project.matchScore}% match
+                        </span>
+                      )}
                     </div>
 
                     {project.reasoning && (
-                        <div
-                          className="bg-[#ede9fa] rounded-lg p-4 mb-4"
-                          role="region"
-                          aria-label="AI analysis reasoning"
-                        >
-                          <p className="text-lg sm:text-[19px] leading-[160%] tracking-normal text-black/80">
-                            {project.reasoning}
-                          </p>
-                        </div>
-                      )}
-
-                      <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-4">
-                        <span className="font-medium">Impact:</span> {project.impact}. {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-4" role="list" aria-label="Project skills">
-                        {project.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="px-4 py-2 bg-black/5 text-black rounded-lg text-base font-medium"
-                            role="listitem"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-                  </article>
-                ))}
-              </div>
-
-              {analyzedProjects.length > 3 && !showAllResults && (
-                <button
-                  onClick={() => setShowAllResults(true)}
-                  className="mt-4 px-6 py-3 border-2 border-black/20 hover:border-black/40 rounded-xl font-medium text-black text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-                >
-                  Show more projects
-                </button>
-              )}
-              {analyzedProjects.length > 3 && showAllResults && (
-                <button
-                  onClick={() => setShowAllResults(false)}
-                  className="mt-4 px-6 py-3 border-2 border-black/20 hover:border-black/40 rounded-xl font-medium text-black text-base sm:text-lg transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-                >
-                  Show less
-                </button>
-              )}
-
-              {/* Feedback module — right-aligned below last card */}
-              <div className="flex justify-end mt-6">
-                {feedbackSubmitted ? (
-                  <p className="text-sm text-black/60">Thanks for the feedback 🙏</p>
-                ) : (
-                  <div className="text-right">
-                    <p className="text-base font-medium text-black/60 tracking-wide mb-3">Rate this match</p>
-                    <div className="flex gap-1.5 justify-end mb-4" role="group" aria-label="Star rating">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <button
-                          key={star}
-                          type="button"
-                          onClick={() => setFeedbackRating(star)}
-                          onMouseEnter={() => setFeedbackHover(star)}
-                          onMouseLeave={() => setFeedbackHover(0)}
-                          aria-label={`Rate ${star} out of 5`}
-                          aria-pressed={feedbackRating === star}
-                          className="focus:outline-none focus:ring-2 focus:ring-[#8071E1] focus:ring-offset-2 rounded"
-                        >
-                          <Star
-                            size={20}
-                            className="transition-colors"
-                            fill={(feedbackHover || feedbackRating) >= star ? '#8071E1' : 'transparent'}
-                            stroke={(feedbackHover || feedbackRating) >= star ? '#8071E1' : '#00000033'}
-                          />
-                        </button>
-                      ))}
-                    </div>
-
-                    {feedbackRating > 0 && (
-                      <div className="space-y-3 w-72">
-                        <textarea
-                          value={feedbackText}
-                          onChange={(e) => setFeedbackText(e.target.value)}
-                          rows={3}
-                          placeholder="Any thoughts on the results? (optional)"
-                          className="w-full bg-white border-2 border-black/20 rounded-xl p-4 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black resize-none text-base leading-[1.6] transition-colors text-left"
-                        />
-                        <input
-                          type="email"
-                          value={feedbackEmail}
-                          onChange={(e) => setFeedbackEmail(e.target.value)}
-                          placeholder="Your email (optional)"
-                          className="w-full bg-white border-2 border-black/20 rounded-xl px-4 py-3 text-black placeholder-black/30 focus:outline-none focus:ring-2 focus:ring-black focus:border-black text-base transition-colors text-left"
-                        />
-                        <div className="flex justify-end">
-                          <button
-                            type="button"
-                            disabled={feedbackLoading}
-                            onClick={async () => {
-                              setFeedbackLoading(true);
-                              try {
-                                await fetch('/api/feedback', {
-                                  method: 'POST',
-                                  headers: { 'Content-Type': 'application/json' },
-                                  body: JSON.stringify({ rating: feedbackRating, text: feedbackText, email: feedbackEmail }),
-                                });
-                              } finally {
-                                setFeedbackLoading(false);
-                                setFeedbackSubmitted(true);
-                              }
-                            }}
-                            className="px-5 py-2.5 bg-black hover:bg-black/80 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl font-medium text-white text-base transition-all focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-                          >
-                            {feedbackLoading ? 'Sending…' : 'Send feedback'}
-                          </button>
-                        </div>
+                      <div className="bg-muted p-4" role="region" aria-label="AI analysis reasoning">
+                        <p className="text-body-sm text-foreground">{project.reasoning}</p>
                       </div>
                     )}
+
+                    <p className="text-body text-body">
+                      <span className="font-medium text-foreground">Impact:</span> {project.impact}. {project.description}
+                    </p>
+
+                    <TagList tags={project.skills} />
+                  </article>
+                ))}
+
+                {analyzedProjects.length > 3 && (
+                  <div>
+                    <Button type="button" variant="secondary" onClick={() => setShowAllResults(!showAllResults)}>
+                      {showAllResults ? 'Show less' : 'Show more projects'}
+                    </Button>
                   </div>
                 )}
-              </div>
-              </div>
 
-              <div className="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-black/10 flex flex-col items-center text-center">
-                <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4">
-                  Let&apos;s chat about your project in more detail
-                </h3>
-                <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black">
-                  <a
-                    href="mailto:asakalageraghty@gmail.com"
-                    className="underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
-                  >
-                    asakala [at] gmail [dot] com
-                  </a>
-                  <button
-                    onClick={copyEmail}
-                    className="ml-3 inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium bg-black/5 hover:bg-black/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 align-middle"
-                    aria-label="Copy email address"
-                  >
-                    {emailCopied ? 'Copied!' : 'Copy'}
-                  </button>
-                </p>
-              </div>
+                {/* Feedback */}
+                <div className="flex justify-end">
+                  {feedbackSubmitted ? (
+                    <p className="text-body-sm text-body" role="status">Thanks for the feedback 🙏</p>
+                  ) : (
+                    <div className="flex flex-col items-end gap-3 text-right">
+                      <p className="text-label text-foreground" id="rating-label">Rate this match</p>
+                      <div className="flex gap-1" role="group" aria-labelledby="rating-label">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <button
+                            key={star}
+                            type="button"
+                            onClick={() => setFeedbackRating(star)}
+                            onMouseEnter={() => setFeedbackHover(star)}
+                            onMouseLeave={() => setFeedbackHover(0)}
+                            aria-label={`Rate ${star} out of 5`}
+                            aria-pressed={feedbackRating === star}
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-primary"
+                          >
+                            <Star
+                              size={22}
+                              aria-hidden="true"
+                              className={(feedbackHover || feedbackRating) >= star ? 'fill-primary stroke-primary' : 'fill-transparent stroke-input'}
+                            />
+                          </button>
+                        ))}
+                      </div>
 
-            </div>
-          </section>
-        )}
-
-        <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="work" aria-labelledby="projects-heading">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12 lg:mb-16">
-              Featured Projects
-            </h2>
-
-            <div className="space-y-8 sm:space-y-12 lg:space-y-16">
-              {featuredProjects.map((project) => (
-                <article key={project.id}>
-                  <a
-                    href={project.internalUrl ?? project.framerUrl}
-                    target={project.internalUrl ? undefined : '_blank'}
-                    rel={project.internalUrl ? undefined : 'noopener noreferrer'}
-                    className="block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 rounded-2xl active:opacity-90 transition-opacity"
-                    aria-label={`View ${project.title} project details`}
-                  >
-                    <div className="bg-white rounded-2xl overflow-hidden border border-black/8 hover:border-black/20 transition-all">
-                      {project.image ? (
-                        <div className="w-full aspect-[16/9] overflow-hidden bg-black">
-                          <img 
-                            src={project.image} 
-                            alt={`${project.title} project screenshot`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      {feedbackRating > 0 && (
+                        <div className="flex w-full max-w-sm flex-col gap-3 sm:w-80">
+                          <label htmlFor="feedback-text" className="sr-only">Feedback</label>
+                          <textarea
+                            id="feedback-text"
+                            value={feedbackText}
+                            onChange={(e) => setFeedbackText(e.target.value)}
+                            rows={3}
+                            placeholder="Any thoughts on the results? (optional)"
+                            className={`${inputClasses} resize-none text-left text-base`}
                           />
-                        </div>
-                      ) : (
-                        <div className="w-full aspect-[16/9] bg-gradient-to-br from-[#f2fce2] to-[#eff0fc] flex items-center justify-center p-10">
-                          <img 
-                            src="/designer-at-work.svg" 
-                            alt="Designer at work illustration"
-                            className="w-full h-full max-w-md object-contain opacity-80"
+                          <label htmlFor="feedback-email" className="sr-only">Your email (optional)</label>
+                          <input
+                            id="feedback-email"
+                            type="email"
+                            autoComplete="email"
+                            value={feedbackEmail}
+                            onChange={(e) => setFeedbackEmail(e.target.value)}
+                            placeholder="Your email (optional)"
+                            className={`${inputClasses} px-4 py-3 text-left text-base`}
                           />
+                          <div className="flex justify-end">
+                            <Button
+                              type="button"
+                              disabled={feedbackLoading}
+                              onClick={async () => {
+                                setFeedbackLoading(true);
+                                try {
+                                  await fetch('/api/feedback', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ rating: feedbackRating, text: feedbackText, email: feedbackEmail }),
+                                  });
+                                } finally {
+                                  setFeedbackLoading(false);
+                                  setFeedbackSubmitted(true);
+                                }
+                              }}
+                            >
+                              {feedbackLoading ? 'Sending…' : 'Send feedback'}
+                            </Button>
+                          </div>
                         </div>
                       )}
-                      
-                      <div className="p-6 sm:p-8 lg:p-10 pb-10 sm:pb-12 lg:pb-14">
-                        <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-2">
-                          {project.title}
-                        </h3>
-                        
-                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black/66 mb-4">
-                          {project.company}
-                        </p>
-                        
-                        <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6">
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-col items-center gap-4 border-t border-border pt-12 text-center">
+                  <h3 className="text-h3 text-foreground">Let&apos;s chat about your project in more detail</h3>
+                  <p className="text-body-lg text-foreground">
+                    <a href="mailto:asakalageraghty@gmail.com" className={textLink}>
+                      asakala [at] gmail [dot] com
+                    </a>
+                    {copyButton}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Work */}
+        <section id="work" aria-labelledby="projects-heading" className="flex flex-col gap-12">
+          <SectionHeader id="projects-heading" eyebrow="Selected work" title="Featured Projects" />
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-16 min-[1056px]:grid-cols-[repeat(2,minmax(0,1fr))]">
+            {featuredProjects.map((project) => {
+              const href = project.internalUrl ?? project.framerUrl;
+              const external = !project.internalUrl;
+              return (
+                <li key={project.id} className="min-w-0">
+                  <a
+                    href={href}
+                    {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    aria-describedby={project.impact ? `project-impact-${project.id}` : undefined}
+                    className="group flex flex-col gap-4 rounded-sm outline-offset-4"
+                  >
+                    <div className="overflow-hidden">
+                      <Figure
+                        src={project.image!}
+                        ratio="4:3"
+                        fit="cover"
+                        className="motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.02]"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      {project.company && <Eyebrow>{project.company}</Eyebrow>}
+                      <h3 className="text-h3 text-foreground decoration-2 underline-offset-4 group-hover:underline group-focus-visible:underline">
+                        {project.title} <span aria-hidden="true">→</span>
+                      </h3>
+                      {project.impact && (
+                        <p id={`project-impact-${project.id}`} className="text-body-sm text-muted-foreground">
                           {project.impact}
                         </p>
-
-                        <div className="flex flex-wrap gap-2 sm:gap-3" role="list" aria-label="Project skills">
-                          {project.skills.map((skill) => (
-                            <span
-                              key={skill}
-                              className="px-3 sm:px-4 py-2 bg-black/5 text-black rounded-lg text-sm sm:text-base font-medium"
-                              role="listitem"
-                            >
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      )}
                     </div>
+                    <TagList tags={project.skills} />
                   </a>
-                </article>
-              ))}
-            </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+
+        {/* About */}
+        <section id="about" aria-labelledby="about-heading" className="flex flex-col gap-12">
+          <SectionHeader id="about-heading" title="About" />
+          <div className="measure flex flex-col gap-6 text-body-lg text-body">
+            <p>
+              I&apos;m Asakala — a digital product designer. I care about helping people create better products and services. Currently based in London, UK.
+            </p>
+            <p>
+              Recently working with a start up looking at how AI can help streamline internal tools and customer communication within regulated financial industries.
+            </p>
+            <p>
+              At Transport for London, I redesigned the way an account dashboard works to help drivers and businesses better understand and manage their account, payments and discounts. I learnt about how to deliver value in public sector projects.
+            </p>
           </div>
         </section>
 
-        <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="about" aria-labelledby="about-heading">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="h-px w-full bg-black mb-6" role="presentation" />
-            <h2 id="about-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12">
-              About
-            </h2>
-            
-            <div className="max-w-3xl">
-              <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
-                I&apos;m Asakala — a digital product designer. I care about helping people create better products and services. Currently based in London, UK.
-              </p>
-
-              <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
-                Recently working with a start up looking at how AI can help streamline internal tools and customer communication within regulated financial industries.
-              </p>
-
-              <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black">
-                At Transport for London, I redesigned the way an account dashboard works to help drivers and businesses better understand and manage their account, payments and discounts. I learnt about how to deliver value in public sector projects.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full border-t border-black/8 py-12 sm:py-16 lg:py-24" id="contact" aria-labelledby="contact-heading">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="h-px w-full bg-black mb-6" role="presentation" />
-            <h2 id="contact-heading" className="text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12">
-              Get in touch
-            </h2>
-            
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-6 sm:mb-8">
+        {/* Contact */}
+        <section id="contact" aria-labelledby="contact-heading" className="flex flex-col gap-12">
+          <SectionHeader id="contact-heading" title="Get in touch" />
+          <div className="measure flex flex-col gap-6 text-body-lg text-body">
+            <p>
               If you want to chat about a project — send me an email on{' '}
-              <a
-                href="mailto:asakalageraghty@gmail.com"
-                className="underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
-              >
+              <a href="mailto:asakalageraghty@gmail.com" className={textLink}>
                 asakala [at] gmail [dot] com
               </a>
-              <button
-                onClick={copyEmail}
-                className="ml-3 inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium bg-black/5 hover:bg-black/10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 align-middle"
-                aria-label="Copy email address"
-              >
-                {emailCopied ? 'Copied!' : 'Copy'}
-              </button>
+              {copyButton}
             </p>
-            
-            <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black mb-8 sm:mb-12">
-              I can help design a new digital product or consult on the best approach for your project.
-            </p>
-            
-            <nav aria-label="Social media links" className="flex flex-wrap gap-4 sm:gap-6">
-              <a 
-                href="https://linkedin.com/in/asakala" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded min-h-[44px] flex items-center"
-              >
-                LinkedIn
-              </a>
-              <a 
-                href="https://github.com/kalasentient" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded min-h-[44px] flex items-center"
-              >
-                GitHub
-              </a>
-            </nav>
+            <p>I can help design a new digital product or consult on the best approach for your project.</p>
+            <ul aria-label="Social media links" className="flex flex-wrap gap-6">
+              <li>
+                <a href="https://linkedin.com/in/asakala" target="_blank" rel="noopener noreferrer" className={`${textLink} inline-flex min-h-11 items-center`}>
+                  LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/kalasentient" target="_blank" rel="noopener noreferrer" className={`${textLink} inline-flex min-h-11 items-center`}>
+                  GitHub<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
-
-        <footer className="w-full border-t border-black/8 py-8 sm:py-12">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-black/55 text-sm sm:text-base tracking-normal">
-              © 2026 Asakala Geraghty
-            </p>
-          </div>
-        </footer>
       </main>
+
+      <SiteFooter />
     </>
   );
 }

@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import BackButton from '@/app/components/BackButton';
+import CaseStudyLayout from '@/app/components/CaseStudyLayout';
+import { CaseStudyHeader, Facts, Figure, Prose, Section, SectionHeader } from '@/app/components/ui';
 
 export const metadata: Metadata = {
   title: 'TfL — Payments for individual and fleet drivers · Asakala',
@@ -28,175 +28,96 @@ const impact = [
   'Delivered final designs that can be utilised for other journeys within the space',
 ];
 
+const goalPrinciples = [
+  'Timely, bound by strict contract end date from current supplier',
+  'Encourages users to adopt Autopay when more convenient',
+  'Risk averse, yet not reliant on data',
+  'Adaptable to the upcoming visual design vision',
+  'Considered, with regards to how it fits into the Tfl ecosystem',
+];
+
 const processImages = [
   {
     src: '/projects/tfl/Tfl-image1.avif',
-    caption: 'Existing live experience and what the project team were considering to implement before I joined (using existing library components) Essentially no data was being brought forward for users to view',
+    alt: "Side by side: the old London Road User Charging account page with a grid of option cards, and an early 'Elena's driving hub' concept with service cards and an Auto Pay pending banner.",
+    caption: 'The existing live experience, and what the project team were considering before I joined. Essentially no data was being brought forward for users to view.',
   },
   {
-    src: '/projects/tfl/Tfl-image2.avif',
-    caption: 'Initially the challenge was being able to sell the value of making sure we understood the business Fleet users too. I created user testing proposals and discussion guides. This was the first step to bringing the wider business teams into the impact that these changes would have on both indivudal customers and businesses who were paying for driving charges and how each of their needs were so different. I led a series of workshops to uncover and organise the account statuses, data points and user actions. Digging into what were considerd edge cases and understanding the size of their impact. For example for the various discounts and the knock on affects of customers lack of understanding on how to use them.',
-  },
-  {
-    src: '/projects/tfl/Tfl-image3.avif',
-    caption: "Initial thinking wireframes and permutations of status. How do the Pay as you go features interact with the AutoPay functionalities and how do we balance the intentions of the organisation vs the customer's journey priority",
+    src: '/projects/tfl/Tfl-status-map.avif',
+    alt: 'Sticky-note map in four rows: account statuses, actions users can take, data users can access and communications, with the most urgent items numbered by priority.',
+    caption: 'I led workshops to uncover and organise the account statuses, actions, data points and communications, bringing the wider business teams into how differently individual customers and fleet businesses would be affected.',
   },
   {
     src: '/projects/tfl/Tfl-image4.avif',
-    caption: 'Working with other designers on the team to understand the evolving landscape of new visual language that was due to be released soon. This included looking at how "driving" was positioned within the whole Tfl ecosystem and how the data within card components were prioritised progressively expanded ',
+    alt: 'Collage of other TfL products for reference: the TfL Go Oyster card screen, notification prompts, the Status page, and a note on designing while the new visual language was still in progress.',
+    caption: 'Working with other designers to understand the new visual language due for release, and how driving sat within the wider TfL ecosystem.',
   },
   {
     src: '/projects/tfl/Tfl-image5.avif',
-    caption: "Exploring how an account might look for a customer who drives and uses other public transport regularly. The cards would change positioning based on priority. For example even if charges were not regularly due for a specific car, if the discount applied was due to expire we would need this prompt to feature first and take precedence above recent charges due to the dire consequences for the customer of non action. The scope of the project didn't allow certain penalty charge systems to communicate with account dashboard systems for example",
+    alt: 'Explorations of an account overview and a driving dashboard, with cards for Autopay, vehicles, discounts, recent charges and a postcode checker.',
+    caption: 'Exploring how an account might look for a customer who drives and also uses public transport. Cards change position by priority, so an expiring discount comes before recent charges.',
   },
   {
     src: '/projects/tfl/Tfl-image6.avif',
-    caption: 'Refining urgent notification states and visual language and considering how these card patterns might scale in other scenarios and remain up to the WCAG AA guidelines standards',
+    alt: 'Nine dashboard variations for personal and business accounts, showing Auto Pay and discount cards with red and amber alerts such as an expired card or a discount about to expire.',
+    caption: 'Refining urgent notification states and how the card patterns scale to other scenarios, while meeting WCAG AA.',
   },
   {
     src: '/projects/tfl/Tfl-image7.avif',
-    caption: 'Refining the card layout, all possible language states across customer and business fleet accounts',
-  },
-  {
-    src: '/projects/tfl/Tfl-image8.avif',
-    caption: "Creating specification documents for each account state. Aligning with the product engineering team to ensure shared understanding. Agreeing with Product on which notifications were part of service notification and so the customer didn't need to be opted in.",
+    alt: 'Library of alert banners for Autopay, Fleet Autopay and discounts in blue, amber and red, next to a close-up of an Auto Pay card with a payment failed alert and spacing annotations.',
+    caption: 'Refining the card layout and every language state across customer and fleet accounts.',
   },
 ];
 
 export default function TflProject() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc]">
+    <CaseStudyLayout>
+      {/* Intro */}
+      <div className="flex flex-col gap-12">
+        <CaseStudyHeader eyebrow="Transport for London · 2024" title="Payments for individual and fleet drivers" />
+        <Figure src="/tfl-dashboard.avif" alt="TfL payments dashboard interface" fit="cover" priority />
+        <Facts
+          facts={[
+            { label: 'My contribution', value: <ul className="space-y-3">{contribution.map((item) => <li key={item}>{item}</li>)}</ul> },
+            { label: 'The team', value: <ul className="space-y-3">{team.map((item) => <li key={item}>{item}</li>)}</ul> },
+            { label: 'Year', value: '2024' },
+          ]}
+        />
+      </div>
 
-      {/* Header */}
-      <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <BackButton />
-          <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
-            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>
-            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
-          </nav>
-        </div>
-      </header>
+      {/* Overview */}
+      <Section aria-labelledby="goal-heading">
+        <SectionHeader id="goal-heading" eyebrow="01 — Overview" title="The goal" />
+        <Prose>
+          <p className="text-foreground">
+            Re design the payments and account landing page so that drivers in London can understand their account with ease and confidently make payments and take needed actions on their account.
+          </p>
+          <p>How can we redesign the Transport for London driving dashboard in a way that is:</p>
+          <ul>
+            {goalPrinciples.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <p>
+            The overarching challenge: an impending platform change and an already overwhelmed project team.
+          </p>
+        </Prose>
+      </Section>
 
-      <main>
-
-        {/* Hero */}
-        <section className="w-full py-16 sm:py-20 lg:py-28">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">Transport for London · 2024</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
-              Payments for individual and fleet drivers
-            </h1>
-          </div>
-        </section>
-
-        {/* Hero image */}
-        <section className="w-full">
-          <img
-            src="/tfl-dashboard.avif"
-            alt="TfL payments dashboard interface"
-            className="w-full h-auto"
-          />
-        </section>
-
-        {/* Overview */}
-        <section className="w-full py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
-              Overview
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
-
-              {/* Goal */}
-              <div className="lg:col-span-6">
-                <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-3">The goal</h3>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black mb-4">
-                  Re design the payments and account landing page so that drivers in London can understand their account with ease and confidently make payments and take needed actions on their account.
-                </p>
-                <p className="text-lg sm:text-xl lg:text-[22px] leading-[155%] tracking-normal text-black/60">
-                  The overarching challenge: an impending platform change and an already overwhelmed project team.
-                </p>
-              </div>
-
-              {/* Meta */}
-              <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
-
-                <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">My contribution</h3>
-                  <ul className="space-y-3">
-                    {contribution.map((item) => (
-                      <li key={item} className="text-base lg:text-[17px] leading-[150%] text-black/80">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">The team</h3>
-                  <ul className="space-y-3">
-                    {team.map((item) => (
-                      <li key={item} className="text-base lg:text-[17px] leading-[150%] text-black/80">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-medium text-black/40 uppercase tracking-wide mb-4">Year</h3>
-                  <p className="text-base lg:text-[17px] text-black/80">2024</p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Process */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-10 sm:mb-14">
-              Process
-            </h2>
-
-            {/* Impact */}
-            <div className="mb-16 sm:mb-20">
-              <h3 className="text-xl sm:text-2xl font-medium text-black mb-6">Impact</h3>
-              <ul className="space-y-4 max-w-2xl">
-                {impact.map((item) => (
-                  <li key={item} className="flex gap-3 text-lg sm:text-[20px] leading-[150%] tracking-normal text-black/80">
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-black/30 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Process image grid */}
-          </div>
-        </section>
-
+      {/* Process */}
+      <Section aria-labelledby="impact-heading">
+        <SectionHeader id="impact-heading" eyebrow="02 — Process" title="Impact" />
+        <Prose>
+          <ul>
+            {impact.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </Prose>
         {processImages.map((item, i) => (
-          <section key={i} className="w-full py-8 sm:py-10">
-            <img
-              src={item.src}
-              alt={item.caption}
-              className="w-full h-auto"
-            />
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
-              <p className="text-lg sm:text-[20px] leading-[150%] tracking-normal text-black/80 max-w-xl">{item.caption}</p>
-            </div>
-          </section>
+          <Figure key={item.src} src={item.src} alt={item.alt} number={i + 1} caption={item.caption} />
         ))}
-
-        {/* Footer */}
-        <footer className="w-full border-t border-black/8 py-8 sm:py-12">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
-            <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
-          </div>
-        </footer>
-
-      </main>
-    </div>
+      </Section>
+    </CaseStudyLayout>
   );
 }

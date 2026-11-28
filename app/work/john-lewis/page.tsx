@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import BackButton from '@/app/components/BackButton';
+import CaseStudyLayout from '@/app/components/CaseStudyLayout';
+import { CaseStudyHeader, Facts, Figure, Prose, Section, SectionHeader } from '@/app/components/ui';
 
 export const metadata: Metadata = {
   title: 'John Lewis — Shipping a GenAI chatbot while the ground kept moving · Asakala',
@@ -84,18 +84,22 @@ const principleFive: Principle = {
 const images = {
   routingTest: {
     src: '/projects/john-lewis/jl-image1.webp',
+    alt: "Conversation flow for an online order: the bot's greeting and questions, example customer replies, and a decision point that routes the chat to troubleshooting or customer service.",
     caption: 'Our first version testing if “routing to a team” was working and useful',
   },
   processMap: {
     src: '/projects/john-lewis/jl-image2.webp',
+    alt: 'Flowchart of the phase 1 bot logic: questions about where the item was bought and whether it was damaged, leading to an order lookup, an identity check or referral to the manufacturer.',
     caption: 'Illustration of high level process map and the new phase 1/2 plan',
   },
   trainingPrototyping: {
     src: '/projects/john-lewis/jl-image3.webp',
+    alt: "Bot training setup: a spreadsheet of example customer phrases for a 'report damaged item' intent, next to a prototype conversation flow with an AI-generated response step.",
     caption: 'Image detailing processes for training and prototyping the AI Bot',
   },
   accuracyFramework: {
     src: '/projects/john-lewis/jl-image4.webp',
+    alt: 'Slide listing the primary and secondary metrics to measure, next to Salesforce dashboard charts of WhatsApp bot sessions.',
     caption: 'Accuracy classification framework — working out more accurate intent matching classifications',
   },
 };
@@ -114,241 +118,121 @@ const keptFixed = [
   'Guardrails for AI ethics and safety',
 ];
 
-const bodyText = 'text-lg sm:text-[24px] leading-[145%] tracking-normal text-black';
-const listItem = 'text-lg sm:text-[24px] leading-[145%] tracking-normal text-black';
-const listStyle = 'list-disc pl-6 sm:pl-8 space-y-3 marker:text-black/40';
-const sectionHeading = 'text-3xl sm:text-4xl lg:text-[56px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-8 sm:mb-12';
-
-function PrincipleBlock({ principle, className = '' }: { principle: Principle; className?: string }) {
+function PrincipleBlock({ principle }: { principle: Principle }) {
   return (
-    <div className={`max-w-4xl ${className}`}>
-      <h3 className="text-2xl sm:text-[32px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4 sm:mb-6">{principle.title}</h3>
-      <ul className={listStyle}>
-        {principle.points.map((point) => (
-          <li key={point.text} className={listItem}>
-            <div>
-              {point.label && <span className="font-medium">{point.label}: </span>}
+    <div className="flex flex-col gap-4">
+      <h3 className="text-h3 text-foreground measure">{principle.title}</h3>
+      <Prose>
+        <ul>
+          {principle.points.map((point) => (
+            <li key={point.text}>
+              {point.label && <strong>{point.label}: </strong>}
               {point.text}
               {point.subPoints && (
-                <ul className={`${listStyle} mt-3 list-[circle]`}>
+                <ul>
                   {point.subPoints.map((sub) => (
-                    <li key={sub} className={listItem}>
-                      {sub}
-                    </li>
+                    <li key={sub}>{sub}</li>
                   ))}
                 </ul>
               )}
-            </div>
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
+      </Prose>
     </div>
-  );
-}
-
-function ImageBlock({ image }: { image: { src: string; caption: string } }) {
-  return (
-    <section className="w-full py-8 sm:py-10">
-      <img
-        src={image.src}
-        alt={image.caption}
-        className="w-full h-auto"
-      />
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 mt-4">
-        <p className="text-lg sm:text-xl text-black/50 leading-[145%] max-w-3xl">{image.caption}</p>
-      </div>
-    </section>
   );
 }
 
 export default function JohnLewisProject() {
+  let fig = 0;
+  const figure = (image: { src: string; alt: string; caption: string }) => (
+    <Figure src={image.src} alt={image.alt} number={++fig} caption={image.caption} />
+  );
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc]">
+    <CaseStudyLayout>
+      {/* Intro */}
+      <div className="flex flex-col gap-12">
+        <CaseStudyHeader
+          eyebrow="John Lewis · 2023 · Senior product designer · 5-month contract"
+          title="Shipping a GenAI chatbot while the ground kept moving"
+        />
+        <Figure src="/johnlewis-chatbot.avif" alt="John Lewis WhatsApp chatbot interface" fit="cover" priority />
+        <Facts
+          facts={[
+            { label: 'My contribution', value: <ul className="space-y-3">{contribution.map((item) => <li key={item}>{item}</li>)}</ul> },
+            { label: 'The team', value: <ul className="space-y-3">{team.map((item) => <li key={item}>{item}</li>)}</ul> },
+            { label: 'Year', value: '2023' },
+          ]}
+        />
+      </div>
 
-      {/* Header */}
-      <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <BackButton />
-          <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
-            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4">About</Link>
-            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] lg:text-[22px] font-medium tracking-normal focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
-          </nav>
-        </div>
-      </header>
+      {/* Overview */}
+      <Section aria-labelledby="goal-heading">
+        <SectionHeader id="goal-heading" eyebrow="01 — Overview" title="The goal" />
+        <Prose>
+          <p className="text-body-lg text-foreground">
+            John Lewis wanted to use GenAI to make its WhatsApp customer service faster, both for customers and for the agents who pick up conversations.
+          </p>
+          <p>The brief kept shifting as we went:</p>
+          <ul>
+            {shiftingBrief.map((item) => (
+              <li key={item.label}>
+                <strong>{item.label}:</strong> {item.text}
+              </li>
+            ))}
+          </ul>
+        </Prose>
+      </Section>
 
-      <main>
+      {/* Guiding principles */}
+      <Section aria-labelledby="principles-heading">
+        <SectionHeader id="principles-heading" eyebrow="02 — Approach" title="Guiding principles I created for this project" />
+        <PrincipleBlock principle={principles[0]} />
+        <PrincipleBlock principle={principles[1]} />
+        {figure(images.routingTest)}
+        {figure(images.trainingPrototyping)}
+        <PrincipleBlock principle={principles[2]} />
+        {figure(images.accuracyFramework)}
+        <PrincipleBlock principle={principles[3]} />
+        <PrincipleBlock principle={principleFive} />
+      </Section>
 
-        {/* Hero */}
-        <section className="w-full py-16 sm:py-20 lg:py-28">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-lg sm:text-xl text-black/50 mb-6">John Lewis · 2023 · Senior product designer · 5-month contract</p>
-            <h1 className="text-4xl sm:text-5xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-5xl">
-              Shipping a GenAI chatbot while the ground kept moving
-            </h1>
-          </div>
-        </section>
+      {/* A moment the requirements changed */}
+      <Section aria-labelledby="change-heading">
+        <SectionHeader id="change-heading" eyebrow="03 — Change" title="A moment the requirements changed" />
+        <Prose>
+          <p>
+            Midway through, another part of the business began changing how customers and agents troubleshoot an entire product category. That changed the bot&apos;s routing completely while its structure was already in build. I negotiated a phased approach and quickly redesigned parts of the bot&apos;s structure without compromising the overall design.
+          </p>
+        </Prose>
+        {figure(images.processMap)}
+      </Section>
 
-        {/* Hero image */}
-        <section className="w-full">
-          <img
-            src="/johnlewis-chatbot.avif"
-            alt="John Lewis WhatsApp chatbot interface"
-            className="w-full h-auto"
-          />
-        </section>
+      {/* Impact */}
+      <Section aria-labelledby="impact-heading">
+        <SectionHeader id="impact-heading" eyebrow="04 — Outcome" title="Impact" />
+        <Prose>
+          <ul>
+            {impact.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </Prose>
+      </Section>
 
-        {/* Overview */}
-        <section className="w-full py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className={sectionHeading}>
-              Overview
-            </h2>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
-
-              {/* Goal */}
-              <div className="lg:col-span-6">
-                <h3 className="text-lg sm:text-xl text-black/50 mb-3">The goal</h3>
-                <p className="text-xl sm:text-2xl lg:text-[32px] leading-[142%] tracking-normal text-black mb-6 lg:mb-8">
-                  John Lewis wanted to use GenAI to make its WhatsApp customer service faster, both for customers and for the agents who pick up conversations.
-                </p>
-                <p className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black/66 mb-4">
-                  The brief kept shifting as we went:
-                </p>
-                <ul className={listStyle}>
-                  {shiftingBrief.map((item) => (
-                    <li key={item.label} className="text-lg sm:text-[24px] leading-[145%] tracking-normal text-black/66">
-                      <span className="font-medium text-black">{item.label}:</span> {item.text}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Meta */}
-              <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
-
-                <div>
-                  <h3 className="text-lg sm:text-xl text-black/50 mb-3">My contribution</h3>
-                  <ul className="space-y-3">
-                    {contribution.map((item) => (
-                      <li key={item} className="text-lg sm:text-[20px] leading-[145%] text-black">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-lg sm:text-xl text-black/50 mb-3">The team</h3>
-                  <ul className="space-y-3">
-                    {team.map((item) => (
-                      <li key={item} className="text-lg sm:text-[20px] leading-[145%] text-black">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-lg sm:text-xl text-black/50 mb-3">Year</h3>
-                  <p className="text-lg sm:text-[20px] leading-[145%] text-black">2023</p>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Guiding principles 1–2 */}
-        <section className="w-full border-t border-black/8 pt-16 sm:pt-20 lg:pt-24 pb-8 sm:pb-10">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className={sectionHeading}>
-              Guiding principles I created for this project
-            </h2>
-            <PrincipleBlock principle={principles[0]} className="mb-12 sm:mb-16" />
-            <PrincipleBlock principle={principles[1]} />
-          </div>
-        </section>
-
-        <ImageBlock image={images.routingTest} />
-        <ImageBlock image={images.trainingPrototyping} />
-
-        {/* Guiding principle 3 */}
-        <section className="w-full py-8 sm:py-10">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <PrincipleBlock principle={principles[2]} />
-          </div>
-        </section>
-
-        <ImageBlock image={images.accuracyFramework} />
-
-        {/* Guiding principles 4–5 */}
-        <section className="w-full pt-8 sm:pt-10 pb-16 sm:pb-20 lg:pb-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <PrincipleBlock principle={principles[3]} className="mb-12 sm:mb-16" />
-            <PrincipleBlock principle={principleFive} />
-          </div>
-        </section>
-
-        {/* A moment the requirements changed */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className={sectionHeading}>
-              A moment the requirements changed
-            </h2>
-            <div className="max-w-4xl">
-              <p className={bodyText}>
-                Midway through, another part of the business began changing how customers and agents troubleshoot an entire product category. That changed the bot&apos;s routing completely while its structure was already in build. I negotiated a phased approach and quickly redesigned parts of the bot&apos;s structure without compromising the overall design.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <ImageBlock image={images.processMap} />
-
-        {/* Impact */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className={sectionHeading}>
-              Impact
-            </h2>
-            <ul className={`max-w-4xl ${listStyle}`}>
-              {impact.map((item) => (
-                <li key={item} className={listItem}>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* What this means for how I work now */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <h2 className={sectionHeading}>
-              What this means for how I work now
-            </h2>
-            <div className="max-w-4xl space-y-6">
-              <p className={bodyText}>
-                On AI products, requirements tend to keep moving. Some things I hold strong as a designer:
-              </p>
-              <ul className={listStyle}>
-                {keptFixed.map((item) => (
-                  <li key={item} className={listItem}>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="w-full border-t border-black/8 py-8 sm:py-12">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm sm:text-base tracking-normal">© 2026 Asakala Geraghty</p>
-            <Link href="/" className="text-sm sm:text-base text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
-          </div>
-        </footer>
-
-      </main>
-    </div>
+      {/* Reflection */}
+      <Section aria-labelledby="reflection-heading">
+        <SectionHeader id="reflection-heading" eyebrow="05 — Reflection" title="What this means for how I work now" />
+        <Prose>
+          <p>On AI products, requirements tend to keep moving. Some things I hold strong as a designer:</p>
+          <ul>
+            {keptFixed.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </Prose>
+      </Section>
+    </CaseStudyLayout>
   );
 }

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
-import BackButton from '@/app/components/BackButton';
+import CaseStudyLayout from '@/app/components/CaseStudyLayout';
+import { CaseStudyHeader } from '@/app/components/ui';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const tabs = [
@@ -72,59 +72,31 @@ export default function OtherCreations() {
   }, [lightbox, prev, next]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc]">
+    <>
+    <CaseStudyLayout>
+      <CaseStudyHeader eyebrow="Creative work" title="Other creative work" />
 
-      <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <BackButton />
-          <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
-            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>
-            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
-          </nav>
-        </div>
-      </header>
-
-      <main>
-
-        {/* Hero */}
-        <section className="w-full py-16 sm:py-20 lg:py-28">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">Creative Work</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
-              Other creative work
-            </h1>
-          </div>
-        </section>
-
+      <div className="flex flex-col gap-12">
         {/* Tabs */}
-        <section className="w-full border-t border-black/8">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div
-              role="tablist"
-              aria-label="Creative work categories"
-              className="flex gap-0 border-b border-black/10"
+        <div role="tablist" aria-label="Creative work categories" className="flex border-b border-border">
+          {visibleTabs.map(tab => (
+            <button
+              key={tab.id}
+              role="tab"
+              aria-selected={activeTab === tab.id}
+              aria-controls={`panel-${tab.id}`}
+              id={`tab-${tab.id}`}
+              onClick={() => setActiveTab(tab.id)}
+              className={`-mb-px min-h-12 border-b-2 px-6 py-3 text-label transition-colors ${
+                activeTab === tab.id
+                  ? 'border-foreground text-foreground'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
             >
-              {visibleTabs.map(tab => (
-                <button
-                  key={tab.id}
-                  role="tab"
-                  aria-selected={activeTab === tab.id}
-                  aria-controls={`panel-${tab.id}`}
-                  id={`tab-${tab.id}`}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`px-6 py-4 text-base sm:text-lg font-medium transition-colors focus:outline-none focus:underline focus:underline-offset-4 border-b-2 -mb-px ${
-                    activeTab === tab.id
-                      ? 'border-black text-black'
-                      : 'border-transparent text-black/40 hover:text-black/70'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
         {/* Tab panels */}
         {visibleTabs.map(tab => (
@@ -134,58 +106,47 @@ export default function OtherCreations() {
             role="tabpanel"
             aria-labelledby={`tab-${tab.id}`}
             hidden={activeTab !== tab.id}
-            className="w-full py-12 sm:py-16 lg:py-20"
+            className="flex flex-col gap-12"
           >
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-              <div className="mb-10 sm:mb-14 max-w-2xl">
-                <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-medium leading-[120%] tracking-[-0.01em] text-black mb-4">
-                  {tab.heading}
-                </h2>
-                <p className="text-lg sm:text-[20px] leading-[150%] tracking-normal text-black/80">
-                  {tab.description}
-                </p>
-                {tab.id === 'olfactory' && (
-                  <a
-                    href="https://www.wallpaper.com/lifestyle/colour-as-a-narrative-perfume-brand-illuminum-explores-realm-of-scent-through-architecture"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block mt-4 text-base sm:text-lg text-black underline hover:text-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded"
-                  >
-                    As featured in Wallpaper Magazine ↗
-                  </a>
-                )}
-              </div>
+            <div className="measure flex flex-col gap-4">
+              <span aria-hidden="true" className="block h-1 w-8 bg-accent" />
+              <h2 className="text-h2 text-foreground">{tab.heading}</h2>
+              <p className="text-body text-body">{tab.description}</p>
+              {tab.id === 'olfactory' && (
+                <a
+                  href="https://www.wallpaper.com/lifestyle/colour-as-a-narrative-perfume-brand-illuminum-explores-realm-of-scent-through-architecture"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center self-start text-body text-link underline underline-offset-4 hover:decoration-2"
+                >
+                  As featured in Wallpaper Magazine ↗<span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
+            </div>
 
-              <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-6">
-                {tab.images.map((src, i) => (
-                  <div key={i} className="break-inside-avoid mb-4 sm:mb-6">
-                    <button
-                      onClick={() => openLightbox(tab.images, i)}
-                      className="block w-full group focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 rounded-xl"
-                      aria-label="Enlarge image"
-                    >
-                      <img
-                        src={src}
-                        alt=""
-                        className="w-full h-auto rounded-xl group-hover:opacity-90 transition-opacity cursor-zoom-in"
-                        loading={i < 3 ? 'eager' : 'lazy'}
-                      />
-                    </button>
-                  </div>
-                ))}
-              </div>
+            <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
+              {tab.images.map((src, i) => (
+                <div key={i} className="mb-6 break-inside-avoid">
+                  <button
+                    onClick={() => openLightbox(tab.images, i)}
+                    className="group block w-full"
+                    aria-label={`Enlarge image ${i + 1} of ${tab.images.length}`}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt=""
+                      className="h-auto w-full cursor-zoom-in transition-opacity group-hover:opacity-90"
+                      loading={i < 3 ? 'eager' : 'lazy'}
+                    />
+                  </button>
+                </div>
+              ))}
             </div>
           </section>
         ))}
-
-      </main>
-
-      <footer className="w-full border-t border-black/8 py-8 sm:py-12">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-          <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
-          <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
-        </div>
-      </footer>
+      </div>
+    </CaseStudyLayout>
 
       {/* Lightbox */}
       {lightbox && (
@@ -199,7 +160,7 @@ export default function OtherCreations() {
           {/* Close */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-full transition-colors"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 inline-flex min-h-12 min-w-12 items-center justify-center p-2 text-white hover:bg-white/10 focus-visible:outline-white rounded-full transition-colors"
             aria-label="Close"
           >
             <X size={28} />
@@ -208,7 +169,7 @@ export default function OtherCreations() {
           {/* Prev */}
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
-            className="absolute left-3 sm:left-6 p-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-full transition-colors"
+            className="absolute left-3 sm:left-6 inline-flex min-h-12 min-w-12 items-center justify-center p-2 text-white hover:bg-white/10 focus-visible:outline-white rounded-full transition-colors"
             aria-label="Previous image"
           >
             <ChevronLeft size={36} />
@@ -218,26 +179,25 @@ export default function OtherCreations() {
           <img
             src={lightbox.images[lightbox.index]}
             alt=""
-            className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+            className="max-h-[90vh] max-w-[90vw] object-contain "
             onClick={(e) => e.stopPropagation()}
           />
 
           {/* Next */}
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
-            className="absolute right-3 sm:right-6 p-2 text-white/70 hover:text-white focus:outline-none focus:ring-2 focus:ring-white rounded-full transition-colors"
+            className="absolute right-3 sm:right-6 inline-flex min-h-12 min-w-12 items-center justify-center p-2 text-white hover:bg-white/10 focus-visible:outline-white rounded-full transition-colors"
             aria-label="Next image"
           >
             <ChevronRight size={36} />
           </button>
 
           {/* Counter */}
-          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/50 text-sm tabular-nums">
+          <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white font-mono text-base tabular-nums">
             {lightbox.index + 1} / {lightbox.images.length}
           </p>
         </div>
       )}
-
-    </div>
+    </>
   );
 }

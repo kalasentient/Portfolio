@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import BackButton from '@/app/components/BackButton';
+import CaseStudyLayout from '@/app/components/CaseStudyLayout';
+import { CaseStudyHeader, Eyebrow } from '@/app/components/ui';
 
 export const metadata: Metadata = {
   title: 'Recommendations · Asakala',
@@ -33,64 +33,23 @@ const recommendations = [
 
 export default function RecommendationsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f2fce2] to-[#eff0fc]">
+    <CaseStudyLayout extraNav={[{ href: '/recommendations', label: 'Recommendations' }]}>
+      <CaseStudyHeader eyebrow="LinkedIn · Colleagues & collaborators" title="Recommendations" />
 
-      {/* Header */}
-      <header className="w-full sticky top-0 bg-gradient-to-b from-[#f2fce2]/95 to-[#eff0fc]/95 backdrop-blur-sm z-40">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 py-4 sm:py-6 flex items-center justify-between">
-          <BackButton />
-          <nav className="flex items-center gap-4 sm:gap-6 lg:gap-10">
-            <Link href="/#work" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Work</Link>
-            <Link href="/#about" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">About</Link>
-            <Link href="/#contact" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Contact</Link>
-            <Link href="/recommendations" className="text-black hover:text-black/60 transition-colors text-[18px] sm:text-[20px] font-medium focus:outline-none focus:underline focus:underline-offset-4">Recommendations</Link>
-          </nav>
-        </div>
-      </header>
-
-      <main>
-
-        {/* Hero */}
-        <section className="w-full py-16 sm:py-20 lg:py-28">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <p className="text-sm text-black/40 mb-6 tracking-wide uppercase">LinkedIn · Colleagues &amp; collaborators</p>
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-medium leading-[106%] tracking-normal text-black max-w-3xl">
-              Recommendations
-            </h1>
-          </div>
-        </section>
-
-        {/* Recommendations list */}
-        <section className="w-full border-t border-black/8 py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20">
-            <div className="max-w-3xl space-y-12 sm:space-y-16">
-              {recommendations.map((rec, i) => (
-                <article key={i} className="border-b border-black/8 pb-12 sm:pb-16 last:border-b-0 last:pb-0">
-                  <blockquote className="mb-8">
-                    <p className="text-lg sm:text-[22px] leading-[160%] tracking-normal text-black">
-                      &ldquo;{rec.quote}&rdquo;
-                    </p>
-                  </blockquote>
-                  <div className="flex flex-col gap-1">
-                    <p className="text-base sm:text-lg font-medium text-black">{rec.name}</p>
-                    <p className="text-sm sm:text-base text-black/60">{rec.title}</p>
-                    <p className="text-sm text-black/40">{rec.relationship} · {rec.date}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="w-full border-t border-black/8 py-8 sm:py-12">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-20 flex items-center justify-between">
-            <p className="text-black/55 text-sm tracking-normal">© 2026 Asakala Geraghty</p>
-            <Link href="/" className="text-sm text-black/55 hover:text-black transition-colors">← Back to portfolio</Link>
-          </div>
-        </footer>
-
-      </main>
-    </div>
+      <section aria-label="Recommendations" className="measure flex flex-col gap-12">
+        {recommendations.map((rec, i) => (
+          <figure key={i} className="flex flex-col gap-6 border-t border-border pt-6">
+            <blockquote>
+              <p className="text-body-lg text-foreground">&ldquo;{rec.quote}&rdquo;</p>
+            </blockquote>
+            <figcaption className="flex flex-col gap-1">
+              <span className="text-label text-foreground">{rec.name}</span>
+              <span className="text-body-sm text-body">{rec.title}</span>
+              <Eyebrow as="span">{rec.relationship} · {rec.date}</Eyebrow>
+            </figcaption>
+          </figure>
+        ))}
+      </section>
+    </CaseStudyLayout>
   );
 }
