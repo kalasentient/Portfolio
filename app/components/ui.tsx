@@ -145,7 +145,7 @@ export function Figure({
   number,
   caption,
   ratio = '16:9',
-  fit = 'contain',
+  fit = 'cover',
   priority = false,
   className,
 }: {

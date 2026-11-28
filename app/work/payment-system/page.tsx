@@ -47,22 +47,27 @@ const processSteps = [
 const processImages = [
   {
     src: '/projects/payment-system/ps-image1.avif',
+    alt: "System map: three teams' use cases feed into one interface, which pulls ticket, debiting and dashboard data from two payment systems, with a third being phased out.",
     caption: 'System data mapping — high level overview of the payment flows and relationships',
   },
   {
     src: '/projects/payment-system/ps-image2.avif',
+    alt: 'Three sketch-style wireframes of the payment queue: a table of transactions with To process and Held over tabs, one with a row expanded and one with search filters.',
     caption: 'Azure mockups and wireframes',
   },
   {
     src: '/projects/payment-system/ps-image3.avif',
+    alt: "Board summarising changes after testing, covering concurrent work, tiered privileges, first and second approvers, data storage and what 'held' means, around an illustration of two people with a phone.",
     caption: 'Final screens and specifications for build',
   },
   {
     src: '/projects/payment-system/ps-image4.avif',
+    alt: 'Five sticky notes of learnings for internal tools and B2B projects, beside the system map.',
     caption: '',
   },
   {
     src: '/projects/payment-system/ps-image5.avif',
+    alt: 'Tablet showing a wireframe of the payment queue with search filters and a transaction table.',
     caption: '',
   },
 ];
@@ -107,7 +112,14 @@ export default function PaymentSystemProject() {
           </ul>
         </Prose>
         {processImages.map((item, i) => (
-          <Figure key={item.src} src={item.src} number={i + 1} caption={item.caption || undefined} />
+          <Figure
+            key={item.src}
+            src={item.src}
+            alt={item.alt}
+            number={i + 1}
+            caption={item.caption || undefined}
+            fit={item.src.endsWith('ps-image5.avif') ? 'contain' : 'cover'}
+          />
         ))}
       </Section>
     </CaseStudyLayout>

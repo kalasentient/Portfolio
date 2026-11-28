@@ -84,18 +84,22 @@ const principleFive: Principle = {
 const images = {
   routingTest: {
     src: '/projects/john-lewis/jl-image1.webp',
+    alt: "Conversation flow for an online order: the bot's greeting and questions, example customer replies, and a decision point that routes the chat to troubleshooting or customer service.",
     caption: 'Our first version testing if “routing to a team” was working and useful',
   },
   processMap: {
     src: '/projects/john-lewis/jl-image2.webp',
+    alt: 'Flowchart of the phase 1 bot logic: questions about where the item was bought and whether it was damaged, leading to an order lookup, an identity check or referral to the manufacturer.',
     caption: 'Illustration of high level process map and the new phase 1/2 plan',
   },
   trainingPrototyping: {
     src: '/projects/john-lewis/jl-image3.webp',
+    alt: "Bot training setup: a spreadsheet of example customer phrases for a 'report damaged item' intent, next to a prototype conversation flow with an AI-generated response step.",
     caption: 'Image detailing processes for training and prototyping the AI Bot',
   },
   accuracyFramework: {
     src: '/projects/john-lewis/jl-image4.webp',
+    alt: 'Slide listing the primary and secondary metrics to measure, next to Salesforce dashboard charts of WhatsApp bot sessions.',
     caption: 'Accuracy classification framework — working out more accurate intent matching classifications',
   },
 };
@@ -141,8 +145,8 @@ function PrincipleBlock({ principle }: { principle: Principle }) {
 
 export default function JohnLewisProject() {
   let fig = 0;
-  const figure = (image: { src: string; caption: string }) => (
-    <Figure src={image.src} number={++fig} caption={image.caption} />
+  const figure = (image: { src: string; alt: string; caption: string }) => (
+    <Figure src={image.src} alt={image.alt} number={++fig} caption={image.caption} />
   );
 
   return (
