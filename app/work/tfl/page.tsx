@@ -28,46 +28,44 @@ const impact = [
   'Delivered final designs that can be utilised for other journeys within the space',
 ];
 
+const goalPrinciples = [
+  'Timely, bound by strict contract end date from current supplier',
+  'Encourages users to adopt Autopay when more convenient',
+  'Risk averse, yet not reliant on data',
+  'Adaptable to the upcoming visual design vision',
+  'Considered, with regards to how it fits into the Tfl ecosystem',
+];
+
 const processImages = [
   {
     src: '/projects/tfl/Tfl-image1.avif',
     alt: "Side by side: the old London Road User Charging account page with a grid of option cards, and an early 'Elena's driving hub' concept with service cards and an Auto Pay pending banner.",
-    caption: 'Existing live experience and what the project team were considering to implement before I joined (using existing library components) Essentially no data was being brought forward for users to view',
+    caption: 'The existing live experience, and what the project team were considering before I joined. Essentially no data was being brought forward for users to view.',
   },
   {
-    src: '/projects/tfl/Tfl-image2.avif',
-    alt: 'Workshop board mapping account statuses for Autopay and Blue Badge discount, with sticky notes for each status, the actions users can take and the data they can see.',
-    caption: 'Initially the challenge was being able to sell the value of making sure we understood the business Fleet users too. I created user testing proposals and discussion guides. This was the first step to bringing the wider business teams into the impact that these changes would have on both indivudal customers and businesses who were paying for driving charges and how each of their needs were so different. I led a series of workshops to uncover and organise the account statuses, data points and user actions. Digging into what were considerd edge cases and understanding the size of their impact. For example for the various discounts and the knock on affects of customers lack of understanding on how to use them.',
-  },
-  {
-    src: '/projects/tfl/Tfl-image3.avif',
-    alt: 'Four low-fidelity wireframes of a driving account page, each tagged with a status, such as a payment card about to expire or all OK, and whether Auto Pay is set up.',
-    caption: "Initial thinking wireframes and permutations of status. How do the Pay as you go features interact with the AutoPay functionalities and how do we balance the intentions of the organisation vs the customer's journey priority",
+    src: '/projects/tfl/Tfl-status-map.avif',
+    alt: 'Sticky-note map in four rows: account statuses, actions users can take, data users can access and communications, with the most urgent items numbered by priority.',
+    caption: 'I led workshops to uncover and organise the account statuses, actions, data points and communications, bringing the wider business teams into how differently individual customers and fleet businesses would be affected.',
   },
   {
     src: '/projects/tfl/Tfl-image4.avif',
     alt: 'Collage of other TfL products for reference: the TfL Go Oyster card screen, notification prompts, the Status page, and a note on designing while the new visual language was still in progress.',
-    caption: 'Working with other designers on the team to understand the evolving landscape of new visual language that was due to be released soon. This included looking at how "driving" was positioned within the whole Tfl ecosystem and how the data within card components were prioritised progressively expanded ',
+    caption: 'Working with other designers to understand the new visual language due for release, and how driving sat within the wider TfL ecosystem.',
   },
   {
     src: '/projects/tfl/Tfl-image5.avif',
     alt: 'Explorations of an account overview and a driving dashboard, with cards for Autopay, vehicles, discounts, recent charges and a postcode checker.',
-    caption: "Exploring how an account might look for a customer who drives and uses other public transport regularly. The cards would change positioning based on priority. For example even if charges were not regularly due for a specific car, if the discount applied was due to expire we would need this prompt to feature first and take precedence above recent charges due to the dire consequences for the customer of non action. The scope of the project didn't allow certain penalty charge systems to communicate with account dashboard systems for example",
+    caption: 'Exploring how an account might look for a customer who drives and also uses public transport. Cards change position by priority, so an expiring discount comes before recent charges.',
   },
   {
     src: '/projects/tfl/Tfl-image6.avif',
     alt: 'Nine dashboard variations for personal and business accounts, showing Auto Pay and discount cards with red and amber alerts such as an expired card or a discount about to expire.',
-    caption: 'Refining urgent notification states and visual language and considering how these card patterns might scale in other scenarios and remain up to the WCAG AA guidelines standards',
+    caption: 'Refining urgent notification states and how the card patterns scale to other scenarios, while meeting WCAG AA.',
   },
   {
     src: '/projects/tfl/Tfl-image7.avif',
     alt: 'Library of alert banners for Autopay, Fleet Autopay and discounts in blue, amber and red, next to a close-up of an Auto Pay card with a payment failed alert and spacing annotations.',
-    caption: 'Refining the card layout, all possible language states across customer and business fleet accounts',
-  },
-  {
-    src: '/projects/tfl/Tfl-image8.avif',
-    alt: 'Specification board: for each Auto Pay status, the user actions, a given-when-then rule and an annotated screen of the dashboard.',
-    caption: "Creating specification documents for each account state. Aligning with the product engineering team to ensure shared understanding. Agreeing with Product on which notifications were part of service notification and so the customer didn't need to be opted in.",
+    caption: 'Refining the card layout and every language state across customer and fleet accounts.',
   },
 ];
 
@@ -94,6 +92,12 @@ export default function TflProject() {
           <p className="text-foreground">
             Re design the payments and account landing page so that drivers in London can understand their account with ease and confidently make payments and take needed actions on their account.
           </p>
+          <p>How can we redesign the Transport for London driving dashboard in a way that is:</p>
+          <ul>
+            {goalPrinciples.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
           <p>
             The overarching challenge: an impending platform change and an already overwhelmed project team.
           </p>
